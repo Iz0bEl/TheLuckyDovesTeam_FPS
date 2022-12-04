@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196054325}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.14999998, z: -10}
+  m_LocalPosition: {x: 0, y: 0.78, z: 0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,6 +147,9 @@ MonoBehaviour:
   SniperDamage: 3
   SnipershootRate: 0.75
   SniperRange: 200
+  shotgunEquiped: 0
+  rifleEquiped: 0
+  sniperEquiped: 0
 --- !u!143 &-6271858806448460980
 CharacterController:
   m_ObjectHideFlags: 0

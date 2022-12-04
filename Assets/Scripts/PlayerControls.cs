@@ -31,6 +31,11 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float SnipershootRate;
     [SerializeField] int SniperRange;
 
+
+    [SerializeField] bool shotgunEquiped;
+    [SerializeField] bool rifleEquiped;
+    [SerializeField] bool sniperEquiped;
+
     bool isShooting;
 
     int jumpedTimes;
