@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamage 
 {
-    void takeDamage(int dmg);
+    void takeDamage(float dmg);
 
 }

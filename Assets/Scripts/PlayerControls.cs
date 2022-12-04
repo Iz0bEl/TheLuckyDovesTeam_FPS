@@ -14,28 +14,28 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int jumpHeight;
     [SerializeField] int gravityValue;
     [SerializeField] int jumpsMax;
+    [SerializeField] int currentWeapon;
 
     [Header("----- single Fire gun Stats -----")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDistance;
+    public bool rifleEquiped;
 
     [Header("----- Shotgun Stats -----")]
     [SerializeField][Range(0.1f,0.5f)] float shotGunDamagePerBullet;
     [SerializeField] float ShotGunshootRate;
     [SerializeField] int ShotGunRange;
+    public bool shotgunEquiped;
 
 
     [Header("----- Sniper Rifle Stats -----")]
     [SerializeField] [Range(1.0f, 5.0f)] int SniperDamage;
     [SerializeField] float SnipershootRate;
     [SerializeField] int SniperRange;
+    public bool sniperEquiped;
 
-
-    [SerializeField] bool shotgunEquiped;
-    [SerializeField] bool rifleEquiped;
-    [SerializeField] bool sniperEquiped;
-
+    
     bool isShooting;
 
     int jumpedTimes;
@@ -45,7 +45,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rifleEquiped = true;
     }
 
     // Update is called once per frame
@@ -54,6 +54,29 @@ public class PlayerControls : MonoBehaviour
         movement();
        
         StartCoroutine(shoot());
+
+        if (Input.GetKey("1"))
+        {
+            currentWeapon = 1;
+            swapWeapons();
+        }
+        else if(Input.GetKey("2"))
+        {
+            currentWeapon = 2;
+            swapWeapons();
+        }
+        else if(Input.GetKey("3"))
+        {
+            currentWeapon = 3;
+            swapWeapons();
+
+        }
+       
+           
+            
+        
+
+
     }
 
 
@@ -81,7 +104,8 @@ public class PlayerControls : MonoBehaviour
     }
     IEnumerator shoot()
     {
-        if (!isShooting && Input.GetButton("Shoot"))
+        //Rifle mechanic
+        if (!isShooting && Input.GetButton("Shoot") && rifleEquiped)
         {
             isShooting = true;
             RaycastHit hit;
@@ -98,14 +122,60 @@ public class PlayerControls : MonoBehaviour
             isShooting = false;
         }
 
-        //trying to emulate a shotgun by offsetting the raycast
-        //Vector3 shotgunDirection = transform.forward;
-        //shotgunDirection.x += Random.Range(-1, 1) * shotgunBulletSpread;
-        //shotgunDirection.y += Random.Range(-1, 1) * shotgunBulletSpread;
-        //shotgunDirection.z += Random.Range(-1, 1) * shotgunBulletSpread;
+        if (!isShooting && Input.GetButton("Shoot") && shotgunEquiped)
+        {
+            isShooting = true;
+            RaycastHit hitInfo;
 
-        //rb.velocity = shotgunDirection
+            //need to shoot 5 raycast within a certain spread
+            for (int i = 0; i < 5; i++)
+            {
+                //Thinking that if I subtract a random number between 0.01 and 0.02 from the .5 which is middle of screen, it will ofset the bullets accordingly
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, ShotGunRange))
+                {
+                    if (hitInfo.collider.GetComponent<IDamage>() != null)
+                    {
+                        hitInfo.collider.GetComponent<IDamage>().takeDamage(shotGunDamagePerBullet);
+                    }
+                }
+                Debug.Log("Shotgun shoot");
 
+            }
+            yield return new WaitForSeconds(ShotGunshootRate);
+            isShooting = false;
+
+        }
 
     }
+
+    void swapWeapons()
+    {
+        switch (currentWeapon)
+        {
+            case 1:
+            {
+                    rifleEquiped = true;
+                    shotgunEquiped = false;
+                    sniperEquiped = false;
+                    break;
+            }
+            case 2:
+            {
+                    rifleEquiped = false;
+                    shotgunEquiped = true;
+                    sniperEquiped = false;
+                    break;
+            }
+            case 3:
+            {
+                    rifleEquiped = false;
+                    shotgunEquiped = false;
+                    sniperEquiped = true;
+                    break;
+            }
+            default:
+                break;
+        }
+    }
+
 }
