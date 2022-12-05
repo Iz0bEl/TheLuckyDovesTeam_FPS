@@ -95,7 +95,6 @@ public class PlayerControls : MonoBehaviour
 
     }
 
-
     void movement()
     {
         checkForWall();
@@ -271,6 +270,7 @@ public class PlayerControls : MonoBehaviour
 
         }
 
+        //Sniper shooting
         if (!isShooting && Input.GetButton("Shoot") && sniperEquiped)
         {
 

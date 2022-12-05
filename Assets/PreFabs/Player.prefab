@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensHor: 300
   sensVer: 300
-  sniperSens: 0
+  sniperSens: 0.15
   lockVerMin: -75
   lockVerMax: 75
   invertX: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1290464784880263303}
-  HP: 2
+  HP: 5
   playerSpeed: 10
   jumpHeight: 12
   gravityValue: 25
@@ -180,8 +180,8 @@ MonoBehaviour:
   shootRate: 0.25
   shootDistance: 50
   rifleEquiped: 0
-  shotGunDamagePerBullet: 0.2
-  ShotGunshootRate: 0.5
+  shotGunDamagePerBullet: 0.1
+  ShotGunshootRate: 1
   ShotGunRange: 25
   shotgunEquiped: 0
   SniperDamage: 5
