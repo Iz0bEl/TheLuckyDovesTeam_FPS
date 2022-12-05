@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour
 
     [SerializeField] int sensHor;
     [SerializeField] int sensVer;
-    [SerializeField] float sniperSens;
+    [SerializeField][Range(0.01f,0.5f)] float sniperSens;
 
     [SerializeField] int lockVerMin;
     [SerializeField] int lockVerMax;

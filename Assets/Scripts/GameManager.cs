@@ -105,14 +105,14 @@ public class GameManager : MonoBehaviour
             {
                 SniperScopeUI.SetActive(true);
                 Camera.main.fieldOfView = 10;
+                Debug.Log("Sniper scope active");
             }
             else
             {
                 SniperScopeUI.SetActive(false);
                 Camera.main.fieldOfView = 60;
+                Debug.Log("Sniper Scope Disabled");
             }
-
-            
 
             
         }
