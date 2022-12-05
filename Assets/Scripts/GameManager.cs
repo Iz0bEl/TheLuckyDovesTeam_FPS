@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject looseMenu;
     public GameObject SniperScopeUI;
+    public GameObject playerFlashDamage;
 
     bool sniperScopeActive = false;
    

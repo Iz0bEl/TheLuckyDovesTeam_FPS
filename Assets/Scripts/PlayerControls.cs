@@ -103,6 +103,28 @@ public class PlayerControls : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    public void takeDamage(int dmg)
+    {
+        HP -= dmg;
+
+        StartCoroutine(playerDamageFlash());
+
+        if (HP <= 0)
+        {
+            GameManager.instance.pause();
+            GameManager.instance.looseMenu.SetActive(true);
+            GameManager.instance.activeMenu = GameManager.instance.looseMenu;
+        }
+    }
+
+
+    IEnumerator playerDamageFlash()
+    {
+        GameManager.instance.playerFlashDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.instance.playerFlashDamage.SetActive(false);
+    }
+
     IEnumerator shoot()
     {
         //Rifle mechanic
