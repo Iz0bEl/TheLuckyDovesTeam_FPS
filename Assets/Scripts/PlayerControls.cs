@@ -123,6 +123,7 @@ public class PlayerControls : MonoBehaviour
             isShooting = false;
         }
 
+        
         if (!isShooting && Input.GetButton("Shoot") && shotgunEquiped)
         {
             isShooting = true;
@@ -132,12 +133,14 @@ public class PlayerControls : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 //Thinking that if I subtract a random number between 0.01 and 0.02 from the .5 which is middle of screen, it will ofset the bullets accordingly
+                
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, ShotGunRange))
                 {
                     if (hitInfo.collider.GetComponent<IDamage>() != null)
                     {
                         hitInfo.collider.GetComponent<IDamage>().takeDamage(shotGunDamagePerBullet);
                     }
+                    Debug.DrawRay(GameManager.instance.player.transform.position, hitInfo.point);
                 }
                 Debug.Log("Shotgun shoot");
 
@@ -149,7 +152,28 @@ public class PlayerControls : MonoBehaviour
 
         }
 
+        if (!isShooting && Input.GetButton("Shoot") && sniperEquiped)
+        {
+
+            isShooting = true;
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, SniperRange))
+            {
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    hit.collider.GetComponent<IDamage>().takeDamage(SniperDamage);
+                }
+            }
+
+            Debug.Log("Sniper shoot");
+            yield return new WaitForSeconds(SnipershootRate);
+            isShooting = false;
+
+        }
+
     }
+
 
     void swapWeapons()
     {
@@ -160,6 +184,8 @@ public class PlayerControls : MonoBehaviour
                     rifleEquiped = true;
                     shotgunEquiped = false;
                     sniperEquiped = false;
+                    GameManager.instance.SniperScopeUI.SetActive(false);
+                    Camera.main.fieldOfView = 60;
                     break;
             }
             case 2:
@@ -167,6 +193,8 @@ public class PlayerControls : MonoBehaviour
                     rifleEquiped = false;
                     shotgunEquiped = true;
                     sniperEquiped = false;
+                    GameManager.instance.SniperScopeUI.SetActive(false);
+                    Camera.main.fieldOfView = 60;
                     break;
             }
             case 3:

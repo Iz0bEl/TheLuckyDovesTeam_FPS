@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,7 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject winMenu;
     public GameObject looseMenu;
+    public GameObject SniperScopeUI;
 
+    bool sniperScopeActive = false;
+   
     public int jumpCost;
     public float coins;
     public bool isPaused;
@@ -48,6 +52,12 @@ public class GameManager : MonoBehaviour
             else
                 unPause();
         }
+        if (Input.GetMouseButton(1) && !isPaused)
+        {
+            ShowSniperScope();
+        }
+
+
     }
 
     public void addCoins(float amount)
@@ -81,5 +91,28 @@ public class GameManager : MonoBehaviour
             activeMenu = winMenu;
         }
 
+    }
+
+    void ShowSniperScope()
+    {
+        if (Input.GetMouseButtonDown(1) && playerScript.sniperEquiped)
+        {
+            sniperScopeActive = !sniperScopeActive;
+
+            if (sniperScopeActive)
+            {
+                SniperScopeUI.SetActive(true);
+                Camera.main.fieldOfView = 10;
+            }
+            else
+            {
+                SniperScopeUI.SetActive(false);
+                Camera.main.fieldOfView = 60;
+            }
+
+            
+
+            
+        }
     }
 }
