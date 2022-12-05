@@ -16,8 +16,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int currentWeapon;
 
     [Header("----- Wall Running -----")]
-    [Range(5, 15)] [SerializeField] int wallJumpSpeed;
+    [Range(1, 10)] [SerializeField] int wallRunBoost;
     [Range(1, 10)] [SerializeField] int gravityScale;
+    [Range(5, 15)] [SerializeField] int wallJumpSpeed;
 
     [Header("----- Assault Rifle Stats -----")]
     [SerializeField] int shootDamage;
