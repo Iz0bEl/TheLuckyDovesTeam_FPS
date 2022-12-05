@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        if (Input.GetButton("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;
