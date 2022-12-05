@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     [Header("-----Components-----")]
-
     [SerializeField] CharacterController controller;
 
     [Header("-----Player Stats-----")]
@@ -16,7 +15,12 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int jumpsMax;
     [SerializeField] int currentWeapon;
 
-    [Header("----- single Fire gun Stats -----")]
+    [Header("----- Wall Running -----")]
+    [Range(1, 10)] [SerializeField] int wallRunBoost; // not implemented will give players a boost to y velocity on contact with wall
+    [Range(1, 10)] [SerializeField] int gravityScale;
+    [Range(5, 15)] [SerializeField] int wallJumpSpeed; // not working yet
+
+    [Header("----- Auto Rifle Stats -----")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDistance;
@@ -40,6 +44,7 @@ public class PlayerControls : MonoBehaviour
 
     int jumpedTimes;
     private Vector3 playerVelocity;
+    private bool wallRight, wallLeft;
     Vector3 move;
 
     // Start is called before the first frame update
@@ -82,6 +87,7 @@ public class PlayerControls : MonoBehaviour
 
     void movement()
     {
+        checkForWall();
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
@@ -99,8 +105,59 @@ public class PlayerControls : MonoBehaviour
             playerVelocity.y = jumpHeight;
         }
 
-        playerVelocity.y -= gravityValue * Time.deltaTime;
+        // gravity has moved to wallphysics -kayla
+        wallPhysics();
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void checkForWall()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.right, out hit, 1f))
+        {
+            if (hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.D))
+            {
+                wallRight = true;
+            }
+        }
+        else if (Physics.Raycast(transform.position, -transform.right, out hit, 1f))
+        {
+            if (hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.A))
+            {
+                wallLeft = true;
+            }
+        }
+        else
+        {
+            wallRight = false;
+            wallLeft = false;
+        }
+    }
+
+    void wallPhysics()
+    {
+        if (wallRight)
+        {
+            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+            {
+                playerVelocity = transform.right * wallJumpSpeed * Time.deltaTime;
+                playerVelocity.y += jumpHeight;
+            }
+        }
+        else if (wallLeft)
+        {
+            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+            {
+                playerVelocity = -transform.right * wallJumpSpeed * Time.deltaTime;
+                playerVelocity.y += jumpHeight;
+            }
+        }
+        else
+        {
+            playerVelocity.y -= gravityValue * Time.deltaTime;
+        }
     }
 
     public void takeDamage(int dmg)
