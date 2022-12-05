@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 0}
-  agent: {fileID: 0}
-  HP: 30
+  agent: {fileID: 3704382039911360891}
+  HP: 5
   playerFaceSpeed: 6
   sightAngle: 90
   headPOS: {fileID: 1618774114927363663}
@@ -137,7 +137,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
