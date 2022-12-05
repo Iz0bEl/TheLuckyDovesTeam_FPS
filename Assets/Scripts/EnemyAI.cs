@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("--- Enemy Components ---")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    Renderer originalModel;
+    
 
     [Header("--- Enemy Stats ---")]
     public float HP;
@@ -30,8 +30,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        HPOG = HP;
-        originalModel = model;
+        HPOG = HP;        
         GameManager.instance.updateEnemyCount(1);
     }
 
