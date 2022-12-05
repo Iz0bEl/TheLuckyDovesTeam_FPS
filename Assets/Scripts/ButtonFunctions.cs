@@ -33,7 +33,7 @@ public class ButtonFunctions : MonoBehaviour
     {
         if (GameManager.instance.coins >= GameManager.instance.jumpCost)
         {
-            GameManager.instance.playerScript.addJump(amount);
+           GameManager.instance.playerScript.addJump(amount);
         }
     }
 }

@@ -35,10 +35,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int SniperRange;
     public bool sniperEquiped;
 
-    
+    int HPOG;
     bool isShooting;
 
-    int HPOG;
     int jumpedTimes;
     private Vector3 playerVelocity;
     Vector3 move;
@@ -46,38 +45,36 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HPOG = HP;
         rifleEquiped = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        movement();
+        if (!GameManager.instance.isPaused)
+        {
+            movement();
+
+            StartCoroutine(shoot());
+
+            if (Input.GetKey("1"))
+            {
+                currentWeapon = 1;
+                swapWeapons();
+            }
+            else if (Input.GetKey("2"))
+            {
+                currentWeapon = 2;
+                swapWeapons();
+            }
+            else if (Input.GetKey("3"))
+            {
+                currentWeapon = 3;
+                swapWeapons();
+
+            }
+        }
        
-        StartCoroutine(shoot());
-
-        if (Input.GetKey("1"))
-        {
-            currentWeapon = 1;
-            swapWeapons();
-        }
-        else if(Input.GetKey("2"))
-        {
-            currentWeapon = 2;
-            swapWeapons();
-        }
-        else if(Input.GetKey("3"))
-        {
-            currentWeapon = 3;
-            swapWeapons();
-
-        }
-       
-           
-            
-        
-
 
     }
 
@@ -104,6 +101,7 @@ public class PlayerControls : MonoBehaviour
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+
     IEnumerator shoot()
     {
         //Rifle mechanic
@@ -143,7 +141,9 @@ public class PlayerControls : MonoBehaviour
                 Debug.Log("Shotgun shoot");
 
             }
+
             yield return new WaitForSeconds(ShotGunshootRate);
+
             isShooting = false;
 
         }

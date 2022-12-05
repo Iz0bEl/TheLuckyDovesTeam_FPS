@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 1290464784880263299}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,17 +165,18 @@ MonoBehaviour:
   jumpHeight: 12
   gravityValue: 25
   jumpsMax: 1
-  shootDamage: 0
-  shootRate: 0
-  shootDistance: 0
-  shotGunDamagePerBullet: 0
-  ShotGunshootRate: 0
-  ShotGunRange: 0
-  SniperDamage: 0
-  SnipershootRate: 0
-  SniperRange: 0
-  shotgunEquiped: 0
+  currentWeapon: 0
+  shootDamage: 1
+  shootRate: 0.25
+  shootDistance: 50
   rifleEquiped: 0
+  shotGunDamagePerBullet: 0.2
+  ShotGunshootRate: 0.5
+  ShotGunRange: 25
+  shotgunEquiped: 0
+  SniperDamage: 5
+  SnipershootRate: 0.75
+  SniperRange: 150
   sniperEquiped: 0
 --- !u!143 &1290464784880263303
 CharacterController:

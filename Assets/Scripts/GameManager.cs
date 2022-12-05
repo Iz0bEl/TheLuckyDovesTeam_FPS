@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerControls>();
         timeScaleOrig = Time.timeScale;
-        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
+        //++++Player spawn has not been incorperated yet++++
+        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
 
     }
 
