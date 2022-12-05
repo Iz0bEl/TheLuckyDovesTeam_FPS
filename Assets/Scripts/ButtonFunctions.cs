@@ -36,4 +36,19 @@ public class ButtonFunctions : MonoBehaviour
            GameManager.instance.playerScript.addJump(amount);
         }
     }
+
+    public void AutoRifleButton()
+    {
+        //GameManager.instance.playerScript.;
+    }
+
+    public void ShotgunButton()
+    {
+
+    }
+
+    public void SniperButton()
+    {
+
+    }
 }
