@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject looseMenu;
 
     public int jumpCost;
-    public int coins;
+    public float coins;
     public bool isPaused;
     float timeScaleOrig;
     public GameObject playerSpawnPos;
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void addCoins(int amount)
+    public void addCoins(float amount)
     {
         coins += amount;
     }

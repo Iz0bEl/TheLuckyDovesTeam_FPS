@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDamage
 {
     [Header("--- Enemy Components ---")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
 
     [Header("--- Enemy Stats ---")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPOS;
@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
 
-    int HPOG;
+    float HPOG;
     bool isShooting;
     bool playerInRange;
     Vector3 playerDirection;
@@ -125,5 +125,10 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+    }
+
+    public void takeDamage(float dmg)
+    {
+        HP -= dmg;
     }
 }
