@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player Spawn
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - Player
   - Water
   - UI
-  - Player
+  - Enemy
   - Enemy Bullet
   - 
   - 

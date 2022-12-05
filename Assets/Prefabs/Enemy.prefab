@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4388676917552161864}
   - component: {fileID: 4388676917552161865}
   - component: {fileID: 4388676917552161861}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,5 +117,5 @@ MonoBehaviour:
   sightAngle: 90
   headPOS: {fileID: 0}
   shootRate: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 803608865481389829, guid: bc3630a3ae617cf428a2333959748e61, type: 3}
   shootPos: {fileID: 0}
