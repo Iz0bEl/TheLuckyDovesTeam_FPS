@@ -148,7 +148,8 @@ public class PlayerControls : MonoBehaviour
     {
         if (wallRight)
         {
-            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+                      
+                playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
             if (Input.GetButtonDown("Jump"))
             {
                 playerVelocity = transform.right * wallJumpSpeed * Time.deltaTime;
@@ -157,7 +158,10 @@ public class PlayerControls : MonoBehaviour
         }
         else if (wallLeft)
         {
-            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+                    
+                playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+
+            
             if (Input.GetButtonDown("Jump"))
             {
                 playerVelocity = -transform.right * wallJumpSpeed * Time.deltaTime;

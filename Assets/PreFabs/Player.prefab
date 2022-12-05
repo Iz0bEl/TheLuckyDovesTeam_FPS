@@ -168,19 +168,19 @@ MonoBehaviour:
   jumpsMax: 1
   currentWeapon: 0
   wallRunBoost: 0
-  gravityScale: 0
-  wallJumpSpeed: 0
+  gravityScale: 1
+  wallJumpSpeed: 9
   abilityTimeSlow: 0
   timeSlowed: 0
-  timeSlowScale: 0
-  timeSlowTimer: 0
-  timeSlowCooldown: 0
+  timeSlowScale: 0.25
+  timeSlowTimer: 3
+  timeSlowCooldown: 5
   onCooldown: 0
   shootDamage: 1
   shootRate: 0.25
   shootDistance: 50
   rifleEquiped: 0
-  shotGunDamagePerBullet: 0.1
+  shotGunDamagePerBullet: 0.25
   ShotGunshootRate: 1
   ShotGunRange: 25
   shotgunEquiped: 0

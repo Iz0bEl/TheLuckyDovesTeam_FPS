@@ -533,8 +533,9 @@ MonoBehaviour:
   jumpCost: 3
   coins: 0
   isPaused: 0
-  timeScaleOrig: 0
+  timeScaleOrig: 1
   playerSpawnPos: {fileID: 0}
+  enemyAmount: 0
 --- !u!1 &5941099845592462901
 GameObject:
   m_ObjectHideFlags: 0
