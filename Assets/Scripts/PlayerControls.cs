@@ -256,7 +256,13 @@ public class PlayerControls : MonoBehaviour
                 {
                     if (hitInfo.collider.GetComponent<IDamage>() != null)
                     {
-                        hitInfo.collider.GetComponent<IDamage>().takeDamage(shotGunDamagePerBullet);
+                        //this if statement fixed a bug that caused the take damage to get called even when the cube was dead
+                        //causing the game manager's count of enemies to be inaccurate
+                        if (hitInfo.collider.GetComponent<EnemyAI>().HP >= 0)
+                        {
+                            hitInfo.collider.GetComponent<IDamage>().takeDamage(shotGunDamagePerBullet);
+                        }
+                        
                     }
                     Debug.DrawRay(GameManager.instance.player.transform.position, hitInfo.point);
                 }

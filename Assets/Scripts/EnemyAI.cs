@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
 
     [Header("--- Enemy Stats ---")]
-    [SerializeField] float HP;
+    public float HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPOS;
@@ -110,9 +110,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator FlashDamage()
     {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
         model.material.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        model.material.color = Color.red;
 
     }
 

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     public float timeScaleOrig;
     public GameObject playerSpawnPos;
-    int enemyAmount = 0;
+    [SerializeField] int enemyAmount = 0;
     //public GameObject playerSpawnPos;
     // Start is called before the first frame update
     void Awake()
@@ -105,13 +105,13 @@ public class GameManager : MonoBehaviour
             {
                 SniperScopeUI.SetActive(true);
                 Camera.main.fieldOfView = 10;
-                Debug.Log("Sniper scope active");
+               
             }
             else
             {
                 SniperScopeUI.SetActive(false);
                 Camera.main.fieldOfView = 60;
-                Debug.Log("Sniper Scope Disabled");
+                
             }
 
             
