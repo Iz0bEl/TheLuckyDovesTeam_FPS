@@ -41,6 +41,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             CanSeePlayer();
         }
+
+        if((agent.remainingDistance - agent.stoppingDistance) <= .1)
+        {            
+            EnemyAnimationController.StartIdleAnimation(gameObject);
+        }
+        
     }
 
     void CanSeePlayer()
@@ -92,13 +98,22 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.destination = gameObject.transform.position;
+            EnemyAnimationController.StartIdleAnimation(gameObject);
+            
         }
     }
 
     public void takeDamage(float dmg)
     {
         HP -= dmg;
+
         agent.SetDestination(GameManager.instance.player.transform.position);
+
+        if(!playerInRange)
+        {
+            EnemyAnimationController.StartRunAnimation(gameObject);
+        }
         StartCoroutine(FlashDamage());
 
         if (HP <= 0)
@@ -121,6 +136,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
+        
+        if(agent.stoppingDistance >= Vector3.Distance(transform.position, GameManager.instance.player.transform.position))
+        {
+            EnemyAnimationController.StartShootingAnimation(gameObject);
+        }
+        else
+        {
+            EnemyAnimationController.StartRunAnimation(gameObject);
+        }
 
         Instantiate(bullet, shootPos.position, transform.rotation);
 
