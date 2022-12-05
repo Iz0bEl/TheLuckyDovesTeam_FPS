@@ -38,6 +38,7 @@ public class PlayerControls : MonoBehaviour
     
     bool isShooting;
 
+    int HPOG;
     int jumpedTimes;
     private Vector3 playerVelocity;
     Vector3 move;
@@ -45,6 +46,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HPOG = HP;
         rifleEquiped = true;
     }
 
@@ -176,6 +178,24 @@ public class PlayerControls : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void addJump(int amount)
+    {
+        jumpsMax += amount;
+        GameManager.instance.coins -= GameManager.instance.jumpCost;
+    }
+
+    public void setPlayerSpawnPoint()
+    {
+        controller.enabled = false;
+        transform.position = GameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
+
+    public void resetPlayerHP()
+    {
+        HP = HPOG;
     }
 
 }

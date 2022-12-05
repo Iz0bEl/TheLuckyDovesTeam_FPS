@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject looseMenu;
 
+    public int jumpCost;
+    public int coins;
     public bool isPaused;
     float timeScaleOrig;
     int enemyAmount = 0;
@@ -46,6 +48,11 @@ public class GameManager : MonoBehaviour
             else
                 unPause();
         }
+    }
+
+    public void addCoins(int amount)
+    {
+        coins += amount;
     }
 
     public void pause()

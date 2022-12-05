@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         HPOG = HP;
-       // gameManager.instance.updateEnemyCount(1);
+        GameManager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -44,29 +44,29 @@ public class EnemyAI : MonoBehaviour
 
     void CanSeePlayer()
     {
-        //playerDirection = (gameManager.instance.player.transform.position - headPOS.position);
-        //angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
+        playerDirection = (GameManager.instance.player.transform.position - headPOS.position);
+        angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
-        //Debug.Log(angleToPlayer);
-        //Debug.DrawRay(headPOS.position, playerDirection);
+        Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPOS.position, playerDirection);
 
-        //RaycastHit hit;
+        RaycastHit hit;
 
-        //if (Physics.Raycast(headPOS.position, playerDirection, out hit))
-        //{
-        //    if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
-        //    {
-        //        agent.SetDestination(gameManager.instance.player.transform.position);
+        if (Physics.Raycast(headPOS.position, playerDirection, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
+           {
+               agent.SetDestination(GameManager.instance.player.transform.position);
 
-        //        if (!isShooting)
-        //            StartCoroutine(Shoot());
+                if (!isShooting)
+                    StartCoroutine(Shoot());
 
-        //        if (agent.remainingDistance <= agent.stoppingDistance)
-        //        {
-        //            facePLayer();
-        //        }
-        //    }
-        //}
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    FacePlayer();
+                }
+            }
+        }
     }
 
     void FacePlayer()
@@ -100,12 +100,12 @@ public class EnemyAI : MonoBehaviour
 
         StartCoroutine(FlashDamage());
 
-        //if (HP <= 0)
-        //{
-        //    gameManager.instance.addCoins(HPOG);
-        //    gameManager.instance.updateEnemyCount(-1);
-        //    Destroy(gameObject);
-        //}
+        if (HP <= 0)
+        {
+            GameManager.instance.addCoins(HPOG);
+            GameManager.instance.updateEnemyCount(-1);
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator FlashDamage()
