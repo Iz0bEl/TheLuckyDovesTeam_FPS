@@ -20,6 +20,14 @@ public class PlayerControls : MonoBehaviour
     [Range(1, 10)] [SerializeField] int gravityScale;
     [Range(5, 15)] [SerializeField] int wallJumpSpeed; // not working yet
 
+    [Header("----- Abilities -----")]
+    public bool abilityTimeSlow;
+    public bool timeSlowed;
+    [SerializeField] float timeSlowScale;
+    [Range(1, 5)] [SerializeField] int timeSlowTimer;
+    [Range(5, 10)] [SerializeField] int timeSlowCooldown;
+    public bool onCooldown;
+
     [Header("----- Auto Rifle Stats -----")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
@@ -50,6 +58,8 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        abilityTimeSlow = true;
+        onCooldown = false;
         rifleEquiped = true;
         SetPlayerPos();
     }
@@ -60,7 +70,7 @@ public class PlayerControls : MonoBehaviour
         if (!GameManager.instance.isPaused)
         {
             movement();
-
+            StartCoroutine(ability());
             StartCoroutine(shoot());
 
             if (Input.GetKey("1"))
@@ -160,6 +170,36 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    IEnumerator ability()
+    {
+        if (abilityTimeSlow)
+        {
+            if (!timeSlowed && !onCooldown && Input.GetButtonDown("Ability") )
+            {
+                timeSlowed = true;
+                GameManager.instance.timeScaleOrig = Time.timeScale;
+                Time.timeScale = timeSlowScale;
+                GameManager.instance.timeSlowScreen.SetActive(true);
+                yield return new WaitForSecondsRealtime(timeSlowTimer);
+                GameManager.instance.timeSlowScreen.SetActive(false);
+                Time.timeScale = GameManager.instance.timeScaleOrig;
+                timeSlowed = false;
+                onCooldown = true;
+                yield return new WaitForSeconds(timeSlowCooldown);
+                onCooldown = false;
+            }
+            else if (timeSlowed && Input.GetButtonDown("Ability"))
+            {
+                GameManager.instance.timeSlowScreen.SetActive(false);
+                Time.timeScale = GameManager.instance.timeScaleOrig;
+                timeSlowed = false;
+                onCooldown = true;
+                yield return new WaitForSeconds(timeSlowCooldown);
+                onCooldown = false;
+            }
+        }
+    }
+
     public void takeDamage(int dmg)
     {
         HP -= dmg;
@@ -173,7 +213,6 @@ public class PlayerControls : MonoBehaviour
             GameManager.instance.activeMenu = GameManager.instance.looseMenu;
         }
     }
-
 
     IEnumerator playerDamageFlash()
     {

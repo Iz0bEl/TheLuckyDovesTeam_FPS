@@ -17,13 +17,14 @@ public class GameManager : MonoBehaviour
     public GameObject looseMenu;
     public GameObject SniperScopeUI;
     public GameObject playerFlashDamage;
+    public GameObject timeSlowScreen;
 
     public bool sniperScopeActive = false;
    
     public int jumpCost;
     public float coins;
     public bool isPaused;
-    float timeScaleOrig;
+    public float timeScaleOrig;
     public GameObject playerSpawnPos;
     int enemyAmount = 0;
     //public GameObject playerSpawnPos;
@@ -33,7 +34,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerControls>();
-        timeScaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
         //player.transform.position = playerSpawnPos.transform.position;
 
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void pause()
     {
+        timeScaleOrig = Time.timeScale;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;

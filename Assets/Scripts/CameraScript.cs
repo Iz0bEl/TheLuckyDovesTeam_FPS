@@ -40,6 +40,13 @@ public class CameraScript : MonoBehaviour
             mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
         }
 
+        //fixing sens as time scale changing sens
+        if (Time.timeScale != 1)
+        {
+            mouseY *= (2 - Time.timeScale);
+            mouseX *= (2 - Time.timeScale);
+        }
+
         if (invertX)
             xRotation += mouseY;
         else
