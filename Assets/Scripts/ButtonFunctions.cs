@@ -29,11 +29,11 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
-    public void AddJumpButton()
+    public void AddJumpButton(int amount)
     {
-        //if (gameManager.instance.coins >= gameManager.instance.jumpCost)
-        //{
-        //    gameManager.instance.playerScript.addJump(amount);
-        //}
+        if (GameManager.instance.coins >= GameManager.instance.jumpCost)
+        {
+            GameManager.instance.playerScript.addJump(amount);
+        }
     }
 }
