@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("--- Enemy Components ---")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    Renderer originalModel;
 
     [Header("--- Enemy Stats ---")]
     public float HP;
@@ -16,7 +17,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPOS;
 
     [Header("--- Enemy Weapon Stats ---")]
-    [SerializeField] int shootRate;
+    [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
 
@@ -30,6 +31,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         HPOG = HP;
+        originalModel = model;
         GameManager.instance.updateEnemyCount(1);
     }
 
@@ -97,7 +99,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void takeDamage(float dmg)
     {
         HP -= dmg;
-
+        agent.SetDestination(GameManager.instance.player.transform.position);
         StartCoroutine(FlashDamage());
 
         if (HP <= 0)
@@ -110,9 +112,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator FlashDamage()
     {
-        model.material.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
+        Debug.Log("FlashDamage");
         model.material.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        model.material.color = Color.white;
 
     }
 
