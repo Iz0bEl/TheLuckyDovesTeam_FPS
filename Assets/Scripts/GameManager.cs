@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,8 +19,9 @@ public class GameManager : MonoBehaviour
     public int coins;
     public bool isPaused;
     float timeScaleOrig;
-    int enemyAmount = 0;
     public GameObject playerSpawnPos;
+    int enemyAmount = 0;
+    //public GameObject playerSpawnPos;
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,8 +29,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerControls>();
         timeScaleOrig = Time.timeScale;
-        //++++Player spawn has not been incorperated yet++++
-        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
+        //player.transform.position = playerSpawnPos.transform.position;
 
     }
 

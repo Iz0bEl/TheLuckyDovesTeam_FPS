@@ -46,6 +46,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         rifleEquiped = true;
+        SetPlayerPos();
     }
 
     // Update is called once per frame
@@ -196,6 +197,13 @@ public class PlayerControls : MonoBehaviour
     public void resetPlayerHP()
     {
         HP = HPOG;
+    }
+
+    public void SetPlayerPos()
+    {
+        controller.enabled = false;
+        transform.position = GameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
     }
 
 }
