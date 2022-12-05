@@ -94,7 +94,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         HP -= dmg;
 
@@ -127,8 +127,5 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    public void takeDamage(float dmg)
-    {
-        HP -= dmg;
-    }
+    
 }
