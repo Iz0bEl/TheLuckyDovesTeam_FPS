@@ -47,7 +47,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int SniperRange;
     public bool sniperEquiped;
 
-    int HPOG;
+    int HPORG;
     bool isShooting;
 
     int jumpedTimes;
@@ -58,6 +58,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HPORG = HP;
         abilityTimeSlow = true;
         onCooldown = false;
         rifleEquiped = true;
@@ -342,7 +343,7 @@ public class PlayerControls : MonoBehaviour
 
     public void resetPlayerHP()
     {
-        HP = HPOG;
+        HP = HPORG;
     }
 
     public void SetPlayerPos()
