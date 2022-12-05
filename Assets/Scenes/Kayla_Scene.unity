@@ -435,6 +435,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1290464783843545050, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
+      propertyPath: sniperSens
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290464783843545050, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
+      propertyPath: sniperSensHor
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290464783843545050, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
+      propertyPath: sniperSensVer
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1290464784880263298, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
       propertyPath: m_Name
       value: Player

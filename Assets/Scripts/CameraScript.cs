@@ -8,6 +8,8 @@ public class CameraScript : MonoBehaviour
     [SerializeField] int sensHor;
     [SerializeField] int sensVer;
 
+    [SerializeField] float sniperSens;
+
     [SerializeField] int lockVerMin;
     [SerializeField] int lockVerMax;
 
@@ -25,9 +27,20 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVer;
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
-
+        float mouseY;
+        float mouseX;
+        // Checking if rifle is scoped
+        if (GameManager.instance.sniperScopeActive)
+        {
+            mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * (sniperSens * sensVer);
+            mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * (sniperSens * sensHor);
+        }
+        else
+        {
+            mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVer;
+            mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
+        }
+        
         if (invertX)
             xRotation += mouseY;
         else

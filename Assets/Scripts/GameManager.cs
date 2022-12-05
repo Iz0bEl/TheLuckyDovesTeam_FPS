@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject looseMenu;
     public GameObject SniperScopeUI;
 
-    bool sniperScopeActive = false;
+    public bool sniperScopeActive = false;
    
     public int jumpCost;
     public float coins;
