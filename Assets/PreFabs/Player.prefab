@@ -162,17 +162,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1290464784880263303}
   HP: 5
-  playerSpeed: 10
+  playerSpeed: 5
+  playerSprintSpeed: 10
   jumpHeight: 12
   gravityValue: 25
   jumpsMax: 1
   currentWeapon: 0
-  wallRunBoost: 0
-  gravityScale: 1
-  wallJumpSpeed: 9
+  wallRunBoost: 3
+  gravityScale: 4
+  wallJumpSpeed: 10
   abilityTimeSlow: 0
   timeSlowed: 0
-  timeSlowScale: 0.25
+  timeSlowScale: 0.5
   timeSlowTimer: 3
   timeSlowCooldown: 5
   onCooldown: 0

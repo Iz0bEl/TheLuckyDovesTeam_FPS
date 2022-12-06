@@ -10,10 +10,12 @@ public class PlayerControls : MonoBehaviour
     [Header("-----Player Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerSpeed;
+    [SerializeField] int playerSprintSpeed;
     [SerializeField] int jumpHeight;
     [SerializeField] int gravityValue;
     [SerializeField] int jumpsMax;
     [SerializeField] int currentWeapon;
+    bool isSprinting;
 
     [Header("----- Wall Running -----")]
     [Range(1, 10)] [SerializeField] int wallRunBoost; // not implemented will give players a boost to y velocity on contact with wall
@@ -59,6 +61,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         HPORG = HP;
+        isSprinting = false;
         abilityTimeSlow = true;
         onCooldown = false;
         rifleEquiped = true;
@@ -105,9 +108,15 @@ public class PlayerControls : MonoBehaviour
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-
+        sprint();
+        if (isSprinting)
+        {
+            controller.Move(move * Time.deltaTime * playerSprintSpeed);
+        }
+        else
+        {
+            controller.Move(move * Time.deltaTime * playerSpeed);
+        }
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
@@ -118,6 +127,18 @@ public class PlayerControls : MonoBehaviour
         // gravity has moved to wallphysics -kayla
         wallPhysics();
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void sprint()
+    {
+        if (!isSprinting && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+        {
+            isSprinting = true;
+        }
+        else if (isSprinting && Input.GetButtonDown("Sprint") || (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+        {
+            isSprinting = false;
+        }
     }
 
     void checkForWall()
