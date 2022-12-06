@@ -304,7 +304,7 @@ public class PlayerControls : MonoBehaviour
     }
 
 
-    void swapWeapons()
+    public void swapWeapons()
     {
         switch (currentWeapon)
         {
