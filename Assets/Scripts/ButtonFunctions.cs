@@ -37,28 +37,31 @@ public class ButtonFunctions : MonoBehaviour
         }
     }
 
-    public void AutoRifleButton()
-    {
-        GameManager.instance.playerScript.rifleEquiped = true;
-        GameManager.instance.playerScript.shotgunEquiped = false;
-        GameManager.instance.playerScript.sniperEquiped = false;
-        GameManager.instance.SniperScopeUI.SetActive(false);
-        Camera.main.fieldOfView = 60;
-    }
+    //public void AutoRifleButton()
+    //{
+    //    GameManager.instance.playerScript.rifleEquiped = true;
+    //    GameManager.instance.playerScript.shotgunEquiped = false;
+    //    GameManager.instance.playerScript.sniperEquiped = false;
+    //    GameManager.instance.SniperScopeUI.SetActive(false);
+    //    Camera.main.fieldOfView = 60;
+    //    GameManager.instance.unPause();
+    //}
 
-    public void ShotgunButton()
-    {
-        GameManager.instance.playerScript.rifleEquiped = false;
-        GameManager.instance.playerScript.shotgunEquiped = true;
-        GameManager.instance.playerScript.sniperEquiped = false;
-        GameManager.instance.SniperScopeUI.SetActive(false);
-        Camera.main.fieldOfView = 60;
-    }
+    //public void ShotgunButton()
+    //{
+    //    GameManager.instance.playerScript.rifleEquiped = false;
+    //    GameManager.instance.playerScript.shotgunEquiped = true;
+    //    GameManager.instance.playerScript.sniperEquiped = false;
+    //    GameManager.instance.SniperScopeUI.SetActive(false);
+    //    Camera.main.fieldOfView = 60;
+    //    GameManager.instance.unPause();
+    //}
 
-    public void SniperButton()
-    {
-        GameManager.instance.playerScript.rifleEquiped = false;
-        GameManager.instance.playerScript.shotgunEquiped = false;
-        GameManager.instance.playerScript.sniperEquiped = true;
-    }
+    //public void SniperButton()
+    //{
+    //    GameManager.instance.playerScript.rifleEquiped = false;
+    //    GameManager.instance.playerScript.shotgunEquiped = false;
+    //    GameManager.instance.playerScript.sniperEquiped = true;
+    //    GameManager.instance.unPause();
+    //}
 }

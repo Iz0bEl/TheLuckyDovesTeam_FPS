@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject SniperScopeUI;
     public GameObject playerFlashDamage;
     public GameObject timeSlowScreen;
+    public GameObject weaponSelectionScreen;
 
     public bool sniperScopeActive = false;
    
@@ -54,6 +55,16 @@ public class GameManager : MonoBehaviour
             else
                 unPause();
         }
+        //if (Input.GetButton("Weapons") && activeMenu == null)
+        //{
+        //    isPaused = !isPaused;
+        //    activeMenu = weaponSelectionScreen;
+        //    activeMenu.SetActive(isPaused);
+        //    if (isPaused)
+        //        pause();
+        //    else
+        //        unPause();
+        //}
         if (Input.GetMouseButton(1) && !isPaused)
         {
             ShowSniperScope();
