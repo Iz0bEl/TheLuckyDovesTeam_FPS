@@ -39,7 +39,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void AutoRifleButton()
     {
-        //GameManager.instance.playerScript.;
+       //GameManager.instance.playerScript.;
     }
 
     public void ShotgunButton()
