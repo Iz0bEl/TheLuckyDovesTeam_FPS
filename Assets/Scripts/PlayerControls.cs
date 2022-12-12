@@ -365,6 +365,12 @@ public class PlayerControls : MonoBehaviour
         GameManager.instance.coins -= GameManager.instance.jumpCost;
     }
 
+    public void addSpeed(int amount)
+    {
+        playerSpeed += amount;
+        GameManager.instance.coins -= GameManager.instance.speedCost;
+    }
+
     public void setPlayerSpawnPoint()
     {
         controller.enabled = false;
@@ -382,6 +388,11 @@ public class PlayerControls : MonoBehaviour
         controller.enabled = false;
         transform.position = GameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
+    }
+
+    public void UpdatePlayerHPBar()
+    {
+        GameManager.instance.playerHPbar.fillAmount = (float)HP / (float)HPORG;
     }
 
 }

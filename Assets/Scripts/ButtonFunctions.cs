@@ -37,6 +37,14 @@ public class ButtonFunctions : MonoBehaviour
         }
     }
 
+    public void AddSpeedButton(int amount)
+    {
+        if (GameManager.instance.coins >= GameManager.instance.speedCost)
+        {
+            GameManager.instance.playerScript.addSpeed(amount);
+        }
+    }
+
     //public void AutoRifleButton()
     //{
     //    GameManager.instance.playerScript.rifleEquiped = true;
