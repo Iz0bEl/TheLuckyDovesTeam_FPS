@@ -31,27 +31,18 @@ public class PlayerControls : MonoBehaviour
     [Range(5, 10)] [SerializeField] int timeSlowCooldown;
     public bool onCooldown;
 
-    [Header("----- Auto Rifle Stats -----")]
+    [Header("----- Equipped Weapon Stats -----")]
+    public List<GunStats> gunList = new List<GunStats>();
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDistance;
-    public bool rifleEquiped;
-
-    [Header("----- Shotgun Stats -----")]
-    [SerializeField][Range(0.1f,0.5f)] float shotGunDamagePerBullet;
-    [SerializeField] float ShotGunshootRate;
-    [SerializeField] int ShotGunRange;
-    public bool shotgunEquiped;
-
-
-    [Header("----- Sniper Rifle Stats -----")]
-    [SerializeField] [Range(1.0f, 5.0f)] int SniperDamage;
-    [SerializeField] float SnipershootRate;
-    [SerializeField] int SniperRange;
-    public bool sniperEquiped;
+    [SerializeField] GameObject gunModel;
+    [SerializeField] GameObject hitEffect;
+ 
 
     int HPORG;
     bool isShooting;
+    public int selectedGun;
 
     int jumpedTimes;
     private Vector3 playerVelocity;
@@ -65,8 +56,7 @@ public class PlayerControls : MonoBehaviour
         HPORG = HP;
         isSprinting = false;
         abilityTimeSlow = true;
-        onCooldown = false;
-        rifleEquiped = true;
+        onCooldown = false;       
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
@@ -78,23 +68,11 @@ public class PlayerControls : MonoBehaviour
         {
             movement();
             StartCoroutine(ability());
-            StartCoroutine(shoot());
 
-            if (Input.GetKey("1"))
+            if (gunList.Count > 0)
             {
-                currentWeapon = 1;
-                swapWeapons();
-            }
-            else if (Input.GetKey("2"))
-            {
-                currentWeapon = 2;
-                swapWeapons();
-            }
-            else if (Input.GetKey("3"))
-            {
-                currentWeapon = 3;
-                swapWeapons();
-
+                StartCoroutine(shoot());
+                gunSelect();
             }
         }
        
@@ -252,10 +230,11 @@ public class PlayerControls : MonoBehaviour
     IEnumerator shoot()
     {
         //Rifle mechanic
-        if (!isShooting && Input.GetButton("Shoot") && rifleEquiped)
+        if (!isShooting && Input.GetButton("Shoot"))
         {
             isShooting = true;
             RaycastHit hit;
+
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
@@ -270,7 +249,7 @@ public class PlayerControls : MonoBehaviour
         }
 
         
-        if (!isShooting && Input.GetButton("Shoot") && shotgunEquiped)
+        if (!isShooting && Input.GetButton("Shoot"))
         {
             isShooting = true;
             RaycastHit hitInfo;
@@ -280,7 +259,7 @@ public class PlayerControls : MonoBehaviour
             {
                 //Thinking that if I subtract a random number between 0.01 and 0.02 from the .5 which is middle of screen, it will ofset the bullets accordingly
                 
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, ShotGunRange))
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, shootDistance))
                 {
                     if (hitInfo.collider.GetComponent<IDamage>() != null)
                     {
@@ -288,7 +267,7 @@ public class PlayerControls : MonoBehaviour
                         //causing the game manager's count of enemies to be inaccurate
                         if (hitInfo.collider.GetComponent<EnemyAI>().HP >= 0)
                         {
-                            hitInfo.collider.GetComponent<IDamage>().takeDamage(shotGunDamagePerBullet);
+                            hitInfo.collider.GetComponent<IDamage>().takeDamage(shootDamage);
                         }
                         
                     }
@@ -298,68 +277,12 @@ public class PlayerControls : MonoBehaviour
 
             }
 
-            yield return new WaitForSeconds(ShotGunshootRate);
+            yield return new WaitForSeconds(shootRate);
 
             isShooting = false;
 
         }
 
-        //Sniper shooting
-        if (!isShooting && Input.GetButton("Shoot") && sniperEquiped)
-        {
-
-            isShooting = true;
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, SniperRange))
-            {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    hit.collider.GetComponent<IDamage>().takeDamage(SniperDamage);
-                }
-            }
-
-            Debug.Log("Sniper shoot");
-            yield return new WaitForSeconds(SnipershootRate);
-            isShooting = false;
-
-        }
-
-    }
-
-
-    public void swapWeapons()
-    {
-        switch (currentWeapon)
-        {
-            case 1:
-            {
-                    rifleEquiped = true;
-                    shotgunEquiped = false;
-                    sniperEquiped = false;
-                    GameManager.instance.SniperScopeUI.SetActive(false);
-                    Camera.main.fieldOfView = 60;
-                    break;
-            }
-            case 2:
-            {
-                    rifleEquiped = false;
-                    shotgunEquiped = true;
-                    sniperEquiped = false;
-                    GameManager.instance.SniperScopeUI.SetActive(false);
-                    Camera.main.fieldOfView = 60;
-                    break;
-            }
-            case 3:
-            {
-                    rifleEquiped = false;
-                    shotgunEquiped = false;
-                    sniperEquiped = true;
-                    break;
-            }
-            default:
-                break;
-        }
     }
 
     public void addJump(int amount)
@@ -402,5 +325,45 @@ public class PlayerControls : MonoBehaviour
     public void pushBackInput(Vector3 dir)
     {
         pushBack = dir;
+    }
+
+    public void gunPickup(GunStats gunStat)
+    {
+
+        shootDamage = gunStat.shootDamage;
+        shootRate = gunStat.shootRate;
+        shootDistance = gunStat.shootDistance;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        gunList.Add(gunStat);
+
+        selectedGun = gunList.Count - 1;
+    }
+
+    void gunSelect()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        {
+            selectedGun++;
+            changeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            changeGun();
+        }
+    }
+
+    void changeGun()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootRate = gunList[selectedGun].shootRate;
+        shootDistance = gunList[selectedGun].shootDistance;
+        
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }

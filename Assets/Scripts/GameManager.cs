@@ -121,24 +121,29 @@ public class GameManager : MonoBehaviour
 
     void ShowSniperScope()
     {
-        if (Input.GetMouseButtonDown(1) && playerScript.sniperEquiped)
+
+        if (playerScript.gunList.Count > 0)
         {
-            sniperScopeActive = !sniperScopeActive;
 
-            if (sniperScopeActive)
+            if (Input.GetMouseButtonDown(1) && playerScript.gunList[playerScript.selectedGun].isSniper)
             {
-                SniperScopeUI.SetActive(true);
-                Camera.main.fieldOfView = 10;
-               
-            }
-            else
-            {
-                SniperScopeUI.SetActive(false);
-                Camera.main.fieldOfView = 60;
-                
-            }
+                sniperScopeActive = !sniperScopeActive;
 
-            
+                if (sniperScopeActive)
+                {
+                    SniperScopeUI.SetActive(true);
+                    Camera.main.fieldOfView = 10;
+
+                }
+                else
+                {
+                    SniperScopeUI.SetActive(false);
+                    Camera.main.fieldOfView = 60;
+
+                }
+
+
+            }
         }
     }
 }

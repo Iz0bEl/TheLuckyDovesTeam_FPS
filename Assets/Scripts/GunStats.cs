@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunStats : MonoBehaviour
+[CreateAssetMenu]
+public class GunStats : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int shootDamage;
+    public float shootRate;
+    public int shootDistance;
+    public GameObject gunModel;
+    public AudioClip gunShot;
+    public bool isSniper;
 }

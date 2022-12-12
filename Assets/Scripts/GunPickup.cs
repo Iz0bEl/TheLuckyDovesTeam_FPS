@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GunPickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GunStats gun;
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("Player"))
+        {
+            GameManager.instance.playerScript.gunPickup(gun);
+            Destroy(gameObject);
+        }
     }
 }
