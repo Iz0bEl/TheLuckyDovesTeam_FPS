@@ -16,6 +16,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int jumpsMax;
     [SerializeField] int currentWeapon;
     bool isSprinting;
+    [SerializeField] float pushBackTime;
 
     [Header("----- Wall Running -----")]
     [Range(1, 10)] [SerializeField] int wallRunBoost; // not implemented will give players a boost to y velocity on contact with wall
@@ -56,6 +57,7 @@ public class PlayerControls : MonoBehaviour
     private Vector3 playerVelocity;
     private bool wallRight, wallLeft;
     Vector3 move;
+    public Vector3 pushBack;
 
     // Start is called before the first frame update
     void Start()
@@ -397,4 +399,8 @@ public class PlayerControls : MonoBehaviour
         GameManager.instance.playerHPbar.fillAmount = (float)HP / (float)HPORG;
     }
 
+    public void pushBackInput(Vector3 dir)
+    {
+        pushBack = dir;
+    }
 }
