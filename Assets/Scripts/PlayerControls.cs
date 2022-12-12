@@ -382,6 +382,7 @@ public class PlayerControls : MonoBehaviour
     public void resetPlayerHP()
     {
         HP = HPORG;
+        UpdatePlayerHPBar();
     }
 
     public void SetPlayerPos()
