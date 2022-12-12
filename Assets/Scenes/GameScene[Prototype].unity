@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 90328899}
   - component: {fileID: 90328898}
   m_Layer: 5
-  m_Name: enemyCounter (1)
+  m_Name: enemiesLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2140,6 +2140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1061425153, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1612652678, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2232,6 +2236,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5941099845584887862, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: enemiesLeft
+      value: 
+      objectReference: {fileID: 90328898}
+    - target: {fileID: 5941099845584887862, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: playerHPbar
+      value: 
+      objectReference: {fileID: 1966671155}
     - target: {fileID: 5941099845592462902, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_SizeDelta.x
       value: 675

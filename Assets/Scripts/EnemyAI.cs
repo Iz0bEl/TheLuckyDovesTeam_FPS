@@ -118,6 +118,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         updateHPBar();
 
+        UI.SetActive(true);
+
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         if(!playerInRange)
