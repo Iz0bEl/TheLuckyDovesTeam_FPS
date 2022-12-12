@@ -66,6 +66,7 @@ public class PlayerControls : MonoBehaviour
         onCooldown = false;
         rifleEquiped = true;
         SetPlayerPos();
+        UpdatePlayerHPBar();
     }
 
     // Update is called once per frame
@@ -228,7 +229,7 @@ public class PlayerControls : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-
+        UpdatePlayerHPBar();
         StartCoroutine(playerDamageFlash());
 
         if (HP <= 0)

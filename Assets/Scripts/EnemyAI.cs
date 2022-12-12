@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
@@ -21,6 +22,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
 
+    [Header("--- Enemy UI ---")]
+    [SerializeField] Image HPBar;
+    [SerializeField] GameObject UI;
+
     float HPOG;
     bool isShooting;
     bool playerInRange;
@@ -30,7 +35,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        HPOG = HP;        
+        HPOG = HP;       
+        
+        updateHPBar();
+
         GameManager.instance.updateEnemyCount(1);
     }
 
@@ -108,6 +116,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= dmg;
 
+        updateHPBar();
+
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         if(!playerInRange)
@@ -153,5 +163,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    
+    void updateHPBar()
+    {
+        HPBar.fillAmount = (float)HP / (float)HPOG;
+    }
 }
