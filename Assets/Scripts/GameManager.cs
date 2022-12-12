@@ -25,15 +25,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemiesLeft;
 
     public bool sniperScopeActive = false;
-   
+
+    [Header("------Collectables------")]
     public int jumpCost;
     public int speedCost;
     public int enemyCount;
     public float coins;
+
+
     public bool isPaused;
     public float timeScaleOrig;
     public GameObject playerSpawnPos;
-    [SerializeField] int enemyAmount = 0;
+    //[SerializeField] int enemyAmount = 0;
     //public GameObject playerSpawnPos;
     // Start is called before the first frame update
     void Awake()
@@ -103,11 +106,11 @@ public class GameManager : MonoBehaviour
 
     public void updateEnemyCount(int amount)
     {
-        enemyAmount += amount;
+        enemyCount += amount;
 
         enemiesLeft.text = enemyCount.ToString("F0");
 
-        if (enemyAmount <= 0)
+        if (enemyCount <= 0)
         {
             winMenu.SetActive(true);
             pause();
