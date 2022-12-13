@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = true;
 
         Instantiate(enemy, spawnPosition.position, enemy.transform.rotation);
+        enemiesSpawned++;
 
         yield return new WaitForSeconds(timer);
 
