@@ -33,7 +33,7 @@ public class PlayerControls : MonoBehaviour
 
     [Header("----- Equipped Weapon Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
-    [SerializeField] float shootDamage;
+    [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDistance;
     [SerializeField] GameObject gunModel;
@@ -239,7 +239,8 @@ public class PlayerControls : MonoBehaviour
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                    if(hit.collider.GetComponent<EnemyAI>().HP > 0)
+                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
                 }
             }
 
@@ -249,7 +250,7 @@ public class PlayerControls : MonoBehaviour
         }
 
         
-        if (!isShooting && Input.GetButton("Shoot"))
+        if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isShotgun)
         {
             isShooting = true;
             RaycastHit hitInfo;
@@ -348,31 +349,22 @@ public class PlayerControls : MonoBehaviour
         {
             selectedGun = 0;
             changeGun();
-            Debug.LogWarning("Gun1");
+           
         }
         else if( gunList.Count > 1 &&Input.GetButtonDown("Gun2"))
         {
             selectedGun = 1;
             changeGun();
-            Debug.LogWarning("Gun2");
+            
         }
         else if(gunList.Count > 2 && Input.GetButtonDown("Gun3"))
         {
             selectedGun = 2;
             changeGun();
-            Debug.LogWarning("Gun3");
+           
         }
 
-        //if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
-        //{
-        //    selectedGun++;
-        //    changeGun();
-        //}
-        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-        //{
-        //    selectedGun--;
-        //    changeGun();
-        //}
+        
     }
 
     void changeGun()

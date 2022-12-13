@@ -18,3 +18,4 @@ MonoBehaviour:
   gunModel: {fileID: 919132149155446097, guid: f62f7dc06bd890d4aab43b8fd635fe02, type: 3}
   gunShot: {fileID: 8300000, guid: 6d38af7ee5d93554a8010e6dfe128b7e, type: 3}
   isSniper: 0
+  isShotgun: 1
