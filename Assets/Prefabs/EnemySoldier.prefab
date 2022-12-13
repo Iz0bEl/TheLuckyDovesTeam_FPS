@@ -1218,6 +1218,7 @@ MonoBehaviour:
   shootRate: 0.5
   bullet: {fileID: 803608865481389829, guid: bc3630a3ae617cf428a2333959748e61, type: 3}
   shootPos: {fileID: 8864595068560440881}
+  roamingDistance: 10
   HPBar: {fileID: 1820625150}
   UI: {fileID: 2014813055}
 --- !u!195 &5920370254111701713

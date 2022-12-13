@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 90328899}
   - component: {fileID: 90328898}
   m_Layer: 5
-  m_Name: enemiesLeft
+  m_Name: EnemiesLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,7 +1002,7 @@ GameObject:
   - component: {fileID: 1017105028}
   - component: {fileID: 1017105027}
   m_Layer: 5
-  m_Name: enemyCounter
+  m_Name: EnemyCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

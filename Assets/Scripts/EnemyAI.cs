@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
+    [SerializeField] int roamingDistance;
 
     [Header("--- Enemy UI ---")]
     [SerializeField] Image HPBar;
@@ -31,11 +32,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     Vector3 playerDirection;
     float angleToPlayer;
+    Vector3 startingPosition;
+    float stoppingDistanceOG;
 
     // Start is called before the first frame update
     void Start()
     {
-        HPOG = HP;       
+        HPOG = HP;
+
+        stoppingDistanceOG = agent.stoppingDistance;
+        
+        startingPosition = transform.position;
         
         updateHPBar();
 
@@ -48,6 +55,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (playerInRange)
         {
             CanSeePlayer();
+        }
+        else if (agent.remainingDistance < 0.1f && agent.destination != GameManager.instance.player.transform.position)
+        {
+            EnemyRoaming();
         }
 
         if((agent.remainingDistance - agent.stoppingDistance) <= .1)
@@ -70,7 +81,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (Physics.Raycast(headPOS.position, playerDirection, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
-           {
+            {
+                agent.stoppingDistance = stoppingDistanceOG;
+
                agent.SetDestination(GameManager.instance.player.transform.position);
 
                 if (!isShooting && angleToPlayer <= 15)
@@ -82,6 +95,25 @@ public class EnemyAI : MonoBehaviour, IDamage
                 }
             }
         }
+    }
+
+    void EnemyRoaming()
+    {
+        agent.stoppingDistance = 0;
+
+        Vector3 randomDirection = Random.insideUnitSphere * roamingDistance;
+        randomDirection += startingPosition;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(new Vector3(randomDirection.x, 0, randomDirection.z), out hit, 1, 1);
+        NavMeshPath path = new NavMeshPath();
+
+        if (hit.position != null)
+        {
+            agent.CalculatePath(hit.position, path);
+        }
+
+        agent.SetPath(path);
     }
 
     void FacePlayer()
