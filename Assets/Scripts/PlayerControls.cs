@@ -33,7 +33,7 @@ public class PlayerControls : MonoBehaviour
 
     [Header("----- Equipped Weapon Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
-    [SerializeField] int shootDamage;
+    [SerializeField] float shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDistance;
     [SerializeField] GameObject gunModel;
@@ -344,16 +344,35 @@ public class PlayerControls : MonoBehaviour
 
     void gunSelect()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        if(gunList.Count != 0 && Input.GetButtonDown("Gun1"))
         {
-            selectedGun++;
+            selectedGun = 0;
             changeGun();
+            Debug.LogWarning("Gun1");
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        else if( gunList.Count > 1 &&Input.GetButtonDown("Gun2"))
         {
-            selectedGun--;
+            selectedGun = 1;
             changeGun();
+            Debug.LogWarning("Gun2");
         }
+        else if(gunList.Count > 2 && Input.GetButtonDown("Gun3"))
+        {
+            selectedGun = 2;
+            changeGun();
+            Debug.LogWarning("Gun3");
+        }
+
+        //if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        //{
+        //    selectedGun++;
+        //    changeGun();
+        //}
+        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        //{
+        //    selectedGun--;
+        //    changeGun();
+        //}
     }
 
     void changeGun()
