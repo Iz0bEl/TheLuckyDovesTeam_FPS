@@ -15,6 +15,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int gravityValue;
     [SerializeField] int jumpsMax;
     [SerializeField] int currentWeapon;
+    public bool toggleSprint;
     bool isSprinting;
     [SerializeField] float pushBackTime;
 
@@ -73,6 +74,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         HPORG = HP;
+        toggleSprint = true;
         isSprinting = false;
         abilityTimeSlow = true;
         onCooldown = false;
@@ -142,13 +144,27 @@ public class PlayerControls : MonoBehaviour
 
     void sprint()
     {
-        if (!isSprinting && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+        if (toggleSprint)
         {
-            isSprinting = true;
+            if (!isSprinting && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+            {
+                isSprinting = true;
+            }
+            else if (isSprinting && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+            {
+                isSprinting = false;
+            }
         }
-        else if (isSprinting && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+        else if (!toggleSprint)
         {
-            isSprinting = false;
+            if (!isSprinting && Input.GetButton("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+            {
+                isSprinting = true;
+            }
+            else if (isSprinting && ((!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) || !Input.GetButton("Sprint")))
+            {
+                isSprinting = false;
+            }
         }
     }
 
