@@ -226,6 +226,7 @@ public class PlayerControls : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        aud.PlayOneShot(playerHurt[Random.Range(0, playerHurt.Length)], playerHurtVol);
         UpdatePlayerHPBar();
         StartCoroutine(playerDamageFlash());
 
