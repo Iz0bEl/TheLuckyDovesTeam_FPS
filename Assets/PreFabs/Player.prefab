@@ -255,6 +255,8 @@ MonoBehaviour:
   currentWeapon: 0
   pushBackTime: 0
   aud: {fileID: 799208863}
+  gunShot: {fileID: 0}
+  gunShotVol: 0.331
   playerHurt:
   - {fileID: 8300000, guid: 5d0442c5404e76e4aad2b504942f7161, type: 3}
   - {fileID: 8300000, guid: 1a2fd5aa7e3e4f945b6f44a881e63152, type: 3}
@@ -310,7 +312,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
