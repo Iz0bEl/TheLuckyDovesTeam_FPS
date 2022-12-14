@@ -123,6 +123,10 @@ MonoBehaviour:
   shootRate: 1
   bullet: {fileID: 803608865481389829, guid: bc3630a3ae617cf428a2333959748e61, type: 3}
   shootPos: {fileID: 5075882868512746412}
+  roamingDistance: 0
+  TEST1: {fileID: 0}
+  HPBar: {fileID: 0}
+  UI: {fileID: 0}
 --- !u!195 &3704382039911360891
 NavMeshAgent:
   m_ObjectHideFlags: 0

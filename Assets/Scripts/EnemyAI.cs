@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
     [SerializeField] int roamingDistance;
+    
 
     [Header("--- Enemy UI ---")]
     [SerializeField] Image HPBar;
@@ -110,6 +111,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (hit.position != null)
         {
             agent.CalculatePath(hit.position, path);
+            
         }
 
         agent.SetPath(path);
