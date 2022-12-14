@@ -253,6 +253,7 @@ MonoBehaviour:
   gravityValue: 25
   jumpsMax: 1
   currentWeapon: 0
+  toggleSprint: 0
   pushBackTime: 0
   aud: {fileID: 799208863}
   gunShot: {fileID: 0}
@@ -281,14 +282,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1889d8ab77303eb47a961f3bf33ae95d, type: 3}
   - {fileID: 8300000, guid: 21d487f9785e2db4784bbd33e73e187d, type: 3}
   playerSetpVol: 0.5
-  wallRunBoost: 3
   gravityScale: 4
-  wallJumpSpeed: 10
+  wallJumpSpeed: 7
+  wallJumpPushTime: 2
+  wallJumpPush: {x: 0, y: 0, z: 0}
   abilityTimeSlow: 0
   timeSlowed: 0
   timeSlowScale: 0.5
   timeSlowTimer: 3
-  timeSlowCooldown: 5
+  abilityCooldown: 5
   onCooldown: 0
   gunList: []
   shootDamage: 1

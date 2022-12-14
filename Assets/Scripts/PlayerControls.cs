@@ -47,8 +47,9 @@ public class PlayerControls : MonoBehaviour
     public bool timeSlowed;
     [SerializeField] float timeSlowScale;
     [Range(1, 5)] [SerializeField] int timeSlowTimer;
-    [Range(5, 10)] [SerializeField] int timeSlowCooldown;
+    [Range(5, 10)] [SerializeField] int abilityCooldown;
     public bool onCooldown;
+    float cooldownTimer;
 
     [Header("----- Equipped Weapon Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
@@ -78,6 +79,7 @@ public class PlayerControls : MonoBehaviour
         isSprinting = false;
         abilityTimeSlow = true;
         onCooldown = false;
+        cooldownTimer = abilityCooldown;
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
@@ -96,6 +98,10 @@ public class PlayerControls : MonoBehaviour
             }
 
             StartCoroutine(ability());
+            if (onCooldown)
+            {
+                abilityCooldownTimer();
+            }
 
             if (gunList.Count > 0)
             {
@@ -285,7 +291,7 @@ public class PlayerControls : MonoBehaviour
                 Time.timeScale = GameManager.instance.timeScaleOrig;
                 timeSlowed = false;
                 onCooldown = true;
-                yield return new WaitForSeconds(timeSlowCooldown);
+                yield return new WaitForSeconds(abilityCooldown);
                 onCooldown = false;
             }
             else if (timeSlowed && Input.GetButtonDown("Ability"))
@@ -294,9 +300,23 @@ public class PlayerControls : MonoBehaviour
                 Time.timeScale = GameManager.instance.timeScaleOrig;
                 timeSlowed = false;
                 onCooldown = true;
-                yield return new WaitForSeconds(timeSlowCooldown);
+                yield return new WaitForSeconds(abilityCooldown);
                 onCooldown = false;
             }
+        }
+    }
+
+    public void abilityCooldownTimer()
+    {
+        cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer < 0f)
+        {
+            onCooldown = false;
+            GameManager.instance.playerAbilityCooldown.fillAmount = 0f;
+        }
+        else
+        {
+            GameManager.instance.playerAbilityCooldown.fillAmount = cooldownTimer / abilityCooldown;
         }
     }
 
