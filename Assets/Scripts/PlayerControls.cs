@@ -18,6 +18,15 @@ public class PlayerControls : MonoBehaviour
     bool isSprinting;
     [SerializeField] float pushBackTime;
 
+    [Header("-----Audio-----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] playerHurt;
+    [Range(0, 1)] [SerializeField] float playerHurtVol;
+    [SerializeField] AudioClip[] playerJump;
+    [Range(0, 1)] [SerializeField] float playerJumpVol;
+    [SerializeField] AudioClip[] playerStep;
+    [Range(0, 1)] [SerializeField] float playerSetpVol;
+
     [Header("----- Wall Running -----")]
     [Range(1, 10)] [SerializeField] int wallRunBoost; // not implemented will give players a boost to y velocity on contact with wall
     [Range(1, 10)] [SerializeField] int gravityScale;
@@ -38,7 +47,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int shootDistance;
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject hitEffect;
- 
+
 
     int HPORG;
     bool isShooting;
@@ -49,6 +58,7 @@ public class PlayerControls : MonoBehaviour
     private bool wallRight, wallLeft;
     Vector3 move;
     public Vector3 pushBack;
+    bool stepIsPlaying;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +66,7 @@ public class PlayerControls : MonoBehaviour
         HPORG = HP;
         isSprinting = false;
         abilityTimeSlow = true;
-        onCooldown = false;       
+        onCooldown = false;
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
@@ -67,6 +77,12 @@ public class PlayerControls : MonoBehaviour
         if (!GameManager.instance.isPaused)
         {
             movement();
+
+            if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
+            {
+                StartCoroutine(playSteps());
+            }
+
             StartCoroutine(ability());
 
             if (gunList.Count > 0)
@@ -75,7 +91,7 @@ public class PlayerControls : MonoBehaviour
                 gunSelect();
             }
         }
-       
+
 
     }
 
@@ -103,6 +119,7 @@ public class PlayerControls : MonoBehaviour
         {
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
+            aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
         }
 
         // gravity has moved to wallphysics -kayla
@@ -150,8 +167,8 @@ public class PlayerControls : MonoBehaviour
     {
         if (wallRight)
         {
-                      
-                playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+
+            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
             if (Input.GetButtonDown("Jump"))
             {
                 playerVelocity = transform.right * wallJumpSpeed * Time.deltaTime;
@@ -160,10 +177,10 @@ public class PlayerControls : MonoBehaviour
         }
         else if (wallLeft)
         {
-                    
-                playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
 
-            
+            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+
+
             if (Input.GetButtonDown("Jump"))
             {
                 playerVelocity = -transform.right * wallJumpSpeed * Time.deltaTime;
@@ -180,7 +197,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (abilityTimeSlow)
         {
-            if (!timeSlowed && !onCooldown && Input.GetButtonDown("Ability") )
+            if (!timeSlowed && !onCooldown && Input.GetButtonDown("Ability"))
             {
                 timeSlowed = true;
                 GameManager.instance.timeScaleOrig = Time.timeScale;
@@ -239,7 +256,7 @@ public class PlayerControls : MonoBehaviour
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    if(hit.collider.GetComponent<EnemyAI>().HP > 0)
+                    if (hit.collider.GetComponent<EnemyAI>().HP > 0)
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
                 }
             }
@@ -249,7 +266,7 @@ public class PlayerControls : MonoBehaviour
             isShooting = false;
         }
 
-        
+
         if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isShotgun)
         {
             isShooting = true;
@@ -259,7 +276,7 @@ public class PlayerControls : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 //Thinking that if I subtract a random number between 0.01 and 0.02 from the .5 which is middle of screen, it will ofset the bullets accordingly
-                
+
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, shootDistance))
                 {
                     if (hitInfo.collider.GetComponent<IDamage>() != null)
@@ -270,7 +287,7 @@ public class PlayerControls : MonoBehaviour
                         {
                             hitInfo.collider.GetComponent<IDamage>().takeDamage(shootDamage);
                         }
-                        
+
                     }
                     Debug.DrawRay(GameManager.instance.player.transform.position, hitInfo.point);
                 }
@@ -283,6 +300,25 @@ public class PlayerControls : MonoBehaviour
             isShooting = false;
 
         }
+
+    }
+
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+
+        aud.PlayOneShot(playerStep[Random.Range(0, playerStep.Length)], playerSetpVol);
+
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        stepIsPlaying = false;
+
 
     }
 
@@ -345,26 +381,26 @@ public class PlayerControls : MonoBehaviour
 
     void gunSelect()
     {
-        if(gunList.Count != 0 && Input.GetButtonDown("Gun1"))
+        if (gunList.Count != 0 && Input.GetButtonDown("Gun1"))
         {
             selectedGun = 0;
             changeGun();
-           
+
         }
-        else if( gunList.Count > 1 &&Input.GetButtonDown("Gun2"))
+        else if (gunList.Count > 1 && Input.GetButtonDown("Gun2"))
         {
             selectedGun = 1;
             changeGun();
-            
+
         }
-        else if(gunList.Count > 2 && Input.GetButtonDown("Gun3"))
+        else if (gunList.Count > 2 && Input.GetButtonDown("Gun3"))
         {
             selectedGun = 2;
             changeGun();
-           
+
         }
 
-        
+
     }
 
     void changeGun()
@@ -372,7 +408,7 @@ public class PlayerControls : MonoBehaviour
         shootDamage = gunList[selectedGun].shootDamage;
         shootRate = gunList[selectedGun].shootRate;
         shootDistance = gunList[selectedGun].shootDistance;
-        
+
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
