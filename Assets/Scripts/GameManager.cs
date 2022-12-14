@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject timeSlowScreen;
     public GameObject weaponSelectionScreen;
     public Image playerHPbar;
+    public Image playerAbilityCooldown;
     [SerializeField] TextMeshProUGUI enemiesLeft;
 
     public bool sniperScopeActive = false;
