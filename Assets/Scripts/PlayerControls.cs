@@ -20,6 +20,8 @@ public class PlayerControls : MonoBehaviour
 
     [Header("-----Audio-----")]
     [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip gunShot;
+    [Range(0, 1)] [SerializeField] float gunShotVol;
     [SerializeField] AudioClip[] playerHurt;
     [Range(0, 1)] [SerializeField] float playerHurtVol;
     [SerializeField] AudioClip[] playerJump;
@@ -252,6 +254,8 @@ public class PlayerControls : MonoBehaviour
         {
             isShooting = true;
             RaycastHit hit;
+            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
