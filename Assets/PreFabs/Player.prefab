@@ -283,7 +283,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 21d487f9785e2db4784bbd33e73e187d, type: 3}
   playerSetpVol: 0.5
   gravityScale: 4
-  wallJumpSpeed: 7
+  wallJumpSpeed: 12
   wallJumpPushTime: 2
   wallJumpPush: {x: 0, y: 0, z: 0}
   abilityTimeSlow: 0
