@@ -30,9 +30,16 @@ public class PlayerControls : MonoBehaviour
     [Range(0, 1)] [SerializeField] float playerSetpVol;
 
     [Header("----- Wall Running -----")]
-    [Range(1, 10)] [SerializeField] int wallRunBoost; // not implemented will give players a boost to y velocity on contact with wall
     [Range(1, 10)] [SerializeField] int gravityScale;
-    [Range(5, 15)] [SerializeField] int wallJumpSpeed; // not working yet
+    [Range(5, 15)] [SerializeField] int wallJumpSpeed;
+    [SerializeField] int wallJumpPushTime;
+    GameObject firstWall;
+    GameObject secondWall;
+    Vector3 wallNormal;
+    bool toggleWall;
+    bool isAttached;
+    bool newWall;
+    public Vector3 wallJumpPush;
 
     [Header("----- Abilities -----")]
     public bool abilityTimeSlow;
@@ -78,6 +85,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (!GameManager.instance.isPaused)
         {
+            wallJumpPush = Vector3.Lerp(wallJumpPush, Vector3.zero, Time.deltaTime * wallJumpPushTime);
             movement();
 
             if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
@@ -104,6 +112,9 @@ public class PlayerControls : MonoBehaviour
         {
             jumpedTimes = 0;
             playerVelocity.y = 0f;
+            toggleWall = false;
+            firstWall = null;
+            secondWall = null;
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
@@ -117,7 +128,7 @@ public class PlayerControls : MonoBehaviour
             controller.Move(move * Time.deltaTime * playerSpeed);
         }
 
-        if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
+        if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax && !wallLeft && !wallRight)
         {
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
@@ -126,7 +137,7 @@ public class PlayerControls : MonoBehaviour
 
         // gravity has moved to wallphysics -kayla
         wallPhysics();
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + wallJumpPush) * Time.deltaTime);
     }
 
     void sprint()
@@ -135,7 +146,7 @@ public class PlayerControls : MonoBehaviour
         {
             isSprinting = true;
         }
-        else if (isSprinting && Input.GetButtonDown("Sprint") || (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+        else if (isSprinting && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
         {
             isSprinting = false;
         }
@@ -144,48 +155,96 @@ public class PlayerControls : MonoBehaviour
     void checkForWall()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.right, out hit, 1f))
+        if (Physics.Raycast(transform.position, transform.right, out hit, 1f) && hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.D))
         {
-            if (hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.D))
+
+            wallRight = true;
+            if (!toggleWall && isAttached == false)
             {
-                wallRight = true;
+                firstWall = hit.collider.gameObject;
+                if (firstWall == secondWall)
+                {
+                    newWall = false;
+                }
+                else
+                {
+                    newWall = true;
+                }
+                isAttached = true;
+                toggleWall = true;
             }
+            else if (toggleWall && isAttached == false)
+            {
+                secondWall = hit.collider.gameObject;
+                if (firstWall == secondWall)
+                {
+                    newWall = false;
+                }
+                else
+                {
+                    newWall = true;
+                }
+                isAttached = true;
+                toggleWall = false;
+            }
+            wallNormal = hit.normal;
         }
-        else if (Physics.Raycast(transform.position, -transform.right, out hit, 1f))
+        else if (Physics.Raycast(transform.position, -transform.right, out hit, 1f) && hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.A))
         {
-            if (hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.A))
+
+            wallLeft = true;
+            if (!toggleWall && isAttached == false)
             {
-                wallLeft = true;
+                firstWall = hit.collider.gameObject;
+                if (firstWall == secondWall)
+                {
+                    newWall = false;
+                }
+                else
+                {
+                    newWall = true;
+                }
+                isAttached = true;
+                toggleWall = true;
             }
+            else if (toggleWall && isAttached == false)
+            {
+                secondWall = hit.collider.gameObject;
+                if (firstWall == secondWall)
+                {
+                    newWall = false;
+                }
+                else
+                {
+                    newWall = true;
+                }
+                isAttached = true;
+                toggleWall = false;
+            }
+            wallNormal = hit.normal;
         }
         else
         {
             wallRight = false;
             wallLeft = false;
+            isAttached = false;
         }
     }
 
     void wallPhysics()
     {
-        if (wallRight)
+        if (isAttached)
         {
-
-            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
-            if (Input.GetButtonDown("Jump"))
+            if (newWall && playerVelocity.y < 0)
             {
-                playerVelocity = transform.right * wallJumpSpeed * Time.deltaTime;
-                playerVelocity.y += jumpHeight;
+                playerVelocity.y = 0;
+
             }
-        }
-        else if (wallLeft)
-        {
-
+            newWall = false;
             playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
-
-
             if (Input.GetButtonDown("Jump"))
             {
-                playerVelocity = -transform.right * wallJumpSpeed * Time.deltaTime;
+                wallJumpPush = wallNormal * wallJumpSpeed * Time.deltaTime * 150;
                 playerVelocity.y += jumpHeight;
             }
         }
