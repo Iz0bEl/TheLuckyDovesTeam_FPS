@@ -8621,6 +8621,14 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 666295080684243916, guid: 81465ffb0495d2b4591c3f99dee2e8ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 666295080684243916, guid: 81465ffb0495d2b4591c3f99dee2e8ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 666295080684243917, guid: 81465ffb0495d2b4591c3f99dee2e8ea, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -9195,7 +9203,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25398
+  m_Name: pb_Mesh39206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
