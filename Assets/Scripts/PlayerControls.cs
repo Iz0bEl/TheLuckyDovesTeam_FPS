@@ -291,8 +291,6 @@ public class PlayerControls : MonoBehaviour
                 Time.timeScale = GameManager.instance.timeScaleOrig;
                 timeSlowed = false;
                 onCooldown = true;
-                yield return new WaitForSeconds(abilityCooldown);
-                onCooldown = false;
             }
             else if (timeSlowed && Input.GetButtonDown("Ability"))
             {
@@ -300,8 +298,6 @@ public class PlayerControls : MonoBehaviour
                 Time.timeScale = GameManager.instance.timeScaleOrig;
                 timeSlowed = false;
                 onCooldown = true;
-                yield return new WaitForSeconds(abilityCooldown);
-                onCooldown = false;
             }
         }
     }
