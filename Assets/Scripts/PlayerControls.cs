@@ -266,8 +266,16 @@ public class PlayerControls : MonoBehaviour
             playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
             if (Input.GetButtonDown("Jump"))
             {
-                wallJumpPush = wallNormal * wallJumpSpeed;
-                playerVelocity.y += jumpHeight;
+                if (isSprinting)
+                {
+                    wallJumpPush = wallNormal * wallJumpSpeed * 2;
+                }
+                else
+                {
+                    wallJumpPush = wallNormal * wallJumpSpeed;
+                }
+                playerVelocity.y = 0;
+                playerVelocity.y += jumpHeight/3;
             }
         }
         else
