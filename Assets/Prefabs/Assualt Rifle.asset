@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
   m_Name: Assualt Rifle
   m_EditorClassIdentifier: 
-  shootDamage: 1
+  shootDamage: 3
   shootRate: 0.25
   shootDistance: 50
   gunModel: {fileID: 919132149155446097, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
@@ -21,5 +21,5 @@ MonoBehaviour:
   isShotgun: 0
   gunName: Assault Rifle
   UI: {fileID: 8866997980737803397, guid: e7179d92f42a7c6428d4c45885cd50dc, type: 3}
-  slotNumber: 2
+  slotNumber: 1
   tag: AR UI

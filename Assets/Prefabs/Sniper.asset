@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  shootDamage: 2
+  shootDamage: 5
   shootRate: 0.75
   shootDistance: 100
   gunModel: {fileID: 919132149155446097, guid: 60d91f925d8c1e442bb6596dfb94ffff, type: 3}

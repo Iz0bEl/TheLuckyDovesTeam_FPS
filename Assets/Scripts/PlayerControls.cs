@@ -279,7 +279,7 @@ public class PlayerControls : MonoBehaviour
                     wallJumpPush = wallNormal * wallJumpSpeed;
                 }
                 playerVelocity.y = 0;
-                playerVelocity.y += jumpHeight/3;
+                playerVelocity.y += jumpHeight;
             }
         }
         else
