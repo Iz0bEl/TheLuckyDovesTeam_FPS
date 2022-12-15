@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Player Spawn
   - Wall
+  - gunPos1
+  - gunPos2
+  - gunPos3
+  - Gun1Icon
+  - Gun2Icon
+  - Gun3Icon
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int shootDistance;
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject hitEffect;
+
+    [SerializeField] bool[] gunOrder = new bool[] { false, false, false };
 
 
     int HPORG;
@@ -481,6 +484,38 @@ public class PlayerControls : MonoBehaviour
         gunList.Add(gunStat);
 
         selectedGun = gunList.Count - 1;
+
+        if (gunList.Count != 0)
+        {
+            for (int i = 0; i < gunList.Count; i++)
+            {
+                if (!gunOrder[i])
+                {
+                    gunOrder[i] = true;
+                    if (i == 0)
+                    {
+                        Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos);
+                        gunList[selectedGun].slotNumber = gunList.Count;
+
+                        break;
+                    }
+                    else if (i == 1)
+                    {
+                        Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos1);
+                        gunList[selectedGun].slotNumber = gunList.Count;
+                        break;
+                    }
+                    else if (i == 2)
+                    {
+                        Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos2);
+                        gunList[selectedGun].slotNumber = gunList.Count;
+                        break;
+                    }
+                }
+            }
+
+
+        }
     }
 
     void gunSelect()
@@ -509,6 +544,39 @@ public class PlayerControls : MonoBehaviour
 
     void changeGun()
     {
+
+        GameObject guns;
+
+
+        if (gunList[selectedGun].gunName == "Assault Rifle")
+        {
+            guns = GameObject.FindGameObjectWithTag("Gun2Icon");
+            guns.GetComponent<Image>().color = Color.cyan;
+            guns = GameObject.FindGameObjectWithTag("Gun1Icon");
+            guns.GetComponent<Image>().color = Color.white;
+            guns = GameObject.FindGameObjectWithTag("Gun3Icon");
+            guns.GetComponent<Image>().color = Color.white;
+
+        }
+        else if (gunList[selectedGun].gunName == "Sniper")
+        {
+            guns = GameObject.FindGameObjectWithTag("Gun3Icon");
+            guns.GetComponent<Image>().color = Color.cyan;
+            guns = GameObject.FindGameObjectWithTag("Gun1Icon");
+            guns.GetComponent<Image>().color = Color.white;
+            guns = GameObject.FindGameObjectWithTag("Gun2Icon");
+            guns.GetComponent<Image>().color = Color.white;
+        }
+        else if (gunList[selectedGun].gunName == "Shotgun")
+        {
+            guns = GameObject.FindGameObjectWithTag("Gun1Icon");
+            guns.GetComponent<Image>().color = Color.cyan;
+            guns = GameObject.FindGameObjectWithTag("Gun3Icon");
+            guns.GetComponent<Image>().color = Color.white;
+            guns = GameObject.FindGameObjectWithTag("Gun2Icon");
+            guns.GetComponent<Image>().color = Color.white;
+        }
+
         shootDamage = gunList[selectedGun].shootDamage;
         shootRate = gunList[selectedGun].shootRate;
         shootDistance = gunList[selectedGun].shootDistance;

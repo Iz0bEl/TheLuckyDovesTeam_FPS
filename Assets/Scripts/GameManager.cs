@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public Image playerHPbar;
     public Image playerAbilityCooldown;
     [SerializeField] TextMeshProUGUI enemiesLeft;
+    public Transform iconPos;
+    public Transform iconPos1;
+    public Transform iconPos2;
 
     public bool sniperScopeActive = false;
 

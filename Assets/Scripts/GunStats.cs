@@ -12,4 +12,8 @@ public class GunStats : ScriptableObject
     public AudioClip gunShot;
     public bool isSniper;
     public bool isShotgun;
+    public string gunName;
+    public GameObject UI;
+    public int slotNumber;
+
 }
