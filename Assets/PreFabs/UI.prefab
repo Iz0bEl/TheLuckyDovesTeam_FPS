@@ -2627,7 +2627,7 @@ GameObject:
   - component: {fileID: 8760698710164349782}
   - component: {fileID: 4379099391856659085}
   m_Layer: 5
-  m_Name: GunPos1 (1)
+  m_Name: GunPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2650,7 +2650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -723, y: -432}
+  m_AnchoredPosition: {x: -675, y: -432}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8760698710164349782
@@ -2668,7 +2668,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5661458913445581425}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3008,9 +3008,9 @@ MonoBehaviour:
   playerHPbar: {fileID: 1966671155}
   playerAbilityCooldown: {fileID: 0}
   enemiesLeft: {fileID: 90328898}
-  iconPos: {fileID: 0}
-  iconPos1: {fileID: 0}
-  iconPos2: {fileID: 0}
+  iconPos: {fileID: 6997806519086455823}
+  iconPos1: {fileID: 1626994532531837461}
+  iconPos2: {fileID: 5430620239178379537}
   sniperScopeActive: 0
   jumpCost: 3
   speedCost: 0
@@ -5973,7 +5973,7 @@ GameObject:
   - component: {fileID: 3301888508964107114}
   - component: {fileID: 8124756446555772736}
   m_Layer: 5
-  m_Name: GunPos1 (2)
+  m_Name: GunPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5996,7 +5996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -576, y: -432}
+  m_AnchoredPosition: {x: -500, y: -432}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3301888508964107114
@@ -6014,7 +6014,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6699508296563616918}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -6072,7 +6072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -857, y: -432}
+  m_AnchoredPosition: {x: -850, y: -432}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5013709656267719853
@@ -6090,7 +6090,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7040442838843916238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
