@@ -9,11 +9,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("--- Enemy Components ---")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    
+    [SerializeField] Animator anim;
+
 
     [Header("--- Enemy Stats ---")]
     public float HP;
     [SerializeField] int playerFaceSpeed;
+    [SerializeField] int animTransSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPOS;
 
@@ -52,6 +54,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+
         if (playerInRange)
         {
             CanSeePlayer();
@@ -61,10 +66,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             EnemyRoaming();
         }
 
-        if((agent.remainingDistance - agent.stoppingDistance) <= .1)
-        {            
-            EnemyAnimationController.StartIdleAnimation(gameObject);
-        }
         
     }
 
@@ -140,7 +141,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
             agent.destination = gameObject.transform.position;
-            EnemyAnimationController.StartIdleAnimation(gameObject);
+           
             
         }
     }
@@ -155,10 +156,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         agent.SetDestination(GameManager.instance.player.transform.position);
 
-        if(!playerInRange)
-        {
-            EnemyAnimationController.StartRunAnimation(gameObject);
-        }
+       
         StartCoroutine(FlashDamage());
 
         if (HP <= 0)
@@ -182,15 +180,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         
-        if(agent.stoppingDistance >= Vector3.Distance(transform.position, GameManager.instance.player.transform.position))
-        {
-            EnemyAnimationController.StartShootingAnimation(gameObject);
-        }
-        else
-        {
-            EnemyAnimationController.StartRunAnimation(gameObject);
-        }
-
         Instantiate(bullet, shootPos.position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);

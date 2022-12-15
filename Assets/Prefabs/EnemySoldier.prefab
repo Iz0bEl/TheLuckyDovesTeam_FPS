@@ -1211,15 +1211,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 7759901675990733615}
   agent: {fileID: 5920370254111701713}
+  anim: {fileID: 7759901675986509101}
   HP: 10
   playerFaceSpeed: 6
+  animTransSpeed: 3
   sightAngle: 90
   headPOS: {fileID: 7759901675996113861}
   shootRate: 0.5
   bullet: {fileID: 803608865481389829, guid: bc3630a3ae617cf428a2333959748e61, type: 3}
   shootPos: {fileID: 8864595068560440881}
   roamingDistance: 10
-  TEST1: {fileID: 4388676917552161870, guid: ea5279cd238f6e84db416e2648a62fa5, type: 3}
   HPBar: {fileID: 1820625150}
   UI: {fileID: 2014813055}
 --- !u!195 &5920370254111701713
