@@ -9,9 +9,12 @@ TagManager:
   - gunPos1
   - gunPos2
   - gunPos3
-  - Gun1Icon
-  - Gun2Icon
-  - Gun3Icon
+  - AR number
+  - Shotgun Number
+  - Sniper Number
+  - ShotgunUI
+  - AR UI
+  - SniperUI
   layers:
   - Default
   - TransparentFX

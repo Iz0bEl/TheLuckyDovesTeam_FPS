@@ -21,3 +21,5 @@ MonoBehaviour:
   isShotgun: 1
   gunName: Shotgun
   UI: {fileID: 3629459729445287564, guid: 7e07b9eadaefa7846a429a671d25d2cf, type: 3}
+  slotNumber: 1
+  tag: ShotgunUI

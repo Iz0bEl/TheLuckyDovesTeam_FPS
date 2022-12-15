@@ -15,5 +15,6 @@ public class GunStats : ScriptableObject
     public string gunName;
     public GameObject UI;
     public int slotNumber;
+    public string tag;
 
 }

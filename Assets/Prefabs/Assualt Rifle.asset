@@ -21,3 +21,5 @@ MonoBehaviour:
   isShotgun: 0
   gunName: Assault Rifle
   UI: {fileID: 8866997980737803397, guid: e7179d92f42a7c6428d4c45885cd50dc, type: 3}
+  slotNumber: 2
+  tag: AR UI

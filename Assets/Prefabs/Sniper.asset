@@ -21,3 +21,5 @@ MonoBehaviour:
   isShotgun: 0
   gunName: Sniper
   UI: {fileID: 2846081188694571228, guid: 8822238c58b20bb4ab4517e53b7f6e0b, type: 3}
+  slotNumber: 3
+  tag: SniperUI

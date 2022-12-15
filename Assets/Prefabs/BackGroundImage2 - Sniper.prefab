@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 2846081188694571230}
   m_Layer: 5
   m_Name: BackGroundImage2 - Sniper
-  m_TagString: Gun3Icon
+  m_TagString: SniperUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
