@@ -24,6 +24,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
     [SerializeField] int roamingDistance;
+    [SerializeField] Transform headShotPos;
     
 
     [Header("--- Enemy UI ---")]
@@ -148,22 +149,45 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg;
-
-        updateHPBar();
-
-        UI.SetActive(true);
-
-        agent.SetDestination(GameManager.instance.player.transform.position);
-
-       
-        StartCoroutine(FlashDamage());
-
-        if (HP <= 0)
+        if (headShotPos)
         {
-            GameManager.instance.addCoins(HPOG);
-            GameManager.instance.updateEnemyCount(-1);
-            Destroy(gameObject);
+            HP -= dmg * 2;
+
+            updateHPBar();
+
+            UI.SetActive(true);
+
+            agent.SetDestination(GameManager.instance.player.transform.position);
+
+
+            StartCoroutine(FlashDamage());
+
+            if (HP <= 0)
+            {
+                GameManager.instance.addCoins(HPOG);
+                GameManager.instance.updateEnemyCount(-1);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            HP -= dmg;
+
+            updateHPBar();
+
+            UI.SetActive(true);
+
+            agent.SetDestination(GameManager.instance.player.transform.position);
+
+
+            StartCoroutine(FlashDamage());
+
+            if (HP <= 0)
+            {
+                GameManager.instance.addCoins(HPOG);
+                GameManager.instance.updateEnemyCount(-1);
+                Destroy(gameObject);
+            }
         }
     }
 
