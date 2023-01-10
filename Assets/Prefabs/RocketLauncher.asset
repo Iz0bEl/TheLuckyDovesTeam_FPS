@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
+  m_Name: RocketLauncher
+  m_EditorClassIdentifier: 
+  shootDamage: 15
+  shootRate: 3
+  shootDistance: 100
+  gunModel: {fileID: 3828864713111963926, guid: db39804f22fabb9419264c9c1a8bca5e, type: 3}
+  gunShot: {fileID: 8300000, guid: 073f7a3d47635d647a89cd93f85142ca, type: 3}
+  isSniper: 0
+  isShotgun: 0
+  gunName: 
+  UI: {fileID: 2846081188694571228, guid: 1a0ea783c340a6f4f8b7717c86a529f7, type: 3}
+  slotNumber: 2
+  tag: RocketLauncherUI

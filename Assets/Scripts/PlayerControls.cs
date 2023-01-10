@@ -61,7 +61,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     GameObject gunSelectedUI;
 
-    [SerializeField] bool[] gunOrder = new bool[] { false, false, false };
+    [SerializeField] bool[] gunOrder;// = new bool[] { false, false, false, false };
 
 
     int HPORG;
@@ -489,7 +489,7 @@ public class PlayerControls : MonoBehaviour
 
         if (gunList.Count != 0)
         {
-            for (int i = 0; i < gunList.Count; i++)
+           for (int i = 0; i < gunList.Count; i++)
             {
                 if (!gunOrder[i])
                 {
@@ -510,6 +510,12 @@ public class PlayerControls : MonoBehaviour
                     else if (i == 2)
                     {
                         Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos2);
+                        gunList[selectedGun].slotNumber = gunList.Count;
+                        break;
+                    }
+                    else if( i == 3)
+                    {
+                        Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos3);
                         gunList[selectedGun].slotNumber = gunList.Count;
                         break;
                     }
@@ -548,6 +554,11 @@ public class PlayerControls : MonoBehaviour
             selectedGun = 2;
             changeGun();
 
+        }
+        else if(gunList.Count > 3 && Input.GetButtonDown("Gun4"))
+        {
+            selectedGun = 3;
+            changeGun();
         }
 
 

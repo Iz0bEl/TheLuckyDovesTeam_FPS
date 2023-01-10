@@ -170,7 +170,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -221,7 +221,7 @@ InputManager:
     positiveButton: 2
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
+    gravity: 0
     dead: 0.001
     sensitivity: 1000
     snap: 0
@@ -237,7 +237,7 @@ InputManager:
     positiveButton: 1
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
+    gravity: 0
     dead: 0.001
     sensitivity: 1000
     snap: 0
@@ -286,6 +286,22 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Gun4
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 4
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
     dead: 0.001
     sensitivity: 1000
     snap: 0
