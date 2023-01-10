@@ -222,7 +222,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         int num = Random.Range(0, 100);
 
-        if (num < 50)
+        if (num < 10)
         {
             Instantiate(AmmoDrop,new Vector3(gameObject.transform.position.x ,gameObject.transform.position.y ,gameObject.transform.position.z), gameObject.transform.rotation);
             
