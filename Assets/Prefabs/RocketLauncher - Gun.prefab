@@ -177,8 +177,8 @@ GameObject:
   - component: {fileID: 3828864713112327478}
   - component: {fileID: 3828864713113130262}
   - component: {fileID: 3828864713114228694}
-  - component: {fileID: 3828864713028397091}
   - component: {fileID: 3828864713028397090}
+  - component: {fileID: 2045128888}
   m_Layer: 0
   m_Name: RocketLauncher - Gun
   m_TagString: Untagged
@@ -253,19 +253,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3828864713028397091
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828864713111963926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.56798387
-  m_Center: {x: 0, y: -0.02883267, z: 0.2031804}
 --- !u!114 &3828864713028397090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,3 +266,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 5cd90049cd40caf4bb914b9baa2a7641, type: 2}
+--- !u!65 &2045128888
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828864713111963926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.24, y: 2.5306025, z: 13.59}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     public GameObject playerFlashDamage;
     public GameObject timeSlowScreen;
     public GameObject weaponSelectionScreen;
+
+    [SerializeField] TextMeshProUGUI currentAmmo;
+    [SerializeField] TextMeshProUGUI MaxAmmo;
+
+
     public Image playerHPbar;
     public Image playerAbilityCooldown;
     [SerializeField] TextMeshProUGUI enemiesLeft;
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerControls>();
         timeScaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
-        //player.transform.position = playerSpawnPos.transform.position;
+        
 
     }
 
@@ -85,6 +90,12 @@ public class GameManager : MonoBehaviour
         }
 
 
+    }
+    
+    public void updateAmmo()
+    {
+        currentAmmo.text = playerScript.bulletsInClip.ToString();
+        MaxAmmo.text = playerScript.maxAmmo.ToString();
     }
 
     public void addCoins(float amount)

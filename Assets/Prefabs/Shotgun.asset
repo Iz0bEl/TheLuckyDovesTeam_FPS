@@ -15,11 +15,14 @@ MonoBehaviour:
   shootDamage: 6
   shootRate: 0.75
   shootDistance: 30
+  reloadRate: 2
+  ammoInClip: 5
+  maxClip: 5
+  maxAmmo: 30
   gunModel: {fileID: 919132149155446097, guid: f62f7dc06bd890d4aab43b8fd635fe02, type: 3}
   gunShot: {fileID: 8300000, guid: 6d38af7ee5d93554a8010e6dfe128b7e, type: 3}
   isSniper: 0
   isShotgun: 1
-  gunName: Shotgun
   UI: {fileID: 3629459729445287564, guid: 7e07b9eadaefa7846a429a671d25d2cf, type: 3}
-  slotNumber: 1
+  slotNumber: 4
   tag: ShotgunUI

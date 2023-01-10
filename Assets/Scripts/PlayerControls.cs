@@ -57,9 +57,15 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDistance;
+    [SerializeField] float reloadRate;
+    public int bulletsInClip;
+    [SerializeField] int clipSize;
+    public int maxAmmo;
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject hitEffect;
     GameObject gunSelectedUI;
+
+    bool isReloading;
 
     [SerializeField] bool[] gunOrder;
     [SerializeField] Transform GunModelPosition;
@@ -67,7 +73,7 @@ public class PlayerControls : MonoBehaviour
 
     int HPORG;
     bool isShooting;
-    bool IsRocketFiring;
+    //bool IsRocketFiring;
     public int selectedGun;
 
     int jumpedTimes;
@@ -113,6 +119,11 @@ public class PlayerControls : MonoBehaviour
             {
                 StartCoroutine(shoot());
                 gunSelect();
+            }
+
+            if(!isReloading && Input.GetButtonDown("Reload"))
+            {
+                StartCoroutine(reloadWeapon());
             }
         }
 
@@ -352,97 +363,91 @@ public class PlayerControls : MonoBehaviour
         GameManager.instance.playerFlashDamage.SetActive(false);
     }
 
-    IEnumerator shoot()
+    IEnumerator reloadWeapon()
     {
-        //Rifle mechanic
-        if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
+        
+        isReloading = true;
+        yield return new WaitForSeconds(reloadRate);
+        if(maxAmmo < clipSize)
         {
-            isShooting = true;
-            RaycastHit hit;
-            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
-
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
-            {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    if (hit.collider.GetComponent<EnemyAI>().HP > 0)
-                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                }
-            }
-
-            Debug.Log("I shoot");
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
+            bulletsInClip = maxAmmo;
+            maxAmmo = 0;
         }
-
-
-        if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isShotgun)
+        else
         {
-            isShooting = true;
-            RaycastHit hitInfo;
-            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
-            //need to shoot 5 raycast within a certain spread
-            for (int i = 0; i < 5; i++)
-            {
-                //Thinking that if I subtract a random number between 0.01 and 0.02 from the .5 which is middle of screen, it will ofset the bullets accordingly
-
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, shootDistance))
-                {
-                    if (hitInfo.collider.GetComponent<IDamage>() != null)
-                    {
-                        //this if statement fixed a bug that caused the take damage to get called even when the cube was dead
-                        //causing the game manager's count of enemies to be inaccurate
-                        if (hitInfo.collider.GetComponent<EnemyAI>().HP >= 0)
-                        {
-                            hitInfo.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                        }
-
-                    }
-                    Debug.DrawRay(GameManager.instance.player.transform.position, hitInfo.point);
-                }
-                Debug.Log("Shotgun shoot");
-
-            }
-
-            yield return new WaitForSeconds(shootRate);
-
-            isShooting = false;
-
+             maxAmmo -= bulletsInClip;
+             bulletsInClip = clipSize;
         }
+        gunList[selectedGun].ammoInClip = bulletsInClip;
+        gunList[selectedGun].maxAmmo = maxAmmo;
+        
 
+        isReloading = false;
     }
 
-    IEnumerator ShootRocketLauncher()
+    IEnumerator shoot()
     {
 
-        IsRocketFiring = true;
-
-        if (!IsRocketFiring && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
-        {
-            IsRocketFiring = true;
-            RaycastHit hit;
-            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
-
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+            //Rifle mechanic
+            if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
             {
-                if (hit.collider.GetComponent<IDamage>() != null)
+                isShooting = true;
+                RaycastHit hit;
+                aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
+
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
                 {
-                    if (hit.collider.GetComponent<EnemyAI>().HP > 0)
-                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        if (hit.collider.GetComponent<EnemyAI>().HP > 0)
+                            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                    }
+                }
+
+                bulletsInClip--;
+                gunList[selectedGun].ammoInClip = bulletsInClip;
+
+                Debug.Log("I shoot");
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
+
+            }
+            else if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isShotgun)
+            {
+                isShooting = true;
+                RaycastHit hitInfo;
+                aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+                //need to shoot 5 raycast within a certain spread
+                for (int i = 0; i < 5; i++)
+                {
+                    //Thinking that if I subtract a random number between 0.01 and 0.02 from the .5 which is middle of screen, it will ofset the bullets accordingly
+
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f - Random.Range(0.01f, 0.02f), 0.5f - Random.Range(0.01f, 0.02f))), out hitInfo, shootDistance))
+                    {
+                        if (hitInfo.collider.GetComponent<IDamage>() != null)
+                        {
+                            //this if statement fixed a bug that caused the take damage to get called even when the cube was dead
+                            //causing the game manager's count of enemies to be inaccurate
+                            if (hitInfo.collider.GetComponent<EnemyAI>().HP >= 0)
+                            {
+                                hitInfo.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                            }
+
+                        }
+                        Debug.DrawRay(GameManager.instance.player.transform.position, hitInfo.point);
+                    }
+                    Debug.Log("Shotgun shoot");
+                    bulletsInClip--;
+                    gunList[selectedGun].ammoInClip = bulletsInClip;
                 }
             }
-
-            Debug.Log("RocketLaunched!");
+            GameManager.instance.updateAmmo();
             yield return new WaitForSeconds(shootRate);
+
             isShooting = false;
-        }
 
-
-        yield return new WaitForSeconds(shootRate);
-
-        IsRocketFiring = false;
+        
     }
 
     IEnumerator playSteps()
@@ -512,6 +517,11 @@ public class PlayerControls : MonoBehaviour
         shootDamage = gunStat.shootDamage;
         shootRate = gunStat.shootRate;
         shootDistance = gunStat.shootDistance;
+        reloadRate = gunStat.reloadRate;
+        maxAmmo = gunStat.maxAmmo;
+        clipSize = gunStat.maxClip;
+        bulletsInClip = gunStat.maxClip;
+
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -519,11 +529,11 @@ public class PlayerControls : MonoBehaviour
         gunList.Add(gunStat);
 
         selectedGun = gunList.Count - 1;
-        
+
 
         if (gunList.Count != 0)
         {
-           for (int i = 0; i < gunList.Count; i++)
+            for (int i = 0; i < gunList.Count; i++)
             {
                 if (!gunOrder[i])
                 {
@@ -547,7 +557,7 @@ public class PlayerControls : MonoBehaviour
                         gunList[selectedGun].slotNumber = gunList.Count;
                         break;
                     }
-                    else if( i == 3)
+                    else if (i == 3)
                     {
                         Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos3);
                         gunList[selectedGun].slotNumber = gunList.Count;
@@ -566,30 +576,31 @@ public class PlayerControls : MonoBehaviour
                 gunSelectedUI.GetComponent<Image>().color = Color.cyan;
             }
             changeGun();
+            GameManager.instance.updateAmmo();
         }
     }
 
     void gunSelect()
     {
-        if (gunList.Count != 0 && Input.GetButtonDown("Gun1"))
+        if (gunList.Count != 0 && Input.GetButtonDown("Gun1") && !isReloading)
         {
             selectedGun = 0;
             changeGun();
 
         }
-        else if (gunList.Count > 1 && Input.GetButtonDown("Gun2"))
+        else if (gunList.Count > 1 && Input.GetButtonDown("Gun2") && !isReloading)
         {
             selectedGun = 1;
             changeGun();
 
         }
-        else if (gunList.Count > 2 && Input.GetButtonDown("Gun3"))
+        else if (gunList.Count > 2 && Input.GetButtonDown("Gun3") && !isReloading)
         {
             selectedGun = 2;
             changeGun();
 
         }
-        else if(gunList.Count > 3 && Input.GetButtonDown("Gun4"))
+        else if (gunList.Count > 3 && Input.GetButtonDown("Gun4") && !isReloading)
         {
             selectedGun = 3;
             changeGun();
@@ -600,7 +611,7 @@ public class PlayerControls : MonoBehaviour
 
     void changeGun()
     {
-        
+
         gunSelectedUI.GetComponent<Image>().color = Color.white;
         gunSelectedUI = GameObject.FindGameObjectWithTag(gunList[selectedGun].tag);
         gunSelectedUI.GetComponent<Image>().color = Color.cyan;
@@ -608,14 +619,22 @@ public class PlayerControls : MonoBehaviour
         shootDamage = gunList[selectedGun].shootDamage;
         shootRate = gunList[selectedGun].shootRate;
         shootDistance = gunList[selectedGun].shootDistance;
+        reloadRate = gunList[selectedGun].reloadRate;
+        maxAmmo = gunList[selectedGun].maxAmmo;
+        clipSize = gunList[selectedGun].maxClip;
+        bulletsInClip = gunList[selectedGun].ammoInClip;
 
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        if(gunSelectedUI.tag == "RocketLauncherUI")
+        GameManager.instance.updateAmmo();
+
+        //for some reason the Rocket launcher was facing the wrong direction
+        //So these if statements get the rocket facing the right way :D
+        if (gunSelectedUI.tag == "RocketLauncherUI")
         {
-            GunModelPosition.localRotation = new Quaternion(0,180,0,0);
+            GunModelPosition.localRotation = new Quaternion(0, 180, 0, 0);
         }
         else
         {
