@@ -418,6 +418,28 @@ public class PlayerControls : MonoBehaviour
 
         IsRocketFiring = true;
 
+        if (!IsRocketFiring && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
+        {
+            IsRocketFiring = true;
+            RaycastHit hit;
+            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+            {
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    if (hit.collider.GetComponent<EnemyAI>().HP > 0)
+                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                }
+            }
+
+            Debug.Log("RocketLaunched!");
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
+
+
         yield return new WaitForSeconds(shootRate);
 
         IsRocketFiring = false;

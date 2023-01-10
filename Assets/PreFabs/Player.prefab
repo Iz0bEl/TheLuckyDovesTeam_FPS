@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148221217945}
-  m_LocalRotation: {x: -0, y: -0.008065798, z: -0, w: 0.9999675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.268, y: -0.26999998, z: 0.84}
   m_LocalScale: {x: 0.30000007, y: 0.3, z: 0.30000007}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290464783843545045}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 179.076, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3469287838424586630
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -298,6 +298,8 @@ MonoBehaviour:
   shootDistance: 50
   gunModel: {fileID: 919132148221217945}
   hitEffect: {fileID: 0}
+  gunOrder: 00000000
+  GunModelPosition: {fileID: 543450652495205923}
   selectedGun: 0
   pushBack: {x: 0, y: 0, z: 0}
 --- !u!143 &1290464784880263303

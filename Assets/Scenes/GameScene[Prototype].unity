@@ -1233,6 +1233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5941099845392991783, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
 --- !u!1 &269261869
@@ -10642,11 +10646,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dbef17242cf285479158c9286a34903, type: 3}
---- !u!4 &1597961976 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 543450652495205923, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-  m_PrefabInstance: {fileID: 1710889788}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1600167033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2695169191865303776, guid: 830333c19fa49034ab479cfd8e8e752a, type: 3}
@@ -10853,37 +10852,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 543450652495205923, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 543450652495205923, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543450652495205923, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543450652495205923, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543450652495205923, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1290464784880263298, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1290464784880263300, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: GunModelPosition
-      value: 
-      objectReference: {fileID: 1597961976}
-    - target: {fileID: 1290464784880263300, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-      propertyPath: gunOrder.Array.size
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1290464784880263302, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
       propertyPath: m_RootOrder
