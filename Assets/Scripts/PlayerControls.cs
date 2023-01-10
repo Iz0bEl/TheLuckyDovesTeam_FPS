@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
+
+    private const int maxAmmoShotgun = 30;
+    private const int maxAmmoSniper = 15;
+    private const int maxAmmoRifle = 150;
+    private const int maxAmmoRocketLauncher = 3;
+
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
 
