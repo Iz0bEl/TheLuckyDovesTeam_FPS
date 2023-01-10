@@ -1270,6 +1270,7 @@ MonoBehaviour:
   headShotPos: {fileID: 859340376}
   HPBar: {fileID: 1820625150}
   UI: {fileID: 2014813055}
+  AmmoDrop: {fileID: 4480217736199612110, guid: 4acbafe12db147341a8b61bacc2198d0, type: 3}
 --- !u!195 &5920370254111701713
 NavMeshAgent:
   m_ObjectHideFlags: 0

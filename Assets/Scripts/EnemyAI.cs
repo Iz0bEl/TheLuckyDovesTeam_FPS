@@ -31,6 +31,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Image HPBar;
     [SerializeField] GameObject UI;
 
+    [Header("--- Item drop ---")]
+    [SerializeField] GameObject AmmoDrop;
+
     float HPOG;
     bool isShooting;
     bool playerInRange;
@@ -214,5 +217,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     void updateHPBar()
     {
         HPBar.fillAmount = (float)HP / (float)HPOG;
+    }
+    void OnDestroy()
+    {
+        int num = Random.Range(0, 100);
+
+        if (num < 50)
+        {
+            Instantiate(AmmoDrop,new Vector3(gameObject.transform.position.x ,gameObject.transform.position.y ,gameObject.transform.position.z), gameObject.transform.rotation);
+            
+        }
     }
 }
