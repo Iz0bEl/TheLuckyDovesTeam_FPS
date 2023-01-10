@@ -61,11 +61,13 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     GameObject gunSelectedUI;
 
-    [SerializeField] bool[] gunOrder;// = new bool[] { false, false, false, false };
+    [SerializeField] bool[] gunOrder;
+    [SerializeField] Transform GunModelPosition;
 
 
     int HPORG;
     bool isShooting;
+    bool IsRocketFiring;
     public int selectedGun;
 
     int jumpedTimes;
@@ -353,7 +355,7 @@ public class PlayerControls : MonoBehaviour
     IEnumerator shoot()
     {
         //Rifle mechanic
-        if (!isShooting && Input.GetButton("Shoot"))
+        if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
         {
             isShooting = true;
             RaycastHit hit;
@@ -379,7 +381,7 @@ public class PlayerControls : MonoBehaviour
         {
             isShooting = true;
             RaycastHit hitInfo;
-
+            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
             //need to shoot 5 raycast within a certain spread
             for (int i = 0; i < 5; i++)
             {
@@ -409,6 +411,16 @@ public class PlayerControls : MonoBehaviour
 
         }
 
+    }
+
+    IEnumerator ShootRocketLauncher()
+    {
+
+        IsRocketFiring = true;
+
+        yield return new WaitForSeconds(shootRate);
+
+        IsRocketFiring = false;
     }
 
     IEnumerator playSteps()
@@ -578,5 +590,14 @@ public class PlayerControls : MonoBehaviour
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        if(gunSelectedUI.tag == "RocketLauncherUI")
+        {
+            GunModelPosition.localRotation = new Quaternion(0,180,0,0);
+        }
+        else
+        {
+            GunModelPosition.rotation = new Quaternion(0, 0, 0, 0);
+        }
     }
 }
