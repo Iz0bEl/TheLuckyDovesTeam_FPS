@@ -1233,10 +1233,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5941099845584887862, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: iconPos3
-      value: 
-      objectReference: {fileID: 1555858166}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
 --- !u!1 &269261869
@@ -10492,11 +10488,6 @@ Transform:
   m_Father: {fileID: 396430633}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &1555858166 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1555858166, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-  m_PrefabInstance: {fileID: 209064867}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572586047
 GameObject:
   m_ObjectHideFlags: 0
