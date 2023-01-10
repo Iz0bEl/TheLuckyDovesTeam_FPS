@@ -8,7 +8,7 @@ public class AmmoPickUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.instance.playerScript.gunList[GameManager.instance.playerScript.selectedGun].maxAmmo += GameManager.instance.playerScript.gunList[GameManager.instance.playerScript.selectedGun].maxClip;
+            GameManager.instance.playerScript.maxAmmo += GameManager.instance.playerScript.gunList[GameManager.instance.playerScript.selectedGun].maxClip;
             GameManager.instance.updateAmmo();
             Destroy(gameObject);
         }
