@@ -15,6 +15,7 @@ TagManager:
   - ShotgunUI
   - AR UI
   - SniperUI
+  - RocketLauncherUI
   layers:
   - Default
   - TransparentFX

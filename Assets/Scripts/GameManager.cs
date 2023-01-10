@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Transform iconPos;
     public Transform iconPos1;
     public Transform iconPos2;
+    public Transform iconPos3;
 
     public bool sniperScopeActive = false;
 
