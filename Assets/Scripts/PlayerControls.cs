@@ -9,6 +9,8 @@ public class PlayerControls : MonoBehaviour
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject RocketProjectile;
+    [SerializeField] Light flashLight;
+    public bool flashlightOn;
 
     [Header("-----Player Stats-----")]
     [SerializeField] int HP;
@@ -126,6 +128,11 @@ public class PlayerControls : MonoBehaviour
             if (!isReloading && Input.GetButtonDown("Reload"))
             {
                 StartCoroutine(reloadWeapon());
+            }
+
+            if (Input.GetButtonDown("Flashlight"))
+            {
+                FlashlightController();
             }
         }
 
@@ -681,5 +688,12 @@ public class PlayerControls : MonoBehaviour
         transform.position = location.position;
         transform.rotation = location.rotation;
         controller.enabled = true;
+    }
+
+    public void FlashlightController()
+    {
+        flashlightOn = !flashlightOn;
+
+        flashLight.enabled = flashlightOn;
     }
 }
