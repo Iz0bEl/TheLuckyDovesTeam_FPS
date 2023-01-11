@@ -642,4 +642,12 @@ public class PlayerControls : MonoBehaviour
             GunModelPosition.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
+
+    public void Interact(Transform location)
+    {
+        controller.enabled = false;
+        transform.position = location.position;
+        transform.rotation = location.rotation;
+        controller.enabled = true;
+    }
 }
