@@ -366,29 +366,41 @@ public class PlayerControls : MonoBehaviour
 
     IEnumerator reloadWeapon()
     {
-        
-        isReloading = true;
-        yield return new WaitForSeconds(reloadRate);
-        if(maxAmmo < clipSize)
+        if (maxAmmo != 0)
         {
-            bulletsInClip = maxAmmo;
-            maxAmmo = 0;
-        }
-        else
-        {
-             maxAmmo -= bulletsInClip;
-             bulletsInClip = clipSize;
-        }
-        gunList[selectedGun].ammoInClip = bulletsInClip;
-        gunList[selectedGun].maxAmmo = maxAmmo;
-        
 
-        isReloading = false;
+            if (bulletsInClip != clipSize)
+            {
+                isReloading = true;
+                yield return new WaitForSeconds(reloadRate);
+
+                
+                    //checking to see if ammo in clip plus the max ammo can fit into a clip
+                    if (bulletsInClip + maxAmmo <= clipSize)
+                    {
+                        bulletsInClip += maxAmmo;
+                        maxAmmo = 0;
+                    }
+                    else    //if max ammo and ammo in clip cannot fit, find the difference between bullets in clip and clip size and subtract that from max ammo
+                    {
+                        int temp = clipSize - bulletsInClip;
+                        bulletsInClip += temp;
+                        maxAmmo -= temp;
+                    }
+                
+                gunList[selectedGun].ammoInClip = bulletsInClip;
+                gunList[selectedGun].maxAmmo = maxAmmo;
+
+                GameManager.instance.updateAmmo();
+                isReloading = false;
+            }
+        }
     }
 
     IEnumerator shoot()
     {
-
+        if (bulletsInClip > 0)
+        {
             //Rifle mechanic
             if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
             {
@@ -406,12 +418,13 @@ public class PlayerControls : MonoBehaviour
                     }
                 }
 
-                bulletsInClip--;
-                gunList[selectedGun].ammoInClip = bulletsInClip;
+                 bulletsInClip--;
+                 gunList[selectedGun].ammoInClip = bulletsInClip;
+                    GameManager.instance.updateAmmo();
 
-                Debug.Log("I shoot");
+                // Debug.Log("I shoot");
                 yield return new WaitForSeconds(shootRate);
-                isShooting = false;
+               isShooting = false;
 
             }
             else if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isShotgun)
@@ -439,14 +452,16 @@ public class PlayerControls : MonoBehaviour
                         Debug.DrawRay(GameManager.instance.player.transform.position, hitInfo.point);
                     }
                     Debug.Log("Shotgun shoot");
+                }
                     bulletsInClip--;
                     gunList[selectedGun].ammoInClip = bulletsInClip;
-                }
-            }
-            GameManager.instance.updateAmmo();
-            yield return new WaitForSeconds(shootRate);
+                    GameManager.instance.updateAmmo();
 
-            isShooting = false;
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
+
+            }
+        }
 
         
     }
