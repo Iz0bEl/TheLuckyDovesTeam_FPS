@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
   m_Name: Assualt Rifle
   m_EditorClassIdentifier: 
+  maxAmmoValue: 150
+  ammoInClipValue: 30
   shootDamage: 3
   shootRate: 0.25
   shootDistance: 50
   reloadRate: 2
-  ammoInClip: 30
+  ammoInClip: 29
   maxClip: 30
-  maxAmmo: 26
+  maxAmmo: 150
   gunModel: {fileID: 919132149155446097, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
   gunShot: {fileID: 8300000, guid: 7c3f6be02c29e6646a64328182d44da0, type: 3}
   isSniper: 0

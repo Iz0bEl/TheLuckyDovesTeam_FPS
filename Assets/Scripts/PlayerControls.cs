@@ -529,6 +529,9 @@ public class PlayerControls : MonoBehaviour
 
     public void gunPickup(GunStats gunStat)
     {
+        gunStat.maxAmmo = gunStat.maxAmmoValue;
+        gunStat.ammoInClip = gunStat.ammoInClipValue;
+
 
         shootDamage = gunStat.shootDamage;
         shootRate = gunStat.shootRate;

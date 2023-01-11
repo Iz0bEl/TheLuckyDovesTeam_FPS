@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
   m_Name: RocketLauncher
   m_EditorClassIdentifier: 
+  maxAmmoValue: 3
+  ammoInClipValue: 1
   shootDamage: 15
   shootRate: 0.5
   shootDistance: 100
   reloadRate: 4
   ammoInClip: 1
   maxClip: 1
-  maxAmmo: 3
+  maxAmmo: 2
   gunModel: {fileID: 3828864713111963926, guid: db39804f22fabb9419264c9c1a8bca5e, type: 3}
   gunShot: {fileID: 8300000, guid: 073f7a3d47635d647a89cd93f85142ca, type: 3}
   isSniper: 0

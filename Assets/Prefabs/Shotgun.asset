@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
+  maxAmmoValue: 30
+  ammoInClipValue: 5
   shootDamage: 6
   shootRate: 0.75
   shootDistance: 30

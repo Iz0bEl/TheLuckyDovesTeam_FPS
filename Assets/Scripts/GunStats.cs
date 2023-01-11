@@ -5,6 +5,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GunStats : ScriptableObject
 {
+    [Header("---- CONSTANT VARIABLES DO NOT CHANGE! ----")]
+    public int maxAmmoValue;
+    public int ammoInClipValue;
+
+
+    [Header("---- Gun Stats ----")]
     public int shootDamage;
     public float shootRate;
     public int shootDistance;
@@ -16,7 +22,7 @@ public class GunStats : ScriptableObject
     public AudioClip gunShot;
     public bool isSniper;
     public bool isShotgun;
-    //public string gunName; I don't think we need this anymore? - Josh
+    
     public GameObject UI;
     public int slotNumber;
     public string tag;
