@@ -8,6 +8,7 @@ public class PlayerControls : MonoBehaviour
 
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] GameObject RocketProjectile;
 
     [Header("-----Player Stats-----")]
     [SerializeField] int HP;
@@ -24,17 +25,17 @@ public class PlayerControls : MonoBehaviour
     [Header("-----Audio-----")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip gunShot;
-    [Range(0, 1)] [SerializeField] float gunShotVol;
+    [Range(0, 1)][SerializeField] float gunShotVol;
     [SerializeField] AudioClip[] playerHurt;
-    [Range(0, 1)] [SerializeField] float playerHurtVol;
+    [Range(0, 1)][SerializeField] float playerHurtVol;
     [SerializeField] AudioClip[] playerJump;
-    [Range(0, 1)] [SerializeField] float playerJumpVol;
+    [Range(0, 1)][SerializeField] float playerJumpVol;
     [SerializeField] AudioClip[] playerStep;
-    [Range(0, 1)] [SerializeField] float playerSetpVol;
+    [Range(0, 1)][SerializeField] float playerSetpVol;
 
     [Header("----- Wall Running -----")]
-    [Range(1, 10)] [SerializeField] int gravityScale;
-    [Range(5, 15)] [SerializeField] int wallJumpSpeed;
+    [Range(1, 10)][SerializeField] int gravityScale;
+    [Range(5, 15)][SerializeField] int wallJumpSpeed;
     [SerializeField] int wallJumpPushTime;
     GameObject firstWall;
     GameObject secondWall;
@@ -48,8 +49,8 @@ public class PlayerControls : MonoBehaviour
     public bool abilityTimeSlow;
     public bool timeSlowed;
     [SerializeField] float timeSlowScale;
-    [Range(1, 5)] [SerializeField] int timeSlowTimer;
-    [Range(5, 10)] [SerializeField] int abilityCooldown;
+    [Range(1, 5)][SerializeField] int timeSlowTimer;
+    [Range(5, 10)][SerializeField] int abilityCooldown;
     public bool onCooldown;
     float cooldownTimer;
 
@@ -122,7 +123,7 @@ public class PlayerControls : MonoBehaviour
                 gunSelect();
             }
 
-            if(!isReloading && Input.GetButtonDown("Reload"))
+            if (!isReloading && Input.GetButtonDown("Reload"))
             {
                 StartCoroutine(reloadWeapon());
             }
@@ -374,20 +375,20 @@ public class PlayerControls : MonoBehaviour
                 isReloading = true;
                 yield return new WaitForSeconds(reloadRate);
 
-                
-                    //checking to see if ammo in clip plus the max ammo can fit into a clip
-                    if (bulletsInClip + maxAmmo <= clipSize)
-                    {
-                        bulletsInClip += maxAmmo;
-                        maxAmmo = 0;
-                    }
-                    else    //if max ammo and ammo in clip cannot fit, find the difference between bullets in clip and clip size and subtract that from max ammo
-                    {
-                        int temp = clipSize - bulletsInClip;
-                        bulletsInClip += temp;
-                        maxAmmo -= temp;
-                    }
-                
+
+                //checking to see if ammo in clip plus the max ammo can fit into a clip
+                if (bulletsInClip + maxAmmo <= clipSize)
+                {
+                    bulletsInClip += maxAmmo;
+                    maxAmmo = 0;
+                }
+                else    //if max ammo and ammo in clip cannot fit, find the difference between bullets in clip and clip size and subtract that from max ammo
+                {
+                    int temp = clipSize - bulletsInClip;
+                    bulletsInClip += temp;
+                    maxAmmo -= temp;
+                }
+
                 gunList[selectedGun].ammoInClip = bulletsInClip;
                 gunList[selectedGun].maxAmmo = maxAmmo;
 
@@ -401,8 +402,8 @@ public class PlayerControls : MonoBehaviour
     {
         if (bulletsInClip > 0)
         {
-            //Rifle mechanic
-            if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun)
+            //Rifle/Sniper mechanic
+            if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun && !gunList[selectedGun].isRPG)
             {
                 isShooting = true;
                 RaycastHit hit;
@@ -418,15 +419,16 @@ public class PlayerControls : MonoBehaviour
                     }
                 }
 
-                 bulletsInClip--;
-                 gunList[selectedGun].ammoInClip = bulletsInClip;
-                    GameManager.instance.updateAmmo();
+                bulletsInClip--;
+                gunList[selectedGun].ammoInClip = bulletsInClip;
+                GameManager.instance.updateAmmo();
 
                 // Debug.Log("I shoot");
                 yield return new WaitForSeconds(shootRate);
-               isShooting = false;
+                isShooting = false;
 
             }
+            //Shotgun Mechanic
             else if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isShotgun)
             {
                 isShooting = true;
@@ -453,17 +455,29 @@ public class PlayerControls : MonoBehaviour
                     }
                     Debug.Log("Shotgun shoot");
                 }
-                    bulletsInClip--;
-                    gunList[selectedGun].ammoInClip = bulletsInClip;
-                    GameManager.instance.updateAmmo();
+                bulletsInClip--;
+                gunList[selectedGun].ammoInClip = bulletsInClip;
+                GameManager.instance.updateAmmo();
 
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
 
             }
+            //rocket launcher mechanic
+            else if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isRPG)
+            {
+                //instatiate rocket
+                Instantiate(RocketProjectile,gameObject.transform.position, Quaternion.identity);
+                //give the rocket a direction/velocity
+
+                // possibly add a smoke particle effect to missile
+                //hit a collider
+                //explode with audio
+                //push enemies/player away from impact
+            }
         }
 
-        
+
     }
 
     IEnumerator playSteps()
@@ -561,8 +575,8 @@ public class PlayerControls : MonoBehaviour
                     {
                         Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos);
                         gunList[selectedGun].slotNumber = gunList.Count;
-
                         break;
+
                     }
                     else if (i == 1)
                     {
