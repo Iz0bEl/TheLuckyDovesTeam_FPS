@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -110,7 +109,7 @@ public class PlayerControls : MonoBehaviour
         abilityTimeSlow = true;
         onCooldown = false;
         cooldownTimer = abilityCooldown;
-        defYPos = playerCam.transform.position.y;
+        defYPos = Camera.main.transform.position.y; //playerCam.transform.position.y;
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
