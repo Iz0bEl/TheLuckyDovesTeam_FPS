@@ -58,4 +58,6 @@ public class CameraScript : MonoBehaviour
 
         transform.parent.Rotate(Vector3.up * mouseX);
     }
+
+  
 }
