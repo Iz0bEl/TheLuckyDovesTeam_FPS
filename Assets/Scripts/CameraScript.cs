@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-
     [SerializeField] int sensHor;
     [SerializeField] int sensVer;
     [SerializeField][Range(0.01f,0.5f)] float sniperSens;
@@ -59,5 +58,6 @@ public class CameraScript : MonoBehaviour
         transform.parent.Rotate(Vector3.up * mouseX);
     }
 
+   
   
 }

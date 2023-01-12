@@ -8,9 +8,10 @@ public class PlayerControls : MonoBehaviour
 {
 
     [Header("-----Components-----")]
-    [SerializeField] CharacterController controller;    
+    [SerializeField] CharacterController controller;  
     [SerializeField] Light flashLight;
     [SerializeField] GameObject SpawnExplosion;
+    private Camera playerCam;
     public bool flashlightOn;
 
     [Header("-----Player Stats-----")]
@@ -73,6 +74,15 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     GameObject gunSelectedUI;
 
+    [Header("----- Headbob -----")]
+    [SerializeField] private bool canHeadBob = true;
+    [SerializeField] private float walkBobSpeed = 14f;
+    [SerializeField] private float walkBobAmount = 0.5f;
+    [SerializeField] private float sprintBobSpeed = 18f;
+    [SerializeField] private float sprintBobAmount = 1f;
+    private float defYPos = 0;
+    private float timer;
+
     bool isReloading;
 
     [SerializeField] bool[] gunOrder;
@@ -90,7 +100,7 @@ public class PlayerControls : MonoBehaviour
     Vector3 move;
     public Vector3 pushBack;
     bool stepIsPlaying;
-
+    private Vector3 moveDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +110,7 @@ public class PlayerControls : MonoBehaviour
         abilityTimeSlow = true;
         onCooldown = false;
         cooldownTimer = abilityCooldown;
+        defYPos = playerCam.transform.position.y;
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
@@ -137,6 +148,11 @@ public class PlayerControls : MonoBehaviour
             if (Input.GetButtonDown("Flashlight"))
             {
                 FlashlightController();
+            }
+
+            if(canHeadBob)
+            {
+                HeadBob();
             }
         }
 
@@ -201,6 +217,23 @@ public class PlayerControls : MonoBehaviour
             {
                 isSprinting = false;
             }
+        }
+    }
+
+    private void HeadBob()
+    {
+        if (!controller.isGrounded)
+        {
+            return;
+        }
+
+        if (Mathf.Abs(moveDir.x) > 0.1f || Mathf.Abs(moveDir.z) > 0.1f)
+        {
+            timer += Time.deltaTime * (isSprinting ? sprintBobAmount : playerSpeed);
+            playerCam.transform.position = new Vector3(
+                playerCam.transform.localPosition.x,
+                defYPos + Mathf.Sin(timer) * (isSprinting ? sprintBobAmount : playerSpeed),
+                playerCam.transform.localPosition.z);
         }
     }
 
