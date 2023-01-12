@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,9 @@ public class PlayerControls : MonoBehaviour
 {
 
     [Header("-----Components-----")]
-    [SerializeField] CharacterController controller;
-    [SerializeField] GameObject RocketProjectile;
+    [SerializeField] CharacterController controller;    
     [SerializeField] Light flashLight;
+    [SerializeField] GameObject SpawnExplosion;
     public bool flashlightOn;
 
     [Header("-----Player Stats-----")]
@@ -34,6 +35,9 @@ public class PlayerControls : MonoBehaviour
     [Range(0, 1)][SerializeField] float playerJumpVol;
     [SerializeField] AudioClip[] playerStep;
     [Range(0, 1)][SerializeField] float playerSetpVol;
+    [SerializeField] AudioClip[] RocketLauncherFiringAudio;
+    [Range(0, 1)][SerializeField] float RocketLauncherVol;
+
 
     [Header("----- Wall Running -----")]
     [Range(1, 10)][SerializeField] int gravityScale;
@@ -426,9 +430,7 @@ public class PlayerControls : MonoBehaviour
                     }
                 }
 
-                bulletsInClip--;
-                gunList[selectedGun].ammoInClip = bulletsInClip;
-                GameManager.instance.updateAmmo();
+                UpdateBulletCount();
 
                 // Debug.Log("I shoot");
                 yield return new WaitForSeconds(shootRate);
@@ -462,25 +464,41 @@ public class PlayerControls : MonoBehaviour
                     }
                     Debug.Log("Shotgun shoot");
                 }
-                bulletsInClip--;
-                gunList[selectedGun].ammoInClip = bulletsInClip;
-                GameManager.instance.updateAmmo();
+                UpdateBulletCount();
 
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
 
             }
-            //rocket launcher mechanic
+            //rocket launcher
             else if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].isRPG)
             {
-                //instatiate rocket
-                Instantiate(RocketProjectile,gameObject.transform.position, Quaternion.identity);
-                //give the rocket a direction/velocity
 
-                // possibly add a smoke particle effect to missile
-                //hit a collider
-                //explode with audio
-                //push enemies/player away from impact
+                isShooting = true;
+                RaycastHit hit;
+                aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
+
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+                {
+
+                    Instantiate(SpawnExplosion, hit.point,Quaternion.identity);
+
+
+                    //if (hit.collider.GetComponent<IDamage>() != null)
+                    //{
+                    //    if (hit.collider.GetComponent<EnemyAI>().HP > 0)
+                    //        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                    //}
+                }
+
+                UpdateBulletCount();
+
+                // Debug.Log("I shoot");
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
+               
+                
             }
         }
 
@@ -695,5 +713,12 @@ public class PlayerControls : MonoBehaviour
         flashlightOn = !flashlightOn;
 
         flashLight.enabled = flashlightOn;
+    }
+
+    public void UpdateBulletCount()
+    {
+        bulletsInClip--;
+        gunList[selectedGun].ammoInClip = bulletsInClip;
+        GameManager.instance.updateAmmo();
     }
 }

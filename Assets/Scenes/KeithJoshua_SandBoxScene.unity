@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,6 +191,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1290464784880263300, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
+      propertyPath: SpawnExplosion
+      value: 
+      objectReference: {fileID: 797419136933333656, guid: 89b3767a9c560bb46ad6053d2ac11cd8, type: 3}
+    - target: {fileID: 1290464784880263300, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
+      propertyPath: RocketProjectile
+      value: 
+      objectReference: {fileID: 4616263060032676792, guid: c95b979dcc2af3949a9259a2a6e4c988, type: 3}
     - target: {fileID: 1290464784880263302, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -463,7 +471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1319247371
 Light:
   m_ObjectHideFlags: 0
