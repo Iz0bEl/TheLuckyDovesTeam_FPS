@@ -479,10 +479,10 @@ MonoBehaviour:
   gunModel: {fileID: 919132148221217945}
   hitEffect: {fileID: 0}
   canHeadBob: 1
-  walkBobSpeed: 8
+  walkBobSpeed: 13
   walkBobAmount: 0.05
-  sprintBobSpeed: 12
-  sprintBobAmount: 0.11
+  sprintBobSpeed: 15
+  sprintBobAmount: 0.14
   gunOrder: 00000000
   GunModelPosition: {fileID: 543450652495205923}
   selectedGun: 0

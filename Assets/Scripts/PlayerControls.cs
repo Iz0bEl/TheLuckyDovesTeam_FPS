@@ -11,7 +11,6 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] Light flashLight;
     [SerializeField] GameObject SpawnExplosion;
     public bool flashlightOn;
-    private Camera PlayerCam;
 
     [Header("-----Player Stats-----")]
     [SerializeField] int HP;
@@ -75,10 +74,10 @@ public class PlayerControls : MonoBehaviour
 
     [Header("----- Headbob -----")]
     [SerializeField] private bool canHeadBob = true;
-    [SerializeField] private float walkBobSpeed = 12f;
-    [SerializeField] private float walkBobAmount = 0.05f;
-    [SerializeField] private float sprintBobSpeed = 15f;
-    [SerializeField] private float sprintBobAmount = 0.11f;
+    [SerializeField] private float walkBobSpeed;
+    [SerializeField] private float walkBobAmount;
+    [SerializeField] private float sprintBobSpeed;
+    [SerializeField] private float sprintBobAmount;
     private float defYPos = 0;
     private float timer;
 
@@ -108,7 +107,7 @@ public class PlayerControls : MonoBehaviour
         abilityTimeSlow = true;
         onCooldown = false;
         cooldownTimer = abilityCooldown;
-        defYPos = Camera.main.transform.position.y; //playerCam.transform.position.y;
+        defYPos = Camera.main.transform.position.y;
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
