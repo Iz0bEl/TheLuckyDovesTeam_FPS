@@ -7,7 +7,7 @@ public class PlayerControls : MonoBehaviour
 {
 
     [Header("-----Components-----")]
-    [SerializeField] CharacterController controller;  
+    [SerializeField] CharacterController controller;
     [SerializeField] Light flashLight;
     [SerializeField] GameObject SpawnExplosion;
     public bool flashlightOn;
@@ -118,12 +118,7 @@ public class PlayerControls : MonoBehaviour
         if (!GameManager.instance.isPaused)
         {
 
-            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
-            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
-            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 0.2f);
-            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
-
-
+            
             wallJumpPush = Vector3.Lerp(wallJumpPush, Vector3.zero, Time.deltaTime * wallJumpPushTime);
             movement();
 
@@ -154,7 +149,7 @@ public class PlayerControls : MonoBehaviour
                 FlashlightController();
             }
 
-            if(canHeadBob)
+            if (canHeadBob)
             {
                 HeadBob();
             }
@@ -519,7 +514,7 @@ public class PlayerControls : MonoBehaviour
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
                 {
 
-                    Instantiate(SpawnExplosion, hit.point,Quaternion.identity);
+                    Instantiate(SpawnExplosion, hit.point, Quaternion.identity);
 
 
                     //if (hit.collider.GetComponent<IDamage>() != null)
@@ -534,8 +529,8 @@ public class PlayerControls : MonoBehaviour
                 // Debug.Log("I shoot");
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
-               
-                
+
+
             }
         }
 
@@ -759,5 +754,5 @@ public class PlayerControls : MonoBehaviour
         GameManager.instance.updateAmmo();
     }
 
-   
+
 }

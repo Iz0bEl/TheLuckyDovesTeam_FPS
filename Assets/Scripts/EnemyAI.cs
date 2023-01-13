@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
+    [SerializeField] int pushBackTime;
 
 
     [Header("--- Enemy Stats ---")]
@@ -41,6 +42,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     Vector3 startingPosition;
     float stoppingDistanceOG;
+    public Vector3 pushBack;
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-
-        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
 
         if (playerInRange)
         {
