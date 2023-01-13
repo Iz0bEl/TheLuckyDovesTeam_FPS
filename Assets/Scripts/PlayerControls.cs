@@ -10,8 +10,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] CharacterController controller;  
     [SerializeField] Light flashLight;
     [SerializeField] GameObject SpawnExplosion;
-    private Camera playerCam;
     public bool flashlightOn;
+    private Camera PlayerCam;
 
     [Header("-----Player Stats-----")]
     [SerializeField] int HP;
@@ -75,10 +75,10 @@ public class PlayerControls : MonoBehaviour
 
     [Header("----- Headbob -----")]
     [SerializeField] private bool canHeadBob = true;
-    [SerializeField] private float walkBobSpeed = 14f;
-    [SerializeField] private float walkBobAmount = 0.5f;
-    [SerializeField] private float sprintBobSpeed = 18f;
-    [SerializeField] private float sprintBobAmount = 1f;
+    [SerializeField] private float walkBobSpeed = 12f;
+    [SerializeField] private float walkBobAmount = 0.05f;
+    [SerializeField] private float sprintBobSpeed = 15f;
+    [SerializeField] private float sprintBobAmount = 0.11f;
     private float defYPos = 0;
     private float timer;
 
@@ -99,7 +99,6 @@ public class PlayerControls : MonoBehaviour
     Vector3 move;
     public Vector3 pushBack;
     bool stepIsPlaying;
-    private Vector3 moveDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -226,13 +225,13 @@ public class PlayerControls : MonoBehaviour
             return;
         }
 
-        if (Mathf.Abs(moveDir.x) > 0.1f || Mathf.Abs(moveDir.z) > 0.1f)
+        if (Mathf.Abs(move.x) > 0.1f || Mathf.Abs(move.z) > 0.1f)
         {
-            timer += Time.deltaTime * (isSprinting ? sprintBobAmount : playerSpeed);
-            playerCam.transform.position = new Vector3(
-                playerCam.transform.localPosition.x,
-                defYPos + Mathf.Sin(timer) * (isSprinting ? sprintBobAmount : playerSpeed),
-                playerCam.transform.localPosition.z);
+            timer += Time.deltaTime * (isSprinting ? sprintBobSpeed : walkBobSpeed);
+            Camera.main.transform.localPosition = new Vector3(
+                Camera.main.transform.localPosition.x,
+                defYPos + Mathf.Sin(timer) * (isSprinting ? sprintBobAmount : walkBobAmount),
+                Camera.main.transform.localPosition.z);
         }
     }
 

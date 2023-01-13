@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290464783843545045}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &661472748
 Camera:
@@ -106,7 +106,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290464783843545045}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3469287838424586630
 MeshFilter:
@@ -283,8 +283,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 661472747}
   - {fileID: 543450652495205923}
+  - {fileID: 661472747}
   - {fileID: 8404288286984371499}
   m_Father: {fileID: 1290464784880263302}
   m_RootOrder: 0
@@ -478,6 +478,11 @@ MonoBehaviour:
   maxAmmo: 0
   gunModel: {fileID: 919132148221217945}
   hitEffect: {fileID: 0}
+  canHeadBob: 1
+  walkBobSpeed: 8
+  walkBobAmount: 0.05
+  sprintBobSpeed: 12
+  sprintBobAmount: 0.11
   gunOrder: 00000000
   GunModelPosition: {fileID: 543450652495205923}
   selectedGun: 0
