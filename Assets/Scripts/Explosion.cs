@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
@@ -9,6 +10,7 @@ public class Explosion : MonoBehaviour
     //[SerializeField] float speed;
     //[SerializeField] int timer;
     [SerializeField] int damage;
+    [SerializeField] int speed;
     [SerializeField] GameObject targets;
 
     void Start()

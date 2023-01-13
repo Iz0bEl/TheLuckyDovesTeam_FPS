@@ -83,7 +83,7 @@ public class PlayerControls : MonoBehaviour
 
     bool isReloading;
 
-    [SerializeField] bool[] gunOrder;
+    [SerializeField] bool[] gunSlotTaken;
     [SerializeField] Transform GunModelPosition;
 
 
@@ -625,9 +625,9 @@ public class PlayerControls : MonoBehaviour
         {
             for (int i = 0; i < gunList.Count; i++)
             {
-                if (!gunOrder[i])
+                if (!gunSlotTaken[i])
                 {
-                    gunOrder[i] = true;
+                    gunSlotTaken[i] = true;
                     if (i == 0)
                     {
                         Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos);
