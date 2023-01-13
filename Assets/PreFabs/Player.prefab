@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1290464784880263303}
   flashLight: {fileID: 4889041537703855985}
-  SpawnExplosion: {fileID: 0}
+  SpawnExplosion: {fileID: 797419136933333656, guid: 89b3767a9c560bb46ad6053d2ac11cd8, type: 3}
   flashlightOn: 0
   HP: 5
   playerSpeed: 5
@@ -483,7 +483,7 @@ MonoBehaviour:
   walkBobAmount: 0.05
   sprintBobSpeed: 15
   sprintBobAmount: 0.14
-  gunOrder: 00000000
+  gunSlotTaken: 00000000
   GunModelPosition: {fileID: 543450652495205923}
   selectedGun: 0
   pushBack: {x: 0, y: 0, z: 0}
