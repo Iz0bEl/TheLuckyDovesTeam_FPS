@@ -117,6 +117,13 @@ public class PlayerControls : MonoBehaviour
     {
         if (!GameManager.instance.isPaused)
         {
+
+            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 0.2f);
+            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+
+
             wallJumpPush = Vector3.Lerp(wallJumpPush, Vector3.zero, Time.deltaTime * wallJumpPushTime);
             movement();
 
@@ -751,4 +758,6 @@ public class PlayerControls : MonoBehaviour
         gunList[selectedGun].ammoInClip = bulletsInClip;
         GameManager.instance.updateAmmo();
     }
+
+   
 }

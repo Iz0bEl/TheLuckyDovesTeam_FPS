@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmoValue: 15
   ammoInClipValue: 3
-  shootDamage: 5
+  shootDamage: 4
   shootRate: 0.75
   shootDistance: 100
   reloadRate: 3
@@ -23,8 +23,9 @@ MonoBehaviour:
   maxAmmo: 15
   gunModel: {fileID: 919132149155446097, guid: 60d91f925d8c1e442bb6596dfb94ffff, type: 3}
   gunShot: {fileID: 8300000, guid: 243cc5dd3d192a2409f92e208baca553, type: 3}
+  isRPG: 0
   isSniper: 1
   isShotgun: 0
   UI: {fileID: 2846081188694571228, guid: 8822238c58b20bb4ab4517e53b7f6e0b, type: 3}
-  slotNumber: 3
+  slotNumber: 1
   tag: SniperUI

@@ -152,7 +152,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int dmg)
     {
-        if (headShotPos)
+        //made it so the RPG cannot crit
+        if (headShotPos && !GameManager.instance.playerScript.gunList[GameManager.instance.playerScript.selectedGun].isRPG)
         {
             HP -= dmg * 2;
 

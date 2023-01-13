@@ -49,6 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionAudio: {fileID: 0}
   damage: 1
+  targets: {fileID: 0}
+  pushBackTime: 2
+  pushBackAmount: 500
+  pushBack: {x: 0, y: 0, z: 0}
 --- !u!135 &-6224107993167312093
 SphereCollider:
   m_ObjectHideFlags: 0
