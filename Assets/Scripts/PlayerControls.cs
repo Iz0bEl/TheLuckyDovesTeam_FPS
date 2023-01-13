@@ -408,12 +408,13 @@ public class PlayerControls : MonoBehaviour
 
     IEnumerator reloadWeapon()
     {
-        if (maxAmmo != 0)
+        if (maxAmmo != 0 && !isShooting)
         {
 
             if (bulletsInClip != clipSize)
             {
                 isReloading = true;
+                isShooting = true;
                 yield return new WaitForSeconds(reloadRate);
 
 
@@ -435,6 +436,7 @@ public class PlayerControls : MonoBehaviour
 
                 GameManager.instance.updateAmmo();
                 isReloading = false;
+                isShooting= false;
             }
         }
     }
