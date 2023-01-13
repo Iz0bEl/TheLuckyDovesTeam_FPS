@@ -107,7 +107,7 @@ public class PlayerControls : MonoBehaviour
         abilityTimeSlow = true;
         onCooldown = false;
         cooldownTimer = abilityCooldown;
-        defYPos = Camera.main.transform.position.y;
+        defYPos = Camera.main.transform.localPosition.y;//position.y;
         SetPlayerPos();
         UpdatePlayerHPBar();
     }
@@ -229,9 +229,7 @@ public class PlayerControls : MonoBehaviour
         if (Mathf.Abs(move.x) > 0.1f || Mathf.Abs(move.z) > 0.1f)
         {
             timer += Time.deltaTime * (isSprinting ? sprintBobSpeed : walkBobSpeed);
-            Camera.main.transform.localPosition = new Vector3(
-                Camera.main.transform.localPosition.x,
-                defYPos + Mathf.Sin(timer) * (isSprinting ? sprintBobAmount : walkBobAmount),
+            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x ,defYPos + Mathf.Sin(timer) * (isSprinting ? sprintBobAmount : walkBobAmount),
                 Camera.main.transform.localPosition.z);
         }
     }
