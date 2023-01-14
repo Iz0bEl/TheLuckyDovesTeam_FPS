@@ -204,6 +204,11 @@ public class PlayerControls : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax && !wallLeft && !wallRight)
             {
+                if(isCrouching)
+                {
+                    controller.height = standingHeight;
+                }
+
                 jumpedTimes++;
                 playerVelocity.y = jumpHeight;
                 aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
