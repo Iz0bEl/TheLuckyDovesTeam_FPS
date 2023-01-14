@@ -18,6 +18,8 @@ public class LoadingScreen : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
 
+        LoadScreen.SetActive(true);
+
         while (!operation.isDone)
         {
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
@@ -25,6 +27,11 @@ public class LoadingScreen : MonoBehaviour
             LoadBarFill.fillAmount = progressValue;
 
             yield return null;
+        }
+
+        if (operation.isDone)
+        {
+            LoadScreen.SetActive(false);
         }
     }
 }
