@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI MaxAmmo;
 
 
+    [Header("------Audio Stuff------")]
+    [SerializeField] AudioMixer Mixer;
+    [SerializeField] Slider MusicVolSlider;
+    [SerializeField] Slider SFXVolSlider;
+
+
+    [Header("-------------------")]
     public Image playerHPbar;
     public Image playerAbilityCooldown;
     [SerializeField] TextMeshProUGUI enemiesLeft;
@@ -61,7 +69,19 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Application.targetFrameRate = 144;   
+        Application.targetFrameRate = 144;  
+        
+        if(PlayerPrefs.HasKey("ExposeMusic"))
+        {
+          MusicVolSlider.value = PlayerPrefs.GetFloat("ExposeMusic");
+            SetMixerValue("ExposeMusic", MusicVolSlider.value);
+        }
+
+        if (PlayerPrefs.HasKey("ExposeSFX"))
+        {
+            SFXVolSlider.value = PlayerPrefs.GetFloat("ExposeSFX");
+            SetMixerValue("ExposeSFX", SFXVolSlider.value);
+        }
     }
 
 
@@ -96,7 +116,25 @@ public class GameManager : MonoBehaviour
 
 
     }
-    
+
+    public void MusicVolumeSlider()
+    {
+        SetMixerValue("ExposeMusic", MusicVolSlider.value);
+        PlayerPrefs.SetFloat("ExposeMusic", MusicVolSlider.value);
+
+    }
+
+    public void SFXVolumeSlider()
+    {
+        SetMixerValue("ExposeSFX", SFXVolSlider.value);
+        PlayerPrefs.SetFloat("ExposeSFX", SFXVolSlider.value);
+    }
+
+    void SetMixerValue(string key, float val)
+    {
+        Mixer.SetFloat(key, Mathf.Log10(val) * 20);
+    }
+
     public void updateAmmo()
     {
         currentAmmo.text = playerScript.bulletsInClip.ToString();
