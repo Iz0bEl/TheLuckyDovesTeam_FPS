@@ -21,11 +21,11 @@ public class GunStats : ScriptableObject
     public GameObject gunModel;
     public AudioClip gunShot;
 
-
     
     public bool isRPG;
     public bool isSniper;
     public bool isShotgun;
+    public bool isKnife;
     
     public GameObject UI;
     public int slotNumber;

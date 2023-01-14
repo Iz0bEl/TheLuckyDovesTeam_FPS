@@ -546,7 +546,31 @@ public class PlayerControls : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (bulletsInClip > 0)
+
+        if (gunList[selectedGun].isKnife)
+        {
+            if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun && !gunList[selectedGun].isRPG)
+            {
+                isShooting = true;
+                RaycastHit hit;
+                aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
+
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+                {
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        if (hit.collider.GetComponent<EnemyAI>().HP > 0)
+                            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                    }
+                }
+
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
+
+            }
+        }
+        else if (bulletsInClip > 0)
         {
             //Rifle/Sniper mechanic
             if (!isShooting && Input.GetButton("Shoot") && !gunList[selectedGun].isShotgun && !gunList[selectedGun].isRPG)
@@ -753,6 +777,12 @@ public class PlayerControls : MonoBehaviour
                     else if (i == 3)
                     {
                         Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos3);
+                        gunList[selectedGun].slotNumber = gunList.Count;
+                        break;
+                    }
+                    else if (i == 4)
+                    {
+                        Instantiate(gunList[selectedGun].UI, GameManager.instance.iconPos4);
                         gunList[selectedGun].slotNumber = gunList.Count;
                         break;
                     }

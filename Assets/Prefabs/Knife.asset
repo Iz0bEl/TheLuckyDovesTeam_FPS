@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332b384c3f3af0c4b8e3196d2aa201bf, type: 3}
+  m_Name: Knife
+  m_EditorClassIdentifier: 
+  maxAmmoValue: 0
+  ammoInClipValue: 0
+  shootDamage: 5
+  shootRate: 0.5
+  shootDistance: 3
+  reloadRate: 0
+  ammoInClip: 0
+  maxClip: 0
+  maxAmmo: 0
+  gunModel: {fileID: 5612990323301590601, guid: 093e3e706c3857b47972451bb763ee8d, type: 3}
+  gunShot: {fileID: 8300000, guid: 82b267cec7a494648840f2f27c03da1e, type: 3}
+  isRPG: 0
+  isSniper: 0
+  isShotgun: 0
+  isKnife: 1
+  UI: {fileID: 3629459729445287564, guid: 4e2dd22455ff8554bb2b1309c292c0ef, type: 3}
+  slotNumber: 1
+  tag: KnifeUI
