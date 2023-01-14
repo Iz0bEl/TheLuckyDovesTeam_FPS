@@ -37,6 +37,17 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] AudioClip[] RocketLauncherFiringAudio;
     [Range(0, 1)][SerializeField] float RocketLauncherVol;
 
+    [Header("----- Crouch/Sliding -----")]
+    public bool toggleCrouch;
+    bool isCrouching;
+    public float standingHeight;
+    [SerializeField] float crouchingHeight;
+    [SerializeField] float crouchingSpeed;
+    bool isSliding;
+    [SerializeField] float slideLength;
+    [SerializeField] float slideSpeed;
+    public float slidingTime;
+    Vector3 slideDir;
 
     [Header("----- Wall Running -----")]
     [Range(1, 10)][SerializeField] int gravityScale;
@@ -104,6 +115,9 @@ public class PlayerControls : MonoBehaviour
         HPORG = HP;
         toggleSprint = true;
         isSprinting = false;
+        isCrouching = false;
+        isSliding = false;
+        standingHeight = controller.height;
         abilityTimeSlow = true;
         onCooldown = false;
         cooldownTimer = abilityCooldown;
@@ -172,24 +186,55 @@ public class PlayerControls : MonoBehaviour
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
         sprint();
-        if (isSprinting)
+        crouch();
+        if (!isSliding)
         {
-            controller.Move(move * Time.deltaTime * playerSprintSpeed);
+            if (isSprinting)
+            {
+                controller.Move(move * Time.deltaTime * playerSprintSpeed);
+            }
+            else if (isCrouching)
+            {
+                controller.Move(move * Time.deltaTime * crouchingSpeed);
+            }
+            else
+            {
+                controller.Move(move * Time.deltaTime * playerSpeed);
+            }
+
+            if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax && !wallLeft && !wallRight)
+            {
+                jumpedTimes++;
+                playerVelocity.y = jumpHeight;
+                aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
+            }
+
+            // gravity has moved to wallphysics -kayla
+            wallPhysics();
         }
         else
         {
-            controller.Move(move * Time.deltaTime * playerSpeed);
+            controller.height = crouchingHeight;
+            if (isSprinting)
+            {
+                isSliding = false;
+                isSprinting = true;
+
+                controller.height = standingHeight;
+            }
+            slideDir.y = -gravityValue * Time.deltaTime;
+            move = slideDir;
+            controller.Move(slideDir * Time.deltaTime * slideSpeed);
+            slidingTime -= Time.deltaTime;
+            if (slidingTime <= 0)
+            {
+                isSliding = false;
+                isCrouching = false;
+                controller.height = standingHeight;
+                slideDir = Vector3.zero;
+            }
         }
 
-        if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax && !wallLeft && !wallRight)
-        {
-            jumpedTimes++;
-            playerVelocity.y = jumpHeight;
-            aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
-        }
-
-        // gravity has moved to wallphysics -kayla
-        wallPhysics();
         controller.Move((playerVelocity + wallJumpPush) * Time.deltaTime);
     }
 
@@ -200,6 +245,13 @@ public class PlayerControls : MonoBehaviour
             if (!isSprinting && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
             {
                 isSprinting = true;
+            }
+            if (!isSprinting && isCrouching && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+            {
+                controller.height = standingHeight;
+                isSprinting = true;
+                isCrouching = false;
+                isSliding = false;
             }
             else if (isSprinting && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
             {
@@ -215,6 +267,52 @@ public class PlayerControls : MonoBehaviour
             else if (isSprinting && ((!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) || !Input.GetButton("Sprint")))
             {
                 isSprinting = false;
+            }
+        }
+    }
+
+    void crouch()
+    {
+        if (toggleCrouch)
+        {
+            if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
+            {
+                isSprinting = false;
+                isCrouching = true;
+                isSliding = true;
+                slideDir = move;
+                slidingTime = slideLength;
+            }
+            else if (!isCrouching && Input.GetButtonDown("Crouch"))
+            {
+                isCrouching = true;
+                controller.height = crouchingHeight;
+            }
+            else if (isCrouching && (Input.GetButtonDown("Crouch")))
+            {
+                isCrouching = false;
+                controller.height = standingHeight;
+            }
+        }
+        else if (!toggleCrouch)
+        {
+            if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
+            {
+                isSprinting = false;
+                isCrouching = true;
+                isSliding = true;
+                slideDir = move;
+                slidingTime = slideLength;
+            }
+            else if (!isCrouching && Input.GetButton("Crouch"))
+            {
+                isCrouching = true;
+                controller.height = crouchingHeight;
+            }
+            else if (isCrouching && (Input.GetButtonUp("Crouch")))
+            {
+                isCrouching = false;
+                controller.height = standingHeight;
             }
         }
     }

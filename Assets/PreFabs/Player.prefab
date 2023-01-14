@@ -427,7 +427,7 @@ MonoBehaviour:
   gravityValue: 25
   jumpsMax: 1
   currentWeapon: 0
-  toggleSprint: 0
+  toggleSprint: 1
   pushBackTime: 0
   aud: {fileID: 799208863}
   gunShot: {fileID: 0}
@@ -458,6 +458,13 @@ MonoBehaviour:
   playerSetpVol: 0.25
   RocketLauncherFiringAudio: []
   RocketLauncherVol: 0
+  toggleCrouch: 1
+  standingHeight: 0
+  crouchingHeight: 1
+  crouchingSpeed: 2.5
+  slideLength: 2
+  slideSpeed: 15
+  slidingTime: 0
   gravityScale: 4
   wallJumpSpeed: 12
   wallJumpPushTime: 2
