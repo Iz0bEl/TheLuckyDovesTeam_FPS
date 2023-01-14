@@ -204,8 +204,8 @@ Light:
   m_Color: {r: 0.9811321, g: 0.96529716, b: 0.68956923, a: 1}
   m_Intensity: 1
   m_Range: 20
-  m_SpotAngle: 50
-  m_InnerSpotAngle: 5
+  m_SpotAngle: 40
+  m_InnerSpotAngle: 4
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -577,8 +577,8 @@ AudioSource:
   m_GameObject: {fileID: 1290464784880263298}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5586698460863873838, guid: 1ad9285e9b54eac42bc86c03161979e3, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 9e850afe0ea6a4dc7afdaeab686476a7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
