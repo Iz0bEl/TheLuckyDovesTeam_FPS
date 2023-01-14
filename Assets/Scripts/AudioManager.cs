@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class AudioManager : MonoBehaviour
     private bool isPLayingSong1;
 
     public static AudioManager instance;
+
+    [Header("------Audio Stuff------")]
+    [SerializeField] AudioMixer Mixer;
+    [SerializeField] Slider MusicVolSlider;
+    [SerializeField] Slider SFXVolSlider;
 
     public void Awake()
     {
@@ -24,6 +31,37 @@ public class AudioManager : MonoBehaviour
         isPLayingSong1 = true;
 
         SwapMusic(defaultSong);
+
+
+        if (PlayerPrefs.HasKey("ExposeMusic"))
+        {
+            MusicVolSlider.value = PlayerPrefs.GetFloat("ExposeMusic");
+            SetMixerValue("ExposeMusic", MusicVolSlider.value);
+        }
+
+        if (PlayerPrefs.HasKey("ExposeSFX"))
+        {
+            SFXVolSlider.value = PlayerPrefs.GetFloat("ExposeSFX");
+            SetMixerValue("ExposeSFX", SFXVolSlider.value);
+        }
+    }
+
+    public void MusicVolumeSlider()
+    {
+        SetMixerValue("ExposeMusic", MusicVolSlider.value);
+        PlayerPrefs.SetFloat("ExposeMusic", MusicVolSlider.value);
+
+    }
+
+    public void SFXVolumeSlider()
+    {
+        SetMixerValue("ExposeSFX", SFXVolSlider.value);
+        PlayerPrefs.SetFloat("ExposeSFX", SFXVolSlider.value);
+    }
+
+    void SetMixerValue(string key, float val)
+    {
+        Mixer.SetFloat(key, Mathf.Log10(val) * 20);
     }
 
     public void SwapMusic(AudioClip newSong)
