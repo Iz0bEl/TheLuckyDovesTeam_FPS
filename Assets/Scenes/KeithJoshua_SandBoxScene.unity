@@ -178,17 +178,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife_Weapon
       objectReference: {fileID: 0}
-    - target: {fileID: 5772087840324956106, guid: 093e3e706c3857b47972451bb763ee8d, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093e3e706c3857b47972451bb763ee8d, type: 3}
---- !u!224 &186225248 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8972790563304143765, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-  m_PrefabInstance: {fileID: 2051073184}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &470310438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -702,10 +693,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5941099845584887862, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: iconPos4
-      value: 
-      objectReference: {fileID: 186225248}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
 --- !u!1001 &2135179950
