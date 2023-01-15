@@ -66,10 +66,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             CanSeePlayer();
         }
-        else if (agent.remainingDistance < 0.1f && agent.destination != GameManager.instance.player.transform.position)
-        {
-            EnemyRoaming();
-        }
+        //else if (agent.remainingDistance < 0.1f && agent.destination != GameManager.instance.player.transform.position)
+        //{
+        //    EnemyRoaming();
+        //}
 
         
     }
