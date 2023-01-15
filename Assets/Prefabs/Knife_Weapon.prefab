@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8142881737180443478}
   - component: {fileID: 6261591752272447388}
   - component: {fileID: 4682530977450023685}
-  - component: {fileID: 1086747010}
+  - component: {fileID: 5772087840324956106}
   m_Layer: 0
-  m_Name: Knife
+  m_Name: Knife_Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5612990323301590601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.809214, y: 0.552, z: 0.062975526}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6426176170636803458}
@@ -99,19 +99,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 562a26c2867d82941958f19b4b729ae5, type: 2}
---- !u!135 &1086747010
-SphereCollider:
+--- !u!65 &5772087840324956106
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5612990323301590601}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17408614
-  m_Center: {x: 0.0000000055879354, y: 0.0000020693988, z: 0.00014984608}
+  m_Size: {x: 1.11, y: 0.75, z: 2.48}
+  m_Center: {x: 0.000000033527613, y: 0.000012412667, z: 0.00089907646}
 --- !u!1 &6368323698169006150
 GameObject:
   m_ObjectHideFlags: 0

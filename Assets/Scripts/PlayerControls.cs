@@ -828,6 +828,11 @@ public class PlayerControls : MonoBehaviour
             selectedGun = 3;
             changeGun();
         }
+        else if (gunList.Count > 4 && Input.GetButtonDown("Gun5") && !isReloading)
+        {
+            selectedGun = 4;
+            changeGun();
+        }
 
 
     }

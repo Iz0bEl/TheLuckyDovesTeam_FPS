@@ -490,7 +490,7 @@ MonoBehaviour:
   walkBobAmount: 0.05
   sprintBobSpeed: 15
   sprintBobAmount: 0.14
-  gunSlotTaken: 00000000
+  gunSlotTaken: 0000000000
   GunModelPosition: {fileID: 543450652495205923}
   selectedGun: 0
   pushBack: {x: 0, y: 0, z: 0}
