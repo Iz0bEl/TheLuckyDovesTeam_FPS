@@ -518,6 +518,7 @@ public class PlayerControls : MonoBehaviour
             {
                 isReloading = true;
                 isShooting = true;
+                aud.PlayOneShot(gunList[selectedGun].ReloadAudio);
                 yield return new WaitForSeconds(reloadRate);
 
 

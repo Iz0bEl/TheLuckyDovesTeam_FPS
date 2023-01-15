@@ -20,6 +20,7 @@ public class GunStats : ScriptableObject
     public int maxAmmo;
     public GameObject gunModel;
     public AudioClip gunShot;
+    public AudioClip ReloadAudio;
 
     
     public bool isRPG;
