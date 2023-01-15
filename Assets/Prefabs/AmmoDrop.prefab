@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8577177867566257434}
   - component: {fileID: 8577177867566257433}
   m_Layer: 0
-  m_Name: Ammo_Pack_00
+  m_Name: AmmoDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
