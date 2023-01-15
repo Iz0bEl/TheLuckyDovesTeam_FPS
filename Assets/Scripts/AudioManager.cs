@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixer Mixer;
     [SerializeField] Slider MusicVolSlider;
     [SerializeField] Slider SFXVolSlider;
+    [SerializeField] private TextMeshProUGUI mVolumeText = null;
+    [SerializeField] private TextMeshProUGUI sfxVolumeText = null;
+
 
     public void Awake()
     {
@@ -50,19 +54,21 @@ public class AudioManager : MonoBehaviour
     {
         SetMixerValue("ExposeMusic", MusicVolSlider.value);
         PlayerPrefs.SetFloat("ExposeMusic", MusicVolSlider.value);
-
+        mVolumeText.text = MusicVolSlider.value.ToString("0.0");
     }
 
     public void SFXVolumeSlider()
     {
         SetMixerValue("ExposeSFX", SFXVolSlider.value);
         PlayerPrefs.SetFloat("ExposeSFX", SFXVolSlider.value);
+        sfxVolumeText.text = SFXVolSlider.value.ToString("0.0");
     }
 
     void SetMixerValue(string key, float val)
     {
         Mixer.SetFloat(key, Mathf.Log10(val) * 20);
     }
+
 
     public void SwapMusic(AudioClip newSong)
     {
