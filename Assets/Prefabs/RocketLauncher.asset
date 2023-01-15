@@ -22,10 +22,12 @@ MonoBehaviour:
   maxClip: 1
   maxAmmo: 0
   gunModel: {fileID: 3828864713111963926, guid: db39804f22fabb9419264c9c1a8bca5e, type: 3}
-  gunShot: {fileID: 8300000, guid: 073f7a3d47635d647a89cd93f85142ca, type: 3}
+  gunShot: {fileID: 8300000, guid: ec44cec1b328d7e4fbd3fe0fbc89ce51, type: 3}
+  ReloadAudio: {fileID: 8300000, guid: 11c3c9a4cbc8d1b40a579a041a47a72a, type: 3}
   isRPG: 1
   isSniper: 0
   isShotgun: 0
+  isKnife: 0
   UI: {fileID: 2846081188694571228, guid: 1a0ea783c340a6f4f8b7717c86a529f7, type: 3}
   slotNumber: 2
   tag: RocketLauncherUI

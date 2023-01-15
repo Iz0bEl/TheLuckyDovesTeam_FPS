@@ -22,7 +22,8 @@ MonoBehaviour:
   maxClip: 0
   maxAmmo: 0
   gunModel: {fileID: 5612990323301590601, guid: 093e3e706c3857b47972451bb763ee8d, type: 3}
-  gunShot: {fileID: 8300000, guid: 82b267cec7a494648840f2f27c03da1e, type: 3}
+  gunShot: {fileID: 8300000, guid: af1469fb9b0af0644b22a11b7ee2d057, type: 3}
+  ReloadAudio: {fileID: 0}
   isRPG: 0
   isSniper: 0
   isShotgun: 0

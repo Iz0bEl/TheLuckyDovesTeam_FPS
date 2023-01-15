@@ -22,10 +22,12 @@ MonoBehaviour:
   maxClip: 3
   maxAmmo: 15
   gunModel: {fileID: 919132149155446097, guid: 60d91f925d8c1e442bb6596dfb94ffff, type: 3}
-  gunShot: {fileID: 8300000, guid: 243cc5dd3d192a2409f92e208baca553, type: 3}
+  gunShot: {fileID: 8300000, guid: 115a0cd940fcbe748b6361cd389c7adf, type: 3}
+  ReloadAudio: {fileID: 8300000, guid: 1f846d261a0d72549afed20eb2d5ff95, type: 3}
   isRPG: 0
   isSniper: 1
   isShotgun: 0
+  isKnife: 0
   UI: {fileID: 2846081188694571228, guid: 8822238c58b20bb4ab4517e53b7f6e0b, type: 3}
   slotNumber: 1
   tag: SniperUI
