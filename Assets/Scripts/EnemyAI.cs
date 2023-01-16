@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] int roamingDistance;
     [SerializeField] Transform headShotPos;
-    
+
 
     [Header("--- Enemy UI ---")]
     [SerializeField] Image HPBar;
@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject AmmoDrop;
 
     float HPOG;
-    bool isShooting;
+    bool isAttacking;
     bool playerInRange;
     Vector3 playerDirection;
     float angleToPlayer;
@@ -50,9 +50,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         HPOG = HP;
 
         stoppingDistanceOG = agent.stoppingDistance;
-        
+
         startingPosition = transform.position;
-        
+
         updateHPBar();
 
     }
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
 
         if (playerInRange)
         {
@@ -71,7 +71,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         //    EnemyRoaming();
         //}
 
-        
+
     }
 
     void CanSeePlayer()
@@ -79,8 +79,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDirection = (GameManager.instance.player.transform.position - headPOS.position);
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
-       // Debug.Log(angleToPlayer);
-        Debug.DrawRay(headPOS.position, playerDirection);
+        Debug.Log(angleToPlayer);
+        //Debug.DrawRay(headPOS.position, playerDirection);
 
         RaycastHit hit;
 
@@ -90,15 +90,20 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 agent.stoppingDistance = stoppingDistanceOG;
 
-               agent.SetDestination(GameManager.instance.player.transform.position);
+                agent.SetDestination(GameManager.instance.player.transform.position);
 
-                if (!isShooting && angleToPlayer <= 15)
-                    StartCoroutine(Shoot());
+                FacePlayer();
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
+                if (!isAttacking && angleToPlayer <= 90)
                 {
-                    FacePlayer();
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!isAttacking)
+                            StartCoroutine(AttackPlayer());
+                    }
+
                 }
+
             }
         }
     }
@@ -117,7 +122,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (hit.position != null)
         {
             agent.CalculatePath(hit.position, path);
-            
+
         }
 
         agent.SetPath(path);
@@ -146,8 +151,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
             agent.destination = gameObject.transform.position;
-           
-            
+
         }
     }
 
@@ -205,20 +209,22 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     }
 
-    IEnumerator Shoot()
+    IEnumerator AttackPlayer()
     {
-        isShooting = true;
-        
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        isAttacking = true;
+        anim.SetBool("isAttacking", isAttacking);
 
-        yield return new WaitForSeconds(shootRate);
+        yield return new WaitForSeconds(1.5f);
 
-        isShooting = false;
+
+        isAttacking = false;
+        anim.SetBool("isAttacking", isAttacking);
+
     }
 
     void updateHPBar()
     {
-        HPBar.fillAmount = (float)HP / (float)HPOG;
+        //HPBar.fillAmount = (float)HP / (float)HPOG;
     }
     void OnDestroy()
     {
@@ -226,8 +232,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (num < 10)
         {
-            Instantiate(AmmoDrop,new Vector3(gameObject.transform.position.x ,gameObject.transform.position.y ,gameObject.transform.position.z), gameObject.transform.rotation);
-            
+            Instantiate(AmmoDrop, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), gameObject.transform.rotation);
+
         }
     }
 }
