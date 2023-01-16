@@ -1730,7 +1730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1017105026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5550,6 +5550,7 @@ GameObject:
   - component: {fileID: 5941099845392991783}
   - component: {fileID: 5941099845392991782}
   - component: {fileID: 5941099845392991781}
+  - component: {fileID: 1446251455}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -5661,6 +5662,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1446251455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941099845392991780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb076fef5c6ff804e8bd1a83ba53ad1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5941099845474090669
 GameObject:
   m_ObjectHideFlags: 0
