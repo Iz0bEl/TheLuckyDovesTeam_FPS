@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionAudio: {fileID: 0}
-  damage: 1
+  damage: 20
   speed: 10
   targets: {fileID: 0}
 --- !u!135 &-6224107993167312093
