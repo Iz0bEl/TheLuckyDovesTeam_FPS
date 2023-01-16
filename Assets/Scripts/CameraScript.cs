@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
@@ -13,6 +14,8 @@ public class CameraScript : MonoBehaviour
 
     [SerializeField] bool invertX;
 
+    float mouseY;
+    float mouseX;
     float xRotation;
 
     // Start is called before the first frame update
@@ -25,8 +28,6 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseY;
-        float mouseX;
         //checking if scoped
         if (GameManager.instance.sniperScopeActive)
         {
@@ -59,5 +60,4 @@ public class CameraScript : MonoBehaviour
     }
 
    
-  
 }

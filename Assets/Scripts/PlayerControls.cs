@@ -859,6 +859,14 @@ public class PlayerControls : MonoBehaviour
 
         GameManager.instance.updateAmmo();
 
+        if(gunSelectedUI.tag != "SniperUI")
+        {
+            GameManager.instance.sniperScopeActive = false;
+            GameManager.instance.SniperScopeUI.SetActive(false);
+            Camera.main.fieldOfView = 60;
+
+        }
+
         //for some reason the Rocket launcher was facing the wrong direction
         //So these if statements get the rocket facing the right way :D
         if (gunSelectedUI.tag == "RocketLauncherUI")
@@ -891,6 +899,15 @@ public class PlayerControls : MonoBehaviour
         bulletsInClip--;
         gunList[selectedGun].ammoInClip = bulletsInClip;
         GameManager.instance.updateAmmo();
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "EnemyHands")
+        {
+            takeDamage(other.GetComponentInParent<EnemyAI>().EnemyDamage);
+        }
     }
 
 

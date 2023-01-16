@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [Header("--- Enemy Stats ---")]
     public float HP;
+    public int EnemyDamage;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int animTransSpeed;
     [SerializeField] int sightAngle;
@@ -32,6 +33,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Image HPBar;
     [SerializeField] GameObject UI;
 
+    [Header("---- Hand Colliders ----")]
+    [SerializeField] BoxCollider LeftHand;
+    [SerializeField] BoxCollider RightHand;
+
+
     [Header("--- Item drop ---")]
     [SerializeField] GameObject AmmoDrop;
 
@@ -43,6 +49,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 startingPosition;
     float stoppingDistanceOG;
     public Vector3 pushBack;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +88,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDirection = (GameManager.instance.player.transform.position - headPOS.position);
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
-        Debug.Log(angleToPlayer);
+        // Debug.Log(angleToPlayer);
         //Debug.DrawRay(headPOS.position, playerDirection);
 
         RaycastHit hit;
@@ -94,12 +103,16 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 FacePlayer();
 
-                if (!isAttacking && angleToPlayer <= 90)
+                if (agent.hasPath)
                 {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    if (!isAttacking && angleToPlayer <= 90)
                     {
-                        if (!isAttacking)
-                            StartCoroutine(AttackPlayer());
+                        if (agent.remainingDistance <= agent.stoppingDistance)
+                        {
+                            if (!isAttacking)
+                                StartCoroutine(AttackPlayer());
+                        }
+
                     }
 
                 }
@@ -184,7 +197,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             updateHPBar();
 
-            UI.SetActive(true);
+            // UI.SetActive(true);
+            FacePlayer();
 
             agent.SetDestination(GameManager.instance.player.transform.position);
 
@@ -212,6 +226,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator AttackPlayer()
     {
         isAttacking = true;
+        LeftHand.enabled= true;
+        RightHand.enabled = true;
         anim.SetBool("isAttacking", isAttacking);
 
         yield return new WaitForSeconds(1.5f);
@@ -219,6 +235,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         isAttacking = false;
         anim.SetBool("isAttacking", isAttacking);
+        LeftHand.enabled = false;
+        RightHand.enabled = false;
 
     }
 

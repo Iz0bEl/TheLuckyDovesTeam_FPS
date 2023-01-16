@@ -18,6 +18,7 @@ TagManager:
   - RocketLauncherUI
   - Enemy
   - KnifeUI
+  - EnemyHands
   layers:
   - Default
   - TransparentFX

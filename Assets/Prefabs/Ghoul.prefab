@@ -592,9 +592,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7503148960910562731}
+  - component: {fileID: 2400565256676719984}
   m_Layer: 0
   m_Name: Character1_LeftHandIndex1
-  m_TagString: Untagged
+  m_TagString: EnemyHands
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -615,6 +616,19 @@ Transform:
   m_Father: {fileID: 7503460559037069515}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2400565256676719984
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508657565214187861}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.3, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7508673576159368997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,9 +1113,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7511853612229140975}
+  - component: {fileID: 7047375376244114330}
   m_Layer: 0
   m_Name: Character1_RightHandIndex1
-  m_TagString: Untagged
+  m_TagString: EnemyHands
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1122,6 +1137,19 @@ Transform:
   m_Father: {fileID: 7511884050187502451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7047375376244114330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508860338918203461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.27, z: 0.37}
+  m_Center: {x: 0, y: 0.06, z: -0.06}
 --- !u!1 &7508893456657408141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1599,7 @@ GameObject:
   - component: {fileID: 7509028117494060942}
   - component: {fileID: 7509028117494060943}
   - component: {fileID: 1579228851}
+  - component: {fileID: 3493767609328511521}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Untagged
@@ -1637,6 +1666,7 @@ MonoBehaviour:
   anim: {fileID: 7509028117494060942}
   pushBackTime: 0
   HP: 25
+  EnemyDamage: 1
   playerFaceSpeed: 180
   animTransSpeed: 5
   sightAngle: 60
@@ -1648,6 +1678,8 @@ MonoBehaviour:
   headShotPos: {fileID: 0}
   HPBar: {fileID: 0}
   UI: {fileID: 0}
+  LeftHand: {fileID: 2400565256676719984}
+  RightHand: {fileID: 7047375376244114330}
   AmmoDrop: {fileID: 4480217736199612110, guid: 4acbafe12db147341a8b61bacc2198d0, type: 3}
   pushBack: {x: 0, y: 0, z: 0}
 --- !u!95 &7509028117494060942
@@ -1705,6 +1737,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3493767609328511521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509028117494060937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.62, z: 1}
+  m_Center: {x: 0, y: 1.8, z: 0.42}
 --- !u!1 &7509067284228848981
 GameObject:
   m_ObjectHideFlags: 0
