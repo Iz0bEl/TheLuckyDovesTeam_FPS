@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Showcase.unity
     guid: 657f778117eb8e5488c8d440279fbfa4
+  - enabled: 1
+    path: Assets/Scenes/KeithJoshua_SandBoxScene.unity
+    guid: e34426dd96c9b6e43807c8c9340efc7a
   m_configObjects: {}

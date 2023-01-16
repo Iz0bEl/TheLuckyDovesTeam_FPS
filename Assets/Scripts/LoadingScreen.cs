@@ -9,12 +9,18 @@ public class LoadingScreen : MonoBehaviour
     public GameObject LoadScreen;
     public Image LoadBarFill;
 
+
+    private void Start()
+    {
+        
+    }
+
     public void LoadtheScene(int sceneID)
     {
         StartCoroutine(LoadSceneAsync(sceneID));
     }
 
-    IEnumerator LoadSceneAsync(int sceneID)
+   IEnumerator LoadSceneAsync(int sceneID)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
 
@@ -31,7 +37,20 @@ public class LoadingScreen : MonoBehaviour
 
         if (operation.isDone)
         {
-            LoadScreen.SetActive(false);
+            Debug.Log("setting player pos");
+            LoadScreen.SetActive(false);            
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            LoadtheScene(3);
+
+
+            Debug.Log("loading scene");
+
         }
     }
 }

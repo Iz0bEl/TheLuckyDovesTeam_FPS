@@ -110,6 +110,13 @@ public class PlayerControls : MonoBehaviour
     public Vector3 pushBack;
     bool stepIsPlaying;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+
     void Start()
     {
         HPORG = HP;
@@ -124,6 +131,15 @@ public class PlayerControls : MonoBehaviour
         defYPos = Camera.main.transform.localPosition.y;//position.y;
         SetPlayerPos();
         UpdatePlayerHPBar();
+    }
+
+    private void FixedUpdate()
+    {
+        if(GameManager.instance.playerSpawnPos == null)
+        {
+            GameManager.instance.playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn");
+            SetPlayerPos();
+        }
     }
 
     // Update is called once per frame
@@ -280,7 +296,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (toggleCrouch)
         {
-            Debug.Log("Crouching");
+           // Debug.Log("Crouching");
 
             if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
             {
@@ -713,6 +729,7 @@ public class PlayerControls : MonoBehaviour
 
     public void SetPlayerPos()
     {
+        
         controller.enabled = false;
         transform.position = GameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
@@ -911,6 +928,7 @@ public class PlayerControls : MonoBehaviour
             takeDamage(other.GetComponentInParent<EnemyAI>().EnemyDamage);
         }
     }
+
 
 
 }
