@@ -121,6 +121,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+
+        AudioSource[] audios = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource sounds in audios)
+        {
+            sounds.Pause();
+        }
+
     }
     public void unPause()
     {
@@ -129,6 +136,12 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu?.SetActive(false);
         activeMenu = null;
+
+        AudioSource[] audios = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource sounds in audios)
+        {
+            sounds.Play();
+        }
     }
 
 
