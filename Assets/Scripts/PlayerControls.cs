@@ -280,6 +280,8 @@ public class PlayerControls : MonoBehaviour
     {
         if (toggleCrouch)
         {
+            Debug.Log("Crouching");
+
             if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
             {
                 isSprinting = false;
