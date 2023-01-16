@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5941099846904228126}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: SFXVolumeSlider
         m_Mode: 1
@@ -5039,7 +5039,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5941099846904228126}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: MusicVolumeSlider
         m_Mode: 1
@@ -9685,6 +9685,7 @@ GameObject:
   - component: {fileID: 5941099846904228123}
   - component: {fileID: 5941099846904228122}
   - component: {fileID: 5941099846904228121}
+  - component: {fileID: 5941099846904228126}
   - component: {fileID: 5941099846904228125}
   m_Layer: 5
   m_Name: UI
@@ -9792,7 +9793,7 @@ AudioSource:
   m_GameObject: {fileID: 5941099846904228120}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5586698460863873838, guid: 1ad9285e9b54eac42bc86c03161979e3, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0492f1f5120ed03d6a034da7438f796c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
@@ -9879,3 +9880,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5941099846904228126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941099846904228120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748e0277a893ff1478d021e6b6b8467a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSong: {fileID: 0}
+  Mixer: {fileID: 24100000, guid: 1ad9285e9b54eac42bc86c03161979e3, type: 2}
+  MusicVolSlider: {fileID: 1702228717}
+  SFXVolSlider: {fileID: 421424762}
+  mVolumeText: {fileID: 345553419}
+  sfxVolumeText: {fileID: 711142842}
