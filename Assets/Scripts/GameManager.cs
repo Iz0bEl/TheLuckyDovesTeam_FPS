@@ -122,11 +122,11 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-        AudioSource[] audios = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource sounds in audios)
-        {
-            sounds.Pause();
-        }
+        //AudioSource[] audios = FindObjectsOfType<AudioSource>();
+        //foreach (AudioSource sounds in audios)
+        //{
+         //   sounds.Pause();
+       // }
 
     }
     public void unPause()
@@ -137,11 +137,11 @@ public class GameManager : MonoBehaviour
         activeMenu?.SetActive(false);
         activeMenu = null;
 
-        AudioSource[] audios = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource sounds in audios)
-        {
-            sounds.Play();
-        }
+       // AudioSource[] audios = FindObjectsOfType<AudioSource>();
+       // foreach (AudioSource sounds in audios)
+       // {
+           // sounds.Play();
+       // }
     }
 
 

@@ -54,10 +54,8 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 1691cf834d17a3a4693b61377c058274
-    name: ExposeMusic
-  - guid: 5dc646c8df0daef4c954ecdfde20ba42
-    name: ExposeSFX
+  - guid: ddb4c5f4f37f1434a82a8779366a1280
+    name: MyExposedParam
   m_AudioMixerGroupViews:
   - guids:
     - ecae6ed1c62285d42adf0c99d11198eb
@@ -110,7 +108,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: d421a505c9743e74e8bcd1ed2dfa1ea7
-  m_FloatValues: {}
+  m_FloatValues:
+    ddb4c5f4f37f1434a82a8779366a1280: -0.02577656
   m_TransitionOverrides: {}
 --- !u!244 &3491238997354566782
 AudioMixerEffectController:

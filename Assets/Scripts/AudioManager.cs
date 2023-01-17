@@ -53,9 +53,10 @@ public class AudioManager : MonoBehaviour
     public void MusicVolumeSlider()
     {
         SetMixerValue("ExposeMusic", MusicVolSlider.value);
-        PlayerPrefs.SetFloat("ExposeMusic", MusicVolSlider.value);
+       PlayerPrefs.SetFloat("ExposeMusic", MusicVolSlider.value);
         mVolumeText.text = MusicVolSlider.value.ToString("0.0");
     }
+   
 
     public void SFXVolumeSlider()
     {
