@@ -2632,10 +2632,7 @@ MonoBehaviour:
   background_Slider: {fileID: 0}
   soundE_Slider: {fileID: 0}
   BackGroundAudio: {fileID: 3950009981146486833}
-  SoundEffectsAudio:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  SoundEffectsAudio: {fileID: 0}
   defaultSong: {fileID: 8300000, guid: 9e850afe0ea6a4dc7afdaeab686476a7, type: 3}
   song1: {fileID: 8300000, guid: 9e850afe0ea6a4dc7afdaeab686476a7, type: 3}
   song2: {fileID: 8300000, guid: 43450ad8ec52a829394f0efcd41a8f7b, type: 3}

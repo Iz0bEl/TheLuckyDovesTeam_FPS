@@ -452,7 +452,6 @@ GameObject:
   m_Component:
   - component: {fileID: 249452037}
   - component: {fileID: 249452038}
-  - component: {fileID: 1890385675}
   m_Layer: 5
   m_Name: Music Slider
   m_TagString: Untagged
@@ -546,19 +545,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1890385675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249452036}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eec92025ae3c8945ad0e9a64db8be7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Music_slider: {fileID: 249452038}
 --- !u!1 &287654797
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,7 +4111,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1850057456}
   - component: {fileID: 1850057457}
-  - component: {fileID: 1923765116}
   m_Layer: 5
   m_Name: SFX Slider
   m_TagString: Untagged
@@ -4208,8 +4193,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SFXVolumeSlider
+        m_TargetAssemblyTypeName: SoundManagerTemp2, Assembly-CSharp
+        m_MethodName: UpdateSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4219,19 +4204,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1923765116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850057455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eec92025ae3c8945ad0e9a64db8be7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Music_slider: {fileID: 1850057457}
 --- !u!1 &1877684712
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class SoundManagerTemp2 : MonoBehaviour
     public Slider background_Slider, soundE_Slider;
     private float background_Float, soundE_Float;
     public AudioSource BackGroundAudio;
-    public AudioSource[] SoundEffectsAudio;
+    public AudioSource SoundEffectsAudio;
 
 
     public AudioClip defaultSong;
@@ -75,12 +75,9 @@ public class SoundManagerTemp2 : MonoBehaviour
     public void UpdateSound()
     {
         BackGroundAudio.volume = background_Slider.value;
+        SoundEffectsAudio.volume = soundE_Slider.value;
 
-        //means we can have any value for sound effects
-        for (int i = 0; i < SoundEffectsAudio.Length; i++)
-        {
-            SoundEffectsAudio[i].volume = soundE_Slider.value;
-        }
+        
     }
 
     public void SwapMusic(AudioClip newSong)
@@ -106,8 +103,8 @@ public class SoundManagerTemp2 : MonoBehaviour
         //gradually turning volume down
         while (timePassed < fadeTime)
         {
-            BackGroundAudio.volume = Mathf.Lerp(0, background_Float, timePassed / fadeTime);
-            BackGroundAudio.volume = Mathf.Lerp(background_Float, 0, timePassed / fadeTime);
+            BackGroundAudio.volume = Mathf.Lerp(0, background_Slider.value, timePassed / fadeTime);
+            BackGroundAudio.volume = Mathf.Lerp(background_Slider.value, 0, timePassed / fadeTime);
             timePassed += Time.deltaTime;
 
             yield return null;
@@ -122,8 +119,8 @@ public class SoundManagerTemp2 : MonoBehaviour
         //gradually turning volume back up
         while (timePassed < fadeTime)
         {
-            BackGroundAudio.volume = Mathf.Lerp(background_Float, 0, timePassed / fadeTime);
-            BackGroundAudio.volume = Mathf.Lerp(0, background_Float, timePassed / fadeTime);
+            BackGroundAudio.volume = Mathf.Lerp(background_Slider.value, 0, timePassed / fadeTime);
+            BackGroundAudio.volume = Mathf.Lerp(0, background_Slider.value, timePassed / fadeTime);
             timePassed += Time.deltaTime;
 
             yield return null;
