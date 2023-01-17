@@ -14,14 +14,17 @@ public class Interaction : MonoBehaviour
     [SerializeField] GameObject requiredIcon;
     [SerializeField] GameObject requiredUI;
 
+    bool interactionStarted;
     bool playerInRange;
 
     // Start is called before the first frame update
     void Start()
     {
+        interactionStarted = false;
         interactIcon.SetActive(true);
         interactUI.SetActive(false);
-        requiredIcon.SetActive(false);
+        //requiredIcon.SetActive(false);
+        //requiredUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class Interaction : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 GameManager.instance.playerScript.Interact(interactSpot);
+                interactionStarted = true;
             }
         }
     }
@@ -48,7 +52,7 @@ public class Interaction : MonoBehaviour
             //requiredUI.SetActive(true);
             if (hasRequirement)
             {
-                requiredIcon.SetActive(true);
+                //requiredIcon.SetActive(true);
             }
             else
             {
@@ -63,8 +67,8 @@ public class Interaction : MonoBehaviour
         {
             playerInRange = false;
             interactIcon.SetActive(true);
-            requiredUI.SetActive(false);
-            requiredIcon.SetActive(false);
+            //requiredUI.SetActive(false);
+            //requiredIcon.SetActive(false);
             interactUI.SetActive(false);
         }
     }
