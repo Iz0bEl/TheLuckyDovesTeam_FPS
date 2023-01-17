@@ -127,7 +127,6 @@ public class PlayerControls : MonoBehaviour
         standingHeight = controller.height;
         abilityTimeSlow = true;
         onCooldown = false;
-        cooldownTimer = abilityCooldown;
         defYPos = Camera.main.transform.localPosition.y;//position.y;
         SetPlayerPos();
         UpdatePlayerHPBar();
@@ -475,10 +474,20 @@ public class PlayerControls : MonoBehaviour
                 GameManager.instance.timeScaleOrig = Time.timeScale;
                 Time.timeScale = timeSlowScale;
                 GameManager.instance.timeSlowScreen.SetActive(true);
-                yield return new WaitForSecondsRealtime(timeSlowTimer);
+                for (float temptimer = timeSlowTimer; temptimer > 0; temptimer -= Time.unscaledDeltaTime)
+                {
+                    yield return new WaitForSeconds(0);
+                    GameManager.instance.playerAbilityCooldown.fillAmount = temptimer / timeSlowTimer;
+                    if (!timeSlowed)
+                    {
+                        GameManager.instance.playerAbilityCooldown.fillAmount = 0f;
+                        break;
+                    }
+                }
                 GameManager.instance.timeSlowScreen.SetActive(false);
                 Time.timeScale = GameManager.instance.timeScaleOrig;
                 timeSlowed = false;
+                cooldownTimer = 0;
                 onCooldown = true;
             }
             else if (timeSlowed && Input.GetButtonDown("Ability"))
@@ -486,6 +495,7 @@ public class PlayerControls : MonoBehaviour
                 GameManager.instance.timeSlowScreen.SetActive(false);
                 Time.timeScale = GameManager.instance.timeScaleOrig;
                 timeSlowed = false;
+                cooldownTimer = 0;
                 onCooldown = true;
             }
         }
@@ -493,11 +503,11 @@ public class PlayerControls : MonoBehaviour
 
     public void abilityCooldownTimer()
     {
-        cooldownTimer -= Time.deltaTime;
-        if (cooldownTimer < 0f)
+        cooldownTimer += Time.deltaTime;
+        if (cooldownTimer >= abilityCooldown)
         {
             onCooldown = false;
-            GameManager.instance.playerAbilityCooldown.fillAmount = 0f;
+            GameManager.instance.playerAbilityCooldown.fillAmount = 1f;
         }
         else
         {
