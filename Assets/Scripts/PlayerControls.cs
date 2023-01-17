@@ -443,7 +443,14 @@ public class PlayerControls : MonoBehaviour
 
             }
             newWall = false;
-            playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+            if (playerVelocity.y <= 0)
+            {
+                playerVelocity.y -= (gravityValue / gravityScale) * Time.deltaTime;
+            }
+            else
+            {
+                playerVelocity.y -= gravityValue * Time.deltaTime;
+            }
             if (Input.GetButtonDown("Jump"))
             {
                 if (isSprinting)
