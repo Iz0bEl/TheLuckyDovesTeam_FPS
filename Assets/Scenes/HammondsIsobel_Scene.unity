@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.4
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0035902564, g: 0.0052179466, b: 0.008168996, a: 0.4}
+  m_IndirectSpecularColor: {r: 0.0036050826, g: 0.005241147, b: 0.008201403, a: 0.4}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1850057457, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
   m_PrefabInstance: {fileID: 5941099847407866676}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1923765114}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
@@ -2022,6 +2022,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Music_slider: {fileID: 1890385673}
+--- !u!1 &1923765114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1850057455, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+  m_PrefabInstance: {fileID: 5941099847407866676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1923765116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923765114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eec92025ae3c8945ad0e9a64db8be7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Music_slider: {fileID: 275808923}
 --- !u!1 &2069189936
 GameObject:
   m_ObjectHideFlags: 0
@@ -7351,7 +7369,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
@@ -7359,17 +7385,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1890385675}
     - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1467202230}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: MusicVolumeSlider
       objectReference: {fileID: 0}
     - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SoundManagerTemp, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1850057457, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1467202230}
+    - target: {fileID: 1890385675, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: mVolumeText
+      value: 
+      objectReference: {fileID: 491522110}
+    - target: {fileID: 1890385675, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+      propertyPath: sfxVolumeText
+      value: 
+      objectReference: {fileID: 1302219767}
     - target: {fileID: 5941099845392991776, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
