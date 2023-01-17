@@ -7338,6 +7338,10 @@ PrefabInstance:
       propertyPath: SoundEffectsAudio.Array.data[2]
       value: 
       objectReference: {fileID: 1773618846}
+    - target: {fileID: 1665801327820625885, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3950009980182935162, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -7402,6 +7406,18 @@ PrefabInstance:
       propertyPath: MusicVolSlider
       value: 
       objectReference: {fileID: 1890385673}
+    - target: {fileID: 4870957829398095113, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7161682494247565778, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960600176193672344, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
 --- !u!1 &3950450334758806533
