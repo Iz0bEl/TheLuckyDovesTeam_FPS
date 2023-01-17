@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SoundManagerTemp2 : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class SoundManagerTemp2 : MonoBehaviour
     private float background_Float, soundE_Float;
     public AudioSource BackGroundAudio;
     public AudioSource SoundEffectsAudio;
+    [SerializeField] TextMeshProUGUI backgroundMusic;
+    [SerializeField] TextMeshProUGUI SFX;
 
 
     public AudioClip defaultSong;
@@ -77,7 +80,11 @@ public class SoundManagerTemp2 : MonoBehaviour
         BackGroundAudio.volume = background_Slider.value;
         SoundEffectsAudio.volume = soundE_Slider.value;
 
-        
+
+        SFX.text = SoundEffectsAudio.volume.ToString("0.0");
+        backgroundMusic.text = BackGroundAudio.volume.ToString("0.0");
+
+
     }
 
     public void SwapMusic(AudioClip newSong)

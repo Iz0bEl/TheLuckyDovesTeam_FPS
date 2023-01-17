@@ -111,12 +111,7 @@ public class PlayerControls : MonoBehaviour
     bool stepIsPlaying;
     // Start is called before the first frame update
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-
+   
     void Start()
     {
         HPORG = HP;

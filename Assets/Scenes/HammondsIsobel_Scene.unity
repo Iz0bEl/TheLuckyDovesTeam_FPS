@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.4
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0036050826, g: 0.005241147, b: 0.008201403, a: 0.4}
+  m_IndirectSpecularColor: {r: 0.0036050936, g: 0.005241142, b: 0.008201436, a: 0.4}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4194,6 +4194,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be878d9ea17907f4a8068678a5ce7908, type: 3}
+--- !u!114 &842770557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 55291879, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+  m_PrefabInstance: {fileID: 5941099847407866676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &847942541 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
@@ -6609,6 +6620,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+--- !u!114 &1402202995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1051305530, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+  m_PrefabInstance: {fileID: 5941099847407866676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1407768744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13857,9 +13879,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: SFX
+      value: 
+      objectReference: {fileID: 1402202995}
+    - target: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
       propertyPath: soundE_Slider
       value: 
       objectReference: {fileID: 275808923}
+    - target: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 842770557}
     - target: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
       propertyPath: SoundEffectsAudio
       value: 
