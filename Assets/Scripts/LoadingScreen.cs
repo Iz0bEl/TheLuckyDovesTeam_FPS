@@ -20,6 +20,11 @@ public class LoadingScreen : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneID));
     }
 
+    public void LoadtheSceneNow(int sceneID)
+    {
+        StartCoroutine(LoadSceneAsyncNow(sceneID));
+    }
+
    IEnumerator LoadSceneAsync(int sceneID)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
@@ -39,6 +44,28 @@ public class LoadingScreen : MonoBehaviour
         {
             Debug.Log("setting player pos");
             LoadScreen.SetActive(false);            
+        }
+    }
+
+    IEnumerator LoadSceneAsyncNow(int sceneID)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
+
+        LoadScreen.SetActive(false);
+
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+
+            LoadBarFill.fillAmount = progressValue;
+
+            yield return null;
+        }
+
+        if (operation.isDone)
+        {
+            Debug.Log("setting player pos");
+            LoadScreen.SetActive(false);
         }
     }
 
