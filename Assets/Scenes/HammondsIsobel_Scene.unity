@@ -396,35 +396,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8630640014682177774, guid: 2a3b3a882d9cfc74392ec24693855ae8, type: 3}
   m_PrefabInstance: {fileID: 2002354269}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &266679921 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3950009979741750235, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
-  m_PrefabInstance: {fileID: 3950009979880628873}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &266679923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266679921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 412f850563157a949bc5237adc33d9ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  background_Slider: {fileID: 1890385673}
-  soundE_Slider: {fileID: 1890385673}
-  BackGroundAudio: {fileID: 266679924}
-  SoundEffectsAudio:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!82 &266679924 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3950009979741750239, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
-  m_PrefabInstance: {fileID: 3950009979880628873}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &275808923 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1850057457, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
@@ -7318,6 +7289,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: soundE_Slider
+      value: 
+      objectReference: {fileID: 1890385673}
+    - target: {fileID: 266679923, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
+      propertyPath: background_Slider
+      value: 
+      objectReference: {fileID: 1890385673}
     - target: {fileID: 1467202233, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
       propertyPath: soundE_Slider
       value: 
@@ -7338,10 +7317,6 @@ PrefabInstance:
       propertyPath: SoundEffectsAudio.Array.data[2]
       value: 
       objectReference: {fileID: 1773618846}
-    - target: {fileID: 1665801327820625885, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3950009980182935162, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -7406,18 +7381,6 @@ PrefabInstance:
       propertyPath: MusicVolSlider
       value: 
       objectReference: {fileID: 1890385673}
-    - target: {fileID: 4870957829398095113, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7161682494247565778, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960600176193672344, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65bc5dab8df0bb84980f54000873c0ea, type: 3}
 --- !u!1 &3950450334758806533

@@ -1927,7 +1927,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7962668484609778892
 Transform:
@@ -2583,6 +2583,7 @@ GameObject:
   - component: {fileID: 3950009979741750237}
   - component: {fileID: 3950009979741750234}
   - component: {fileID: 3950009979741750239}
+  - component: {fileID: 266679923}
   m_Layer: 0
   m_Name: AudioSwaping
   m_TagString: Untagged
@@ -2727,6 +2728,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &266679923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3950009979741750235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412f850563157a949bc5237adc33d9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background_Slider: {fileID: 0}
+  soundE_Slider: {fileID: 0}
+  BackGroundAudio: {fileID: 3950009979741750239}
+  SoundEffectsAudio:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3950009980174629624
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,7 +5137,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4318921091401730716
 Transform:
@@ -5872,7 +5892,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1158167751926605868
 Transform:
@@ -6721,7 +6741,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8960600176193672348
 Transform:
