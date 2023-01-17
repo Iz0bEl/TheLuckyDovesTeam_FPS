@@ -357,7 +357,7 @@ public class PlayerControls : MonoBehaviour
     void checkForWall()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.right, out hit, 1f) && hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.D))
+        if (Physics.Raycast(transform.position, transform.right, out hit, 2f) && hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.D))
         {
 
             wallRight = true;
@@ -391,7 +391,7 @@ public class PlayerControls : MonoBehaviour
             }
             wallNormal = hit.normal;
         }
-        else if (Physics.Raycast(transform.position, -transform.right, out hit, 1f) && hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.A))
+        else if (Physics.Raycast(transform.position, -transform.right, out hit, 2f) && hit.collider.gameObject.tag == "Wall" && Input.GetKey(KeyCode.A))
         {
 
             wallLeft = true;
