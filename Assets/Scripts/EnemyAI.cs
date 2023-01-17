@@ -213,6 +213,15 @@ public class EnemyAI : MonoBehaviour, IDamage
                 {
                     GameManager.instance.DisplayWinScreen();
                 }
+
+                int num = Random.Range(0, 100);
+
+                if (num < 100)
+                {
+                    Instantiate(AmmoDrop, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), gameObject.transform.rotation);
+
+                }
+
                 Destroy(gameObject);
             }
         }
@@ -247,15 +256,5 @@ public class EnemyAI : MonoBehaviour, IDamage
     void updateHPBar()
     {
        // HPBar.fillAmount = (float)HP / (float)HPOG;
-    }
-    void OnDestroy()
-    {
-        int num = Random.Range(0, 100);
-
-        if (num < 5)
-        {
-            Instantiate(AmmoDrop, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), gameObject.transform.rotation);
-
-        }
     }
 }
