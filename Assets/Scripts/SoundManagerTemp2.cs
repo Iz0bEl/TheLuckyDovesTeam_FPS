@@ -32,7 +32,7 @@ public class SoundManagerTemp2 : MonoBehaviour
 
     void Start()
     {
-    
+
         isPLayingSong1 = true;
 
         PlayMusic(defaultSong);
@@ -40,7 +40,7 @@ public class SoundManagerTemp2 : MonoBehaviour
         //SwapMusic(defaultSong);
 
         FirstPlayint = PlayerPrefs.GetInt(FirstPlay);
-        if (FirstPlayint == 0) 
+        if (FirstPlayint == 0)
         {
             background_Float = 1f;
             soundE_Float = 1f;
@@ -56,8 +56,8 @@ public class SoundManagerTemp2 : MonoBehaviour
         }
         else
         {
-           background_Float =  PlayerPrefs.GetFloat(backPref);
-           background_Slider.value = background_Float;
+            background_Float = PlayerPrefs.GetFloat(backPref);
+            background_Slider.value = background_Float;
 
             soundE_Float = PlayerPrefs.GetFloat(soundPref);
             soundE_Slider.value = soundE_Float;
@@ -104,7 +104,7 @@ public class SoundManagerTemp2 : MonoBehaviour
 
     private IEnumerator fadeMusic(AudioClip newSong)
     {
-  
+
         float fadeTime = 1.25f;
         float timePassed = 0;
 
@@ -126,32 +126,41 @@ public class SoundManagerTemp2 : MonoBehaviour
 
         //    //isPLayingSong1 = !isPLayingSong1;
         //}
-       
-        
-            while (timePassed < fadeTime)
-            {
-                BackGroundAudio.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
-                BackGroundAudio.volume = Mathf.Lerp(1, 0, timePassed / fadeTime);
-                timePassed += Time.deltaTime;
 
-                yield return null;
-            }
 
-            BackGroundAudio.Stop();
+        while (timePassed < fadeTime)
+        {
+            BackGroundAudio.volume = Mathf.Lerp(0, background_Float, timePassed / fadeTime);
+            BackGroundAudio.volume = Mathf.Lerp(background_Float, 0, timePassed / fadeTime);
+            timePassed += Time.deltaTime;
 
-            BackGroundAudio.clip = newSong;
-            BackGroundAudio.Play();
+            yield return null;
+        }
 
-            BackGroundAudio.volume = background_Float;
-          
-        
+        BackGroundAudio.Stop();
+
+        BackGroundAudio.clip = newSong;
+        BackGroundAudio.Play();
+        timePassed= 0;
+
+        while (timePassed < fadeTime)
+        {
+            BackGroundAudio.volume = Mathf.Lerp(background_Float, 0, timePassed / fadeTime);
+            BackGroundAudio.volume = Mathf.Lerp(0, background_Float, timePassed / fadeTime);
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+        //BackGroundAudio.volume = background_Float;
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-           SwapMusic(newTrack);
+            SwapMusic(newTrack);
         }
     }
 
