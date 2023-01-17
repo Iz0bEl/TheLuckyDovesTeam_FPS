@@ -195,7 +195,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             HP -= dmg;
 
-            updateHPBar();
+            //updateHPBar();
 
             // UI.SetActive(true);
             FacePlayer();
@@ -209,6 +209,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 GameManager.instance.addCoins(HPOG);
                 GameManager.instance.updateEnemyCount(-1);
+                if(gameObject.tag == "BossGhoul")
+                {
+                    GameManager.instance.DisplayWinScreen();
+                }
                 Destroy(gameObject);
             }
         }
@@ -242,13 +246,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void updateHPBar()
     {
-        //HPBar.fillAmount = (float)HP / (float)HPOG;
+       // HPBar.fillAmount = (float)HP / (float)HPOG;
     }
     void OnDestroy()
     {
         int num = Random.Range(0, 100);
 
-        if (num < 10)
+        if (num < 5)
         {
             Instantiate(AmmoDrop, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), gameObject.transform.rotation);
 

@@ -19,6 +19,8 @@ TagManager:
   - Enemy
   - KnifeUI
   - EnemyHands
+  - ARUI
+  - BossGhoul
   layers:
   - Default
   - TransparentFX

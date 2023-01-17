@@ -83,17 +83,7 @@ public class GameManager : MonoBehaviour
                 pause();
             else
                 unPause();
-        }
-        //if (Input.GetButton("Weapons") && activeMenu == null)
-        //{
-        //    isPaused = !isPaused;
-        //    activeMenu = weaponSelectionScreen;
-        //    activeMenu.SetActive(isPaused);
-        //    if (isPaused)
-        //        pause();
-        //    else
-        //        unPause();
-        //}
+        }       
         if (Input.GetMouseButton(1) && !isPaused)
         {
             ShowSniperScope();
@@ -147,17 +137,26 @@ public class GameManager : MonoBehaviour
 
     public void updateEnemyCount(int amount)
     {
-        enemyCount += amount;
+        //making the win condition killing the final boss
 
-        enemiesLeft.text = enemyCount.ToString("F0");
+        //enemyCount += amount;
 
-        if (enemyCount <= 0)
-        {
-            winMenu.SetActive(true);
-            pause();
-            activeMenu = winMenu;
-        }
+        //enemiesLeft.text = enemyCount.ToString("F0");
 
+        //if (enemyCount <= 0)
+        //{
+        //    winMenu.SetActive(true);
+        //    pause();
+        //    activeMenu = winMenu;
+        //}
+
+    }
+
+    public void DisplayWinScreen()
+    {
+        winMenu.SetActive(true);
+        pause();
+        activeMenu = winMenu;
     }
 
     void ShowSniperScope()
