@@ -467,7 +467,7 @@ MonoBehaviour:
   slideSpeed: 15
   slidingTime: 0
   gravityScale: 4
-  wallJumpSpeed: 12
+  wallJumpSpeed: 7
   wallJumpPushTime: 2
   wallJumpPush: {x: 0, y: 0, z: 0}
   abilityTimeSlow: 0
