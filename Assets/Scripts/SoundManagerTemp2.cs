@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SoundManagerTemp2 : MonoBehaviour
 {
-    private static readonly string FirstPlay = "FisrtPlay";
+    private static readonly string FirstPlay = "FirstPlay";
     private static readonly string backPref = "backPref";
     private static readonly string soundPref = "soundPref";
     private int FirstPlayint;
@@ -22,13 +22,6 @@ public class SoundManagerTemp2 : MonoBehaviour
 
     public AudioClip newTrack;
 
-    public static SoundManagerTemp2 instance;
-
-    public void Awake()
-    {
-        if (instance == null)
-            instance = this;
-    }
 
     void Start()
     {
@@ -37,7 +30,6 @@ public class SoundManagerTemp2 : MonoBehaviour
 
         PlayMusic(defaultSong);
 
-        //SwapMusic(defaultSong);
 
         FirstPlayint = PlayerPrefs.GetInt(FirstPlay);
         if (FirstPlayint == 0)
@@ -51,6 +43,7 @@ public class SoundManagerTemp2 : MonoBehaviour
 
             PlayerPrefs.SetFloat(backPref, background_Float);
             PlayerPrefs.SetFloat(soundPref, soundE_Float);
+            
 
             PlayerPrefs.SetInt(FirstPlay, -1);
         }
@@ -76,6 +69,8 @@ public class SoundManagerTemp2 : MonoBehaviour
             Save();
         }
     }
+
+   
 
     public void UpdateSound()
     {
@@ -108,26 +103,7 @@ public class SoundManagerTemp2 : MonoBehaviour
         float fadeTime = 1.25f;
         float timePassed = 0;
 
-        //if (isPLayingSong1)
-        //{
-        //    while (timePassed < fadeTime)
-        //    {
-        //        BackGroundAudio.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
-        //        BackGroundAudio.volume = Mathf.Lerp(1, 0, timePassed / fadeTime);
-        //        timePassed += Time.deltaTime;
-
-        //        yield return null;
-        //    }
-
-        //    BackGroundAudio.clip = newSong;
-        //    BackGroundAudio.Stop();
-
-        //    BackGroundAudio.volume = background_Float;
-
-        //    //isPLayingSong1 = !isPLayingSong1;
-        //}
-
-
+        //gradually turning volume down
         while (timePassed < fadeTime)
         {
             BackGroundAudio.volume = Mathf.Lerp(0, background_Float, timePassed / fadeTime);
@@ -143,6 +119,7 @@ public class SoundManagerTemp2 : MonoBehaviour
         BackGroundAudio.Play();
         timePassed= 0;
 
+        //gradually turning volume back up
         while (timePassed < fadeTime)
         {
             BackGroundAudio.volume = Mathf.Lerp(background_Float, 0, timePassed / fadeTime);
