@@ -46,7 +46,7 @@ public class LoadingScreen : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            LoadtheScene(3);
+            LoadtheScene(2);
 
 
             Debug.Log("loading scene");

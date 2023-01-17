@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: LuckyDoves
   productName: LuckyDovesFPS
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: d4a5423ee699bb1429314d559c06c4db, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -154,7 +154,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.LuckyDoves.LuckyDovesFPS
   buildNumber:
     Standalone: 0
     iPhone: 0
