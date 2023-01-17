@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.4
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0035902564, g: 0.0052179466, b: 0.008168996, a: 0.4}
+  m_IndirectSpecularColor: {r: 0.0036050826, g: 0.005241147, b: 0.008201403, a: 0.4}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1775,27 +1775,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cd1bbe8da83efce4a8a8a7e40fe0c8da, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79eca95e84fc8447adde70f382a3758, type: 3}
---- !u!1 &1772046894 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1290464784880263298, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
-  m_PrefabInstance: {fileID: 290493535}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1772046901
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772046894}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1773618839 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5941099846437498782, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
