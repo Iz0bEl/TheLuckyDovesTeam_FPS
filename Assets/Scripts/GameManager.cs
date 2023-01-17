@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public Transform iconPos2;
     public Transform iconPos3;
     public Transform iconPos4;
+    public GameObject checkpointReached;
 
     public bool sniperScopeActive = false;
 
