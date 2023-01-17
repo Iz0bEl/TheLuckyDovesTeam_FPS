@@ -14,7 +14,11 @@ public class ButtonFunctions : MonoBehaviour
     public void RestartButton()
     {
         GameManager.instance.unPause();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.playerScript.controller.enabled = false;
+        GameManager.instance.playerScript.transform.position = GameManager.instance.playerSpawnPos.transform.position;
+        GameManager.instance.playerScript.controller.enabled = true;
+        ResumeButton();
+        
     }
 
     public void RespawnPlayerButton()

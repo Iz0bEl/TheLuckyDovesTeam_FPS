@@ -7,7 +7,7 @@ public class PlayerControls : MonoBehaviour
 {
 
     [Header("-----Components-----")]
-    [SerializeField] CharacterController controller;
+    public CharacterController controller;
     [SerializeField] Light flashLight;
     [SerializeField] GameObject SpawnExplosion;
     public bool flashlightOn;

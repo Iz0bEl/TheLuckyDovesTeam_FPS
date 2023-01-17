@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.4
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0036050826, g: 0.005241147, b: 0.008201403, a: 0.4}
+  m_IndirectSpecularColor: {r: 0.0036050936, g: 0.005241142, b: 0.008201436, a: 0.4}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,7 +401,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1850057457, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
   m_PrefabInstance: {fileID: 5941099847407866676}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923765114}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
@@ -652,6 +652,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul (1)
@@ -1418,6 +1422,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul (6)
@@ -1671,6 +1679,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul (2)
@@ -1911,6 +1923,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul
@@ -2442,6 +2458,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul (4)
@@ -2850,6 +2870,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul (5)
@@ -3090,6 +3114,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7509028117494060936, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
+      propertyPath: HP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7509028117494060937, guid: 922697d3c3b75d940a7f1d961d2e56c8, type: 3}
       propertyPath: m_Name
       value: Ghoul (3)
@@ -3254,107 +3282,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f7abaadca23ea4d910efe028624076, type: 3}
---- !u!1 &1773618839 stripped
+--- !u!1 &1773189085 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5941099846437498782, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-  m_PrefabInstance: {fileID: 5941099847407866676}
+  m_CorrespondingSourceObject: {fileID: 1290464784880263298, guid: 5aba33215a5e50c4a9f4e6444ca4c0f7, type: 3}
+  m_PrefabInstance: {fileID: 290493535}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1773618846
-AudioSource:
+--- !u!114 &1773189093
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773618839}
+  m_GameObject: {fileID: 1773189085}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ee46085e590efec4983428a0f30e3085, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb076fef5c6ff804e8bd1a83ba53ad1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1773618846 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1773618846, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+  m_PrefabInstance: {fileID: 5941099847407866676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1786681577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3819,24 +3768,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 772178681, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
   m_PrefabInstance: {fileID: 5941099847407866676}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1923765114 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1850057455, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-  m_PrefabInstance: {fileID: 5941099847407866676}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1923765116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923765114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eec92025ae3c8945ad0e9a64db8be7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Music_slider: {fileID: 275808923}
 --- !u!1001 &1986140951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9374,69 +9305,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1467202233}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1467202230}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateSound
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: MusicVolumeSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SoundManagerTemp2, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: AudioManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 249452038, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 772178681, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1850057457, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1467202230}
-    - target: {fileID: 1890385675, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1890385675, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: mVolumeText
-      value: 
-      objectReference: {fileID: 491522110}
-    - target: {fileID: 1890385675, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-      propertyPath: sfxVolumeText
-      value: 
-      objectReference: {fileID: 1302219767}
     - target: {fileID: 5941099845392991776, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -9525,9 +9400,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6143255790395598420, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
-    - {fileID: 1939621183, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24a7219810a29d4f8f373a22f14dfc4, type: 3}
 --- !u!1 &5974122577996527827
 GameObject:
