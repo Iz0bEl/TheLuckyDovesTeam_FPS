@@ -1656,7 +1656,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7511464144310560635}
-  - component: {fileID: 7619370305895544799}
   - component: {fileID: 7509028117494060936}
   - component: {fileID: 7509028117494060942}
   - component: {fileID: 7509028117494060943}
@@ -1690,28 +1689,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &7619370305895544799
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7509028117494060937}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400008, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400002, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400004, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400006, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400008, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400010, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  - {fileID: 7400012, guid: ce65fa103f0e84b4289374b2a4bf93f8, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!114 &7509028117494060936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,7 +1705,7 @@ MonoBehaviour:
   agent: {fileID: 7509028117494060943}
   anim: {fileID: 7509028117494060942}
   pushBackTime: 0
-  HP: 300
+  HP: 50
   EnemyDamage: 1
   playerFaceSpeed: 180
   animTransSpeed: 5
