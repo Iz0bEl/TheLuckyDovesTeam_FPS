@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmoValue: 15
   ammoInClipValue: 3
-  shootDamage: 4
+  shootDamage: 25
   shootRate: 0.75
   shootDistance: 100
   reloadRate: 3
