@@ -461,7 +461,7 @@ MonoBehaviour:
   RocketLauncherVol: 0
   toggleCrouch: 1
   standingHeight: 0
-  crouchingHeight: 1
+  crouchingHeight: 0.5
   crouchingSpeed: 2.5
   slideLength: 0.5
   slideSpeed: 15
@@ -507,7 +507,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_SlopeLimit: 30
   m_StepOffset: 0.5
   m_SkinWidth: 0.08

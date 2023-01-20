@@ -20,7 +20,6 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] int gravityValue;
     [SerializeField] int jumpsMax;
     [SerializeField] int currentWeapon;
-    public bool toggleSprint;
     bool isSprinting;
     [SerializeField] float pushBackTime;
 
@@ -38,7 +37,6 @@ public class PlayerControls : MonoBehaviour
     [Range(0, 1)][SerializeField] float RocketLauncherVol;
 
     [Header("----- Crouch/Sliding -----")]
-    public bool toggleCrouch;
     bool isCrouching;
     public float standingHeight;
     [SerializeField] float crouchingHeight;
@@ -115,11 +113,10 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         HPORG = HP;
-        toggleSprint = true;
         isSprinting = false;
         isCrouching = false;
         isSliding = false;
-        standingHeight = controller.height;
+        standingHeight = transform.localScale.y;
         abilityTimeSlow = true;
         onCooldown = false;
         defYPos = Camera.main.transform.localPosition.y;//position.y;
@@ -216,7 +213,9 @@ public class PlayerControls : MonoBehaviour
             {
                 if(isCrouching)
                 {
-                    controller.height = standingHeight;
+                    isCrouching = false;
+                    transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z); ;
+                    controller.height = standingHeight * 2;
                 }
 
                 jumpedTimes++;
@@ -229,13 +228,26 @@ public class PlayerControls : MonoBehaviour
         }
         else
         {
-            controller.height = crouchingHeight;
+            transform.localScale = new Vector3(transform.localScale.x, crouchingHeight, transform.localScale.z);
+            controller.height = crouchingHeight * 2;
             if (isSprinting)
             {
                 isSliding = false;
+                isCrouching = false;
                 isSprinting = true;
-
-                controller.height = standingHeight;
+                transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z); ;
+                controller.height = standingHeight * 2;
+            }
+            if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax && !wallLeft && !wallRight)
+            {
+                isSliding = false;
+                isCrouching = false;
+                isSprinting = true;
+                transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z); ;
+                controller.height = standingHeight * 2;
+                jumpedTimes++;
+                playerVelocity.y = jumpHeight;
+                aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
             }
             slideDir.y = -gravityValue * Time.deltaTime;
             move = slideDir;
@@ -245,7 +257,8 @@ public class PlayerControls : MonoBehaviour
             {
                 isSliding = false;
                 isCrouching = false;
-                controller.height = standingHeight;
+                transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z); ;
+                controller.height = standingHeight * 2;
                 slideDir = Vector3.zero;
             }
         }
@@ -255,82 +268,61 @@ public class PlayerControls : MonoBehaviour
 
     void sprint()
     {
-        if (toggleSprint)
+        if (!isSprinting && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
-            if (!isSprinting && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
-            {
-                isSprinting = true;
-            }
-            if (!isSprinting && isCrouching && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
-            {
-                controller.height = standingHeight;
-                isSprinting = true;
-                isCrouching = false;
-                isSliding = false;
-            }
-            else if (isSprinting && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
-            {
-                isSprinting = false;
-            }
+            isSprinting = true;
         }
-        else if (!toggleSprint)
+        if (!isSprinting && isCrouching && Input.GetButtonDown("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
-            if (!isSprinting && Input.GetButton("Sprint") && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
-            {
-                isSprinting = true;
-            }
-            else if (isSprinting && ((!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) || !Input.GetButton("Sprint")))
-            {
-                isSprinting = false;
-            }
+            transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z); ;
+            controller.height = standingHeight * 2;
+            isSprinting = true;
+            isCrouching = false;
+            isSliding = false;
+        }
+        else if (isSprinting && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+        {
+            isSprinting = false;
         }
     }
 
     void crouch()
     {
-        if (toggleCrouch)
+        if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
         {
-           // Debug.Log("Crouching");
-
-            if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
-            {
-                isSprinting = false;
-                isCrouching = true;
-                isSliding = true;
-                slideDir = move;
-                slidingTime = slideLength;
-            }
-            else if (!isCrouching && Input.GetButtonDown("Crouch"))
-            {
-                isCrouching = true;
-                controller.height = crouchingHeight;
-            }
-            else if (isCrouching && (Input.GetButtonDown("Crouch")))
-            {
-                isCrouching = false;
-                controller.height = standingHeight;
-            }
+            isSprinting = false;
+            isCrouching = true;
+            isSliding = true;
+            slideDir = move;
+            slidingTime = slideLength;
         }
-        else if (!toggleCrouch)
+        else if (controller.isGrounded && isCrouching && isSprinting)
         {
-            if (controller.isGrounded && !isCrouching && isSprinting && Input.GetButtonDown("Crouch"))
-            {
-                isSprinting = false;
-                isCrouching = true;
-                isSliding = true;
-                slideDir = move;
-                slidingTime = slideLength;
-            }
-            else if (!isCrouching && Input.GetButton("Crouch"))
-            {
-                isCrouching = true;
-                controller.height = crouchingHeight;
-            }
-            else if (isCrouching && (Input.GetButtonUp("Crouch")))
-            {
-                isCrouching = false;
-                controller.height = standingHeight;
-            }
+            transform.localScale = new Vector3(transform.localScale.x, crouchingHeight, transform.localScale.z);
+            controller.height = crouchingHeight * 2;
+            isSprinting = false;
+            isCrouching = true;
+            isSliding = true;
+            slideDir = move;
+            slidingTime = slideLength;
+        }
+        else if (!isCrouching && Input.GetButtonDown("Crouch"))
+        {
+            isCrouching = true;
+            transform.localScale = new Vector3(transform.localScale.x, crouchingHeight, transform.localScale.z);
+            controller.height = crouchingHeight * 2;
+        }
+        else if (isCrouching && (Input.GetButtonDown("Crouch")))
+        {
+            isCrouching = false;
+            transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z);
+            controller.height = standingHeight * 2;
+        }
+        else if (isCrouching && (Input.GetButtonDown("Sprint")))
+        {
+            isCrouching = false;
+            transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z);
+            controller.height = standingHeight * 2;
         }
     }
 

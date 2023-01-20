@@ -18,6 +18,7 @@ public class Checkpoint : MonoBehaviour
         {
             GameManager.instance.playerSpawnPos = gameObject;
             StartCoroutine(popup());
+            entered = true;
         }
     }
 

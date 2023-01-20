@@ -49,11 +49,6 @@ public class ButtonFunctions : MonoBehaviour
         }
     }
 
-    public void sprintToggle()
-    {
-        GameManager.instance.playerScript.toggleSprint = !GameManager.instance.playerScript.toggleSprint;
-    }
-
     //public void AutoRifleButton()
     //{
     //    GameManager.instance.playerScript.rifleEquiped = true;
