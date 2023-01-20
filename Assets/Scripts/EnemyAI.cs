@@ -121,25 +121,25 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    void EnemyRoaming()
-    {
-        agent.stoppingDistance = 0;
+    //void EnemyRoaming()
+    //{
+    //    agent.stoppingDistance = 0;
 
-        Vector3 randomDirection = Random.insideUnitSphere * roamingDistance;
-        randomDirection += startingPosition;
+    //    Vector3 randomDirection = Random.insideUnitSphere * roamingDistance;
+    //    randomDirection += startingPosition;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(new Vector3(randomDirection.x, 0, randomDirection.z), out hit, 1, 1);
-        NavMeshPath path = new NavMeshPath();
+    //    NavMeshHit hit;
+    //    NavMesh.SamplePosition(new Vector3(randomDirection.x, 0, randomDirection.z), out hit, 1, 1);
+    //    NavMeshPath path = new NavMeshPath();
 
-        if (hit.position != null)
-        {
-            agent.CalculatePath(hit.position, path);
+    //    if (hit.position != null)
+    //    {
+    //        agent.CalculatePath(hit.position, path);
 
-        }
+    //    }
 
-        agent.SetPath(path);
-    }
+    //    agent.SetPath(path);
+    //}
 
     void FacePlayer()
     {
@@ -243,7 +243,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         RightHand.enabled = true;
         anim.SetBool("isAttacking", isAttacking);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
 
         isAttacking = false;
