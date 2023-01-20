@@ -21,6 +21,7 @@ TagManager:
   - EnemyHands
   - ARUI
   - BossGhoul
+  - Ground
   layers:
   - Default
   - TransparentFX
