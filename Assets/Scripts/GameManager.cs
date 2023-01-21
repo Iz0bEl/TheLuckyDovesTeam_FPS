@@ -50,11 +50,8 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     public float timeScaleOrig;
     public GameObject playerSpawnPos;
-    
-
-    Color originalLightColor;
-
-
+    //[SerializeField] int enemyAmount = 0;
+    //public GameObject playerSpawnPos;
     // Start is called before the first frame update
     void Awake()
     {
@@ -69,9 +66,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Application.targetFrameRate = 144;
-        originalLightColor = RenderSettings.ambientLight;
-
+        Application.targetFrameRate = 144;  
+       
     }
 
 
@@ -164,9 +160,6 @@ public class GameManager : MonoBehaviour
         activeMenu = winMenu;
     }
 
-
-    
-
     void ShowSniperScope()
     {
 
@@ -177,23 +170,16 @@ public class GameManager : MonoBehaviour
             {
                 sniperScopeActive = !sniperScopeActive;
 
-                
-
-                
-
                 if (sniperScopeActive)
                 {
                     SniperScopeUI.SetActive(true);
                     Camera.main.fieldOfView = 10;
-                    RenderSettings.ambientLight = Color.green;
 
                 }
                 else
                 {
                     SniperScopeUI.SetActive(false);
                     Camera.main.fieldOfView = 60;
-                    RenderSettings.ambientLight = originalLightColor;
-
 
                 }
 
