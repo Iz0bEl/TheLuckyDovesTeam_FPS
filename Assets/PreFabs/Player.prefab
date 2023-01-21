@@ -419,7 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1290464784880263303}
   flashLight: {fileID: 4889041537703855985}
-  rocketProjectile: {fileID: 2438675266447740185, guid: 979a5bb260b824f42b3f6b16846247f2, type: 3}
+  rocketProjectile: {fileID: 0}
   flashlightOn: 1
   HP: 10
   playerSpeed: 5
