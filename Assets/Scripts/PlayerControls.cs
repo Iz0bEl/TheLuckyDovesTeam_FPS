@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour
     [Header("-----Components-----")]
     public CharacterController controller;
     [SerializeField] Light flashLight;
-    [SerializeField] GameObject rocketProjectile;
+    [SerializeField] GameObject SpawnExplosion;
     public bool flashlightOn;
 
     [Header("-----Player Stats-----")]
@@ -657,12 +657,26 @@ public class PlayerControls : MonoBehaviour
             {
 
                 isShooting = true;
-                
-                aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);  
-                
-                Instantiate(rocketProjectile, GunModelPosition.transform.position, Quaternion.identity);
+                RaycastHit hit;
+                aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
 
-                UpdateBulletCount();                
+
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+                {
+
+                    Instantiate(SpawnExplosion, hit.point, Quaternion.identity);
+
+
+                    //if (hit.collider.GetComponent<IDamage>() != null)
+                    //{
+                    //    if (hit.collider.GetComponent<EnemyAI>().HP > 0)
+                    //        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                    //}
+                }
+
+                UpdateBulletCount();
+
+                // Debug.Log("I shoot");
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
 

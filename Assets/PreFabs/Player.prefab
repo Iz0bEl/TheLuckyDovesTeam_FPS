@@ -419,15 +419,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1290464784880263303}
   flashLight: {fileID: 4889041537703855985}
-  rocketProjectile: {fileID: 0}
+  SpawnExplosion: {fileID: 797419136933333656, guid: 89b3767a9c560bb46ad6053d2ac11cd8, type: 3}
   flashlightOn: 1
-  HP: 10
+  HP: 5
   playerSpeed: 5
   playerSprintSpeed: 10
   jumpHeight: 12
   gravityValue: 25
   jumpsMax: 1
   currentWeapon: 0
+  toggleSprint: 1
   pushBackTime: 0
   aud: {fileID: 799208863}
   gunShot: {fileID: 0}
@@ -458,6 +459,7 @@ MonoBehaviour:
   playerSetpVol: 0.25
   RocketLauncherFiringAudio: []
   RocketLauncherVol: 0
+  toggleCrouch: 1
   standingHeight: 0
   crouchingHeight: 0.5
   crouchingSpeed: 2.5
